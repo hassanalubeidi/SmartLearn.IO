@@ -45,3 +45,4 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'tzinfo-data'
 gem 'validates_formatting_of'
+gem "font-awesome-rails"

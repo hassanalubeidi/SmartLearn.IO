@@ -53,6 +53,8 @@ GEM
     execjs (2.2.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     hashie (3.3.1)
     hike (1.2.3)
     i18n (0.6.11)
@@ -279,6 +281,7 @@ DEPENDENCIES
   bundler
   coffee-rails (~> 4.0.0)
   devise!
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   omniauth
