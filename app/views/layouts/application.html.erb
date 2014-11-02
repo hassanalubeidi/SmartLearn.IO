@@ -36,7 +36,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", edit_user_registration_path %></li>
               <li class="divider"></li>
-              <li><a href="#">Sign Out</a></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
             </ul>
           </li>
         </ul>			
