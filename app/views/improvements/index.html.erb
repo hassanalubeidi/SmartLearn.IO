@@ -1,0 +1,31 @@
+<h1>Listing improvements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Area to improve</th>
+      <th>Checked</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @improvements.each do |improvement| %>
+      <tr>
+        <td><%= improvement.topic %></td>
+        <td><%= improvement.area_to_improve %></td>
+        <td><%= improvement.checked %></td>
+        <td><%= improvement.user %></td>
+        <td><%= link_to 'Show', improvement %></td>
+        <td><%= link_to 'Edit', edit_improvement_path(improvement) %></td>
+        <td><%= link_to 'Destroy', improvement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Improvement', new_improvement_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @improvement.topic %>
+</p>
+
+<p>
+  <strong>Area to improve:</strong>
+  <%= @improvement.area_to_improve %>
+</p>
+
+<p>
+  <strong>Checked:</strong>
+  <%= @improvement.checked %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @improvement.user %>
+</p>
+
+<%= link_to 'Edit', edit_improvement_path(@improvement) %> |
+<%= link_to 'Back', improvements_path %>
