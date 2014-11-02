@@ -29,6 +29,7 @@ class ImprovementsController < ApplicationController
   # POST /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
+    @improvement.user = current_user
 
     respond_to do |format|
       if @improvement.save
