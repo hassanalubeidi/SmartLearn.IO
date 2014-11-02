@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       if request.env['HTTP_REFERER']
         fallback_redirect = :back
       elsif defined?(root_path)
-        fallback_redirect = root_path
+        fallback_redirect = new_user_session_path
       else
         fallback_redirect = "/"
       end

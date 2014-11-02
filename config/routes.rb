@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'improvements#index'
   resources :improvements
 
   resources :reviews
