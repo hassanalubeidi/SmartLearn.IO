@@ -12,6 +12,39 @@
       <p>
         <%= improvement.area_to_improve %>
       </p>
+      <% if improvement.reviews.count != 0 %>
+        <div><%= improvement.reviews.count %> reviews</div>
+        <button type="button" class="btn btn-trans" data-toggle="modal" data-target="#details_<%= improvement.id %>">Details</button> 
+      <% else %>
+        <div>You haven't reviewed this</div>
+
+      <% end %>
+      <%= link_to "Review this", add_review_path(improvement), class: "btn btn-success " %>
     </div>
   <div class="loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div><div class="loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="details_<%= improvement.id %>" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="i-circle primary"><i class="fa fa-check"></i></div>
+          <h4>Awesome!</h4>
+          <ul>
+            <% improvement.reviews.reverse.each do |review| %>
+              <li>Reviewd <%= time_ago_in_words(review.created_at) %> ago</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">Proceed</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>

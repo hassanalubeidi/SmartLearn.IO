@@ -3,12 +3,16 @@ class ImprovementsController < ApplicationController
   #->Prelang (scaffolding:rails/scope_to_user)
   before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy, :index]
 
-  before_action :set_improvement, only: [:show, :edit, :update, :destroy]
+  before_action :set_improvement, only: [:show, :edit, :update, :destroy, :add_review]
 
   # GET /improvements
   # GET /improvements.json
   def index
     @improvements = current_user.improvements
+  end
+  def add_review
+    Review.create :user => current_user, :improvement => @improvement
+    redirect_to root_path, notice: 'Improvement was successfully created.'
   end
 
   # GET /improvements/1

@@ -1,5 +1,6 @@
 <h1 class="page-header"><%= current_user.username %>(<%= current_user.power %>)</h1>
 <% if current_user.power == "teacher" %>
+  <h3>Table containing all improvments, from all users</h3>
   <table id ="test">
     <thead>
       <tr>
@@ -17,7 +18,7 @@
           <td><%= improvement.topic %></td>
           <td><%= improvement.area_to_improve %></td>
           <td><%= improvement.created_at %></td>
-          <td><%= improvement.checked %></td>
+          <td><%= improvement.reviews.count %></td>
         </tr>
       <% end %>
     </tbody>
@@ -35,3 +36,8 @@
     <%= render "improvement", improvement: improvement %>
   <% end %>
 </div>
+
+
+
+ 
+  

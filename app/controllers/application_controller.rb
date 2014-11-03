@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       # If the user came from a page, we can send them back.  Otherwise, send
       # them to the root path.
       if request.env['HTTP_REFERER']
-        fallback_redirect = :back
+        fallback_redirect = new_user_session_path
       elsif defined?(root_path)
         fallback_redirect = new_user_session_path
       else
