@@ -1,6 +1,27 @@
 <h1 class="page-header"><%= current_user.username %>(<%= current_user.power %>)</h1>
 <% if current_user.power == "teacher" %>
-wut
+  <table id ="test">
+    <thead>
+      <tr>
+        <th>Student name</th>
+        <th>Topic</th>
+        <th>Area to improve</th>
+        <th>Date</th>
+        <th>Checked?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Improvement.all.each do |improvement| %>
+        <tr>
+          <td><%= improvement.user.username %></td>
+          <td><%= improvement.topic %></td>
+          <td><%= improvement.area_to_improve %></td>
+          <td><%= improvement.created_at %></td>
+          <td><%= improvement.checked %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
 
 

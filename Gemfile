@@ -46,4 +46,4 @@ gem 'omniauth-facebook'
 gem 'tzinfo-data'
 gem 'validates_formatting_of'
 gem "font-awesome-rails"
-gem 'jquery-datatables-rails', '~> 2.2.3'
+gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails"
