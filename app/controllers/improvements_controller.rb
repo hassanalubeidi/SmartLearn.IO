@@ -8,7 +8,7 @@ class ImprovementsController < ApplicationController
   # GET /improvements
   # GET /improvements.json
   def index
-    @improvements = Improvement.all
+    @improvements = current_user.improvements
   end
 
   # GET /improvements/1

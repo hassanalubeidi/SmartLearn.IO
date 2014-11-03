@@ -1,4 +1,9 @@
-<h1 class="page-header"><%= current_user.username %></h1>
+<h1 class="page-header"><%= current_user.username %>(<%= current_user.power %>)</h1>
+<% if current_user.power == "teacher" %>
+wut
+<% end %>
+
+
 <% if @improvements.count != 0 %>
   <p><%= @improvements.count %> improvement(s), most recent being at <%= Improvement.last.created_at %>, <%= link_to "create a new one", new_improvement_path %></p>
 <% else %>
