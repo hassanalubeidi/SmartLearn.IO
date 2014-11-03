@@ -1,7 +1,5 @@
-<% @improvements.each do |improvement| %>
-  <div class="block-flat">
-    <div class="header"><h2><%= improvement.topic %></h2></div>
-    <div class="content"><p><%= improvement.area_to_improve %></p></div>
-    <div class="footer">foot</div>
-  </div>
-<% end %>
+<div class="row">
+  <% @improvements.each do |improvement| %>
+    <%= render "improvement", improvement: improvement %>
+  <% end %>
+</div>
