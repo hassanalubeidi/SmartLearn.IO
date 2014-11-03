@@ -1,3 +1,9 @@
+<h1 class="page-header"><%= current_user.username %></h1>
+<% if @improvements.count != 0 %>
+  <p><%= @improvements.count %> improvement(s), most recent being at <%= Improvement.last.created_at %>, <%= link_to "create a new one", new_improvement_path %></p>
+<% else %>
+  <p>You have no current improvements, perhaps you should <%= link_to "add one.", new_improvement_path %>
+<% end %>
 <div class="row">
   <% @improvements.each do |improvement| %>
     <%= render "improvement", improvement: improvement %>
