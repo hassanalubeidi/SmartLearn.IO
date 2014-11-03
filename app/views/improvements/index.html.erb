@@ -25,7 +25,18 @@
   </table>
 <% elsif current_user.power == "admin" %>
   <% User.all.each do |user| %>
-    <div><h3><%= user.username %></h3><p><%= user.power %> <%= link_to "set as teacher", set_user_as_teacher_path(user) %></p></div>
+    <div>
+      <h3><%= user.username %></h3>
+      <p>
+
+        <%= user.power %> 
+        <% if user.power == "student" %>
+          <%= link_to "set as teacher", set_user_as_teacher_path(user) %>
+        <% elsif user.power == "teacher" %>
+          <%= link_to "set as student", set_user_as_student_path(user) %>
+        <% end %>
+    </p>
+  </div>
   <% end %>
 <% end %>
 

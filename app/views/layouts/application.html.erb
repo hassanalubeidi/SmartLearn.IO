@@ -51,12 +51,14 @@
   
     
 	<div class="cl-mcont container">
+    <%= render 'layouts/messages' %>
 		<%= yield %>
 	</div>
 
 </div> 
 <% else %>
 <body>
+  <%= render 'layouts/messages' %>
 	<%= yield %>
 
 

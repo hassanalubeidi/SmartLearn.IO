@@ -17,12 +17,22 @@ class ImprovementsController < ApplicationController
   def set_user_as_teacher
     @user = User.find(params[:id])
     if current_user.power == "admin" 
-      @user.power = "teacher"
-      redirect_to root_path, success: @user.username + " is now an admin"
+      @user.update(:power => "teacher")
+      redirect_to root_path, status: "User is now a teacher"
     else
-      redirect_to root_path, notice: "u r one cheeky cunt m8"
+      render text: "failure" + @user.username
     end
   end
+  def set_user_as_student
+    @user = User.find(params[:id])
+    if current_user.power == "admin" 
+      @user.update(:power => "student")
+      redirect_to root_path, success: "User is now a student"
+    else
+      render text: "failure" + @user.username
+    end
+  end
+
 
   # GET /improvements/1
   # GET /improvements/1.json
