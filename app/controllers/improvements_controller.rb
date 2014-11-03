@@ -14,6 +14,15 @@ class ImprovementsController < ApplicationController
     Review.create :user => current_user, :improvement => @improvement
     redirect_to root_path, notice: 'Improvement was successfully created.'
   end
+  def set_user_as_teacher
+    @user = User.find(params[:id])
+    if current_user.power == "admin" 
+      @user.power = "teacher"
+      redirect_to root_path, success: @user.username + " is now an admin"
+    else
+      redirect_to root_path, notice: "u r one cheeky cunt m8"
+    end
+  end
 
   # GET /improvements/1
   # GET /improvements/1.json

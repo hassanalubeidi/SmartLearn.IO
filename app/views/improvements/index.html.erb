@@ -23,6 +23,10 @@
       <% end %>
     </tbody>
   </table>
+<% elsif current_user.power == "admin" %>
+  <% User.all.each do |user| %>
+    <div><h3><%= user.username %></h3><p><%= user.power %> <%= link_to "set as teacher", set_user_as_teacher_path(user) %></p></div>
+  <% end %>
 <% end %>
 
 
@@ -40,4 +44,3 @@
 
 
  
-  

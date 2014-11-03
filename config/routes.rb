@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :improvements
 
   get 'improvements/:id/add_review' => 'improvements#add_review', as: :add_review
-  
+  get ':id/set_user_as_teacher' => 'improvements#set_user_as_teacher', as: :set_user_as_teacher
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
   # The priority is based upon order of creation: first created -> highest priority.
