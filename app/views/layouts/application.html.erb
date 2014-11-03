@@ -33,7 +33,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right user-nav">
           <li class="dropdown profile_menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar6-2.jpg" /><span>Jane Smith</span> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar6-2.jpg" /><span><%= current_user.username %></span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", edit_user_registration_path %></li>
               <li class="divider"></li>
