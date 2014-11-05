@@ -1,4 +1,5 @@
-<h1 class="page-header"><%= current_user.username %>(<%= current_user.power %>)</h1>
+<h1 class="page-header"><%= current_user.username %></h1>
+<h3>role: <%= current_user.power %></h3>
 <% if current_user.power == "teacher" %>
   <h3>Table containing all improvments, from all users</h3>
   <table id ="test">
@@ -25,14 +26,14 @@
   </table>
 <% elsif current_user.power == "admin" %>
   <% User.all.each do |user| %>
-    <div>
+    <div class="block-flat">
       <h3><%= user.username %></h3>
       <p>
 
         <%= user.power %> 
         <% if user.power == "student" %>
           <%= link_to "set as teacher", set_user_as_teacher_path(user) %>
-        <% elsif user.power == "teacher" %>
+        <% elsif user.power == "teacher" or user.power == nil %>
           <%= link_to "set as student", set_user_as_student_path(user) %>
         <% end %>
     </p>

@@ -1,5 +1,5 @@
 <div class="col-sm-4 col-md-4">
-  <div class="block-flat">
+  <div class="block-flat <%= determine_state(improvement.checked) %>">
     <div class="header">
       <div class="actions">
         <%= link_to "Edit".html_safe, edit_improvement_path(improvement) %>
@@ -37,7 +37,7 @@
           <h4>Awesome!</h4>
           <ul>
             <% improvement.reviews.reverse.each do |review| %>
-              <li>Reviewd <%= time_ago_in_words(review.created_at) %> ago</li>
+              <li>Reviewd <%= time_ago_in_words(review.created_at) %> ago, <%= link_to "undo?", review_path(review), method: "delete" %></li>
             <% end %>
           </ul>
         </div>

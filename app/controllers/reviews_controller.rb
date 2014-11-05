@@ -61,7 +61,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to improvements_url, notice: 'Deleted review from ' + @review.improvement.topic }
       format.json { head :no_content }
     end
   end

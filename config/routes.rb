@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'improvements#index'
   resources :improvements
+  resources :reviews
 
   get 'improvements/:id/add_review' => 'improvements#add_review', as: :add_review
   get ':id/set_user_as_teacher' => 'improvements#set_user_as_teacher', as: :set_user_as_teacher
