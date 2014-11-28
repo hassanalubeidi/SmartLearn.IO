@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :arcticles
+  resources :subjects
 
   root 'dashboard#index'
   resources :improvements
