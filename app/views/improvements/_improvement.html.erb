@@ -11,6 +11,7 @@
     <div class="content" style="display: block;">
       <p>
         <%= improvement.area_to_improve %>
+        belongs to <%= improvement.subject.name %>
       </p>
       <% if improvement.reviews.count != 0 %>
         <div><%= improvement.reviews.count %> reviews</div>

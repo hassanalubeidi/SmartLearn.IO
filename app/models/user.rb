@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
         :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
   has_many :improvements
+  has_many :subjects
   
   #->Prelang (user_login:devise/username_login_support)
   def self.find_first_by_auth_conditions(warden_conditions)

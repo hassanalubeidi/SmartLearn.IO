@@ -1,0 +1,29 @@
+<h1>Listing arcticles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>References</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @arcticles.each do |arcticle| %>
+      <tr>
+        <td><%= arcticle.title %></td>
+        <td><%= arcticle.body %></td>
+        <td><%= arcticle.references %></td>
+        <td><%= link_to 'Show', arcticle %></td>
+        <td><%= link_to 'Edit', edit_arcticle_path(arcticle) %></td>
+        <td><%= link_to 'Destroy', arcticle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Arcticle', new_arcticle_path %>
