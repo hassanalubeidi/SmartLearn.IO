@@ -1,6 +1,62 @@
-User.create!([
-  {id: 1, email: "admin@admin.com", encrypted_password: "$2a$10$M7xSct4o7BavzV3QmL620ubFJYwNREmk3xQGXlKMAqn4Lxm3uGvCO", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 10, current_sign_in_at: "2015-03-17 23:30:18", last_sign_in_at: "2015-02-17 23:12:19", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2015-01-31 19:49:26", updated_at: "2015-03-17 23:30:18", username: "admin", power: "admin", password: "topsecret"},
-  {id: 2, email: "hassanalubeidi1996@gmail.com", encrypted_password: "$2a$10$mm/OPBG/q47uOMKEJb.M5uIxla3p4ZrFXBx5cYuYq256nzfQkEpga", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2015-03-22 18:01:31", last_sign_in_at: "2015-03-22 17:40:27", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2015-02-07 11:42:14", updated_at: "2015-03-22 18:01:31", username: "hassan", power: nil, password: "4432691abc"}
+Subject.create!([
+  {id: 12, name: "Biology", created_at: "2015-02-07 11:59:02", updated_at: "2015-02-07 11:59:02", user_id: 2},
+  {id: 13, name: "Chemistry", created_at: "2015-02-07 20:24:40", updated_at: "2015-02-07 20:24:40", user_id: 2},
+  {id: 14, name: "Maths", created_at: "2015-02-07 22:05:25", updated_at: "2015-02-07 22:05:25", user_id: 1}
+])
+Topic.create!([
+  {id: 8, name: "Meiosis", subject_id: 12, created_at: "2015-02-07 12:00:18", updated_at: "2015-02-07 12:00:18"},
+  {id: 10, name: "Mitosis", subject_id: 12, created_at: "2015-02-07 21:59:13", updated_at: "2015-02-07 21:59:13"},
+  {id: 11, name: "Polynomials", subject_id: 14, created_at: "2015-02-07 22:21:39", updated_at: "2015-02-07 22:21:39"},
+  {id: 12, name: "fff", subject_id: 14, created_at: "2015-02-10 23:15:03", updated_at: "2015-02-10 23:15:03"},
+  {id: 13, name: "Atoms", subject_id: 13, created_at: "2015-02-17 15:15:31", updated_at: "2015-02-17 15:15:31"},
+  {id: 14, name: "Moles & equations", subject_id: 13, created_at: "2015-02-17 15:15:44", updated_at: "2015-02-17 15:15:44"},
+  {id: 15, name: "Acids", subject_id: 13, created_at: "2015-02-17 15:15:53", updated_at: "2015-02-17 15:15:53"},
+  {id: 16, name: "Redox", subject_id: 13, created_at: "2015-02-17 15:16:07", updated_at: "2015-02-17 15:16:07"},
+  {id: 17, name: "Electron structure", subject_id: 13, created_at: "2015-02-17 15:16:23", updated_at: "2015-02-17 15:16:23"},
+  {id: 18, name: "Bonding & structure", subject_id: 13, created_at: "2015-02-17 15:16:40", updated_at: "2015-02-17 15:16:40"},
+  {id: 19, name: "Peroidicity", subject_id: 13, created_at: "2015-02-17 15:17:16", updated_at: "2015-02-17 15:17:16"},
+  {id: 20, name: "Group 2", subject_id: 13, created_at: "2015-02-17 15:18:02", updated_at: "2015-02-17 15:18:02"},
+  {id: 21, name: "Group 7", subject_id: 13, created_at: "2015-02-17 15:18:10", updated_at: "2015-02-17 15:27:57"}
+])
+Question.create!([
+  {id: 5, topic_id: 13, text: "State what is meant by the term isotopes", total_marks: 1, created_at: "2015-02-17 15:19:00", updated_at: "2015-02-17 15:19:00"},
+  {id: 6, topic_id: 13, text: "Isotopes of carbon have the same chemical properties.\r\nExplain why", total_marks: 1, created_at: "2015-02-17 15:19:18", updated_at: "2015-02-17 15:19:18"},
+  {id: 7, topic_id: 13, text: "The 12 C isotope is used as the standard measurement of relative masses.\r\nDefine the term relative isotopic mass", total_marks: 2, created_at: "2015-02-17 15:19:30", updated_at: "2015-02-17 15:19:34"},
+  {id: 8, topic_id: 18, text: "• Describe the bonding and structure in graphite.\r\n• Explain, in terms of bonding and structure, the properties of graphite shown above.\r\nIn your answer, you should use appropriate technical terms, spelt correctly", total_marks: 5, created_at: "2015-02-17 15:20:30", updated_at: "2015-02-17 15:20:30"},
+  {id: 9, topic_id: 14, text: "Calculate the amount, in mol, of carbon atoms in the student’s pencil lead.\r\nAssume that the ‘pencil lead’ is pure graphite.", total_marks: 1, created_at: "2015-02-17 15:21:27", updated_at: "2015-02-17 15:21:27"},
+  {id: 10, topic_id: 14, text: "Using the Avogadro constant, N A , calculate the number of carbon atoms in the student’s\r\n‘pencil lead’.", total_marks: 1, created_at: "2015-02-17 15:21:42", updated_at: "2015-02-17 15:21:42"},
+  {id: 11, topic_id: 18, text: "Explain what is meant by a covalent bond.", total_marks: 1, created_at: "2015-02-17 15:21:59", updated_at: "2015-02-17 15:21:59"},
+  {id: 12, topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 3 .\r\nShow outer electrons only.", total_marks: 1, created_at: "2015-02-17 15:22:24", updated_at: "2015-02-18 01:01:24"},
+  {id: 13, topic_id: 18, text: "Name the shape of the ammonia molecule.\r\nExplain, using your ‘dot-and-cross’ diagram, why ammonia has this shape and has a\r\nbond angle of 107°.", total_marks: 3, created_at: "2015-02-17 15:22:46", updated_at: "2015-02-17 15:22:46"},
+  {id: 14, topic_id: 17, text: "Complete the electron configuration of the Cl – ion.", total_marks: 1, created_at: "2015-02-17 15:23:13", updated_at: "2015-02-17 15:23:13"},
+  {id: 15, topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 4+ .\r\nShow outer electrons only.", total_marks: 1, created_at: "2015-02-17 15:23:31", updated_at: "2015-02-17 15:23:31"},
+  {id: 16, topic_id: 18, text: "State the shape of, and bond angle in, an NH 4+ ion.", total_marks: 2, created_at: "2015-02-17 15:23:51", updated_at: "2015-02-17 15:23:56"},
+  {id: 17, topic_id: 18, text: "A student investigated the conductivity of ammonium chloride.\r\nShe noticed that when the ammonium chloride was solid it did not conduct electricity.\r\nHowever, when ammonium chloride was dissolved in water, the resulting solution did\r\nconduct electricity.\r\nExplain these observations.", total_marks: 2, created_at: "2015-02-17 15:24:12", updated_at: "2015-02-17 15:24:12"},
+  {id: 18, topic_id: 15, text: "Write a balanced equation to show how ammonium sulfate could be formed by the\r\nreaction between aqueous ammonia and sulfuric acid.", total_marks: 1, created_at: "2015-02-17 15:25:16", updated_at: "2015-02-17 15:25:16"},
+  {id: 19, topic_id: 15, text: "Explain what is meant by the term salt.", total_marks: 1, created_at: "2015-02-17 15:25:30", updated_at: "2015-02-17 15:25:30"},
+  {id: 20, topic_id: 15, text: "Why is ammonia acting as a base in this neutralisation?", total_marks: 1, created_at: "2015-02-17 15:25:40", updated_at: "2015-02-17 15:25:40"},
+  {id: 21, topic_id: 13, text: "What is the relative formula mass of (NH 4 ) 2 SO 4 ?\r\nGive your answer to one decimal place.", total_marks: 1, created_at: "2015-02-17 15:25:53", updated_at: "2015-02-17 15:25:53"},
+  {id: 22, topic_id: 21, text: "A student used the internet to research chlorine and some of its compounds.\r\nHe discovered that sea water contains chloride ions. The student added aqueous silver nitrate\r\nto a sample of sea water.\r\nWhat would the student see?", total_marks: 1, created_at: "2015-02-17 15:27:47", updated_at: "2015-02-17 15:27:47"},
+  {id: 23, topic_id: 21, text: "Write an ionic equation, including state symbols, for the reaction that would occur.", total_marks: 2, created_at: "2015-02-17 15:28:28", updated_at: "2015-02-17 15:29:24"},
+  {id: 24, topic_id: 21, text: "After carrying out the test in (i), the student added dilute aqueous ammonia to the\r\nmixture.\r\nWhat would the student see?", total_marks: 1, created_at: "2015-02-17 15:28:38", updated_at: "2015-02-17 15:29:33"},
+  {id: 25, topic_id: 21, text: "The student also discovered that chlorine, Cl 2 , is used in the large-scale treatment of water.\r\n(i)\r\nState one benefit of adding chlorine to water.", total_marks: 1, created_at: "2015-02-17 15:29:51", updated_at: "2015-02-17 15:29:51"},
+  {id: 26, topic_id: 21, text: "Not everyone agrees that chlorine should be added to drinking water.\r\nSuggest one possible hazard of adding chlorine to drinking water.", total_marks: 1, created_at: "2015-02-17 15:30:05", updated_at: "2015-02-17 15:30:05"},
+  {id: 27, topic_id: 16, text: "State the oxidation number of chlorine in:\r\nCl 2 ..................... HCl ..................... HCl O .....................", total_marks: 1, created_at: "2015-02-17 15:30:33", updated_at: "2015-02-17 15:30:33"},
+  {id: 28, topic_id: 16, text: "The reaction of chlorine with water is a disproportionation reaction.\r\nUse the oxidation numbers in (i) to explain why.", total_marks: 2, created_at: "2015-02-17 15:30:55", updated_at: "2015-02-17 15:31:13"},
+  {id: 29, topic_id: 21, text: "Chlorine reacts with sodium hydroxide to form bleach in another disproportionation\r\nreaction.\r\nWrite an equation for this reaction.", total_marks: 1, created_at: "2015-02-17 15:31:28", updated_at: "2015-02-17 15:31:28"},
+  {id: 30, topic_id: 21, text: "Two other chlorine compounds of chlorine are chlorine dioxide and chloric( V ) acid.\r\n(i)\r\nChlorine dioxide, Cl O 2 , is used as a bleaching agent in both the paper and the flour\r\nindustry. When dry, Cl O 2 decomposes explosively to form oxygen and chlorine.\r\nConstruct an equation for the decomposition of Cl O 2 .", total_marks: 1, created_at: "2015-02-17 15:32:38", updated_at: "2015-02-17 15:32:38"},
+  {id: 31, topic_id: 14, text: "Chloric( V ) acid has the following percentage composition by mass:\r\nH, 1.20%; Cl, 42.0%; O, 56.8%.\r\nUsing this information, calculate the empirical formula of chloric( V ) acid.\r\nShow all of your working.", total_marks: 2, created_at: "2015-02-17 15:32:51", updated_at: "2015-02-17 15:32:51"},
+  {id: 32, topic_id: 16, text: "What does ( V ) represent in chloric( V ) acid?", total_marks: 1, created_at: "2015-02-17 15:33:24", updated_at: "2015-02-17 15:33:24"},
+  {id: 33, topic_id: 19, text: "Explain the difference in melting point for the elements Na and Mg.", total_marks: 3, created_at: "2015-02-17 15:33:48", updated_at: "2015-02-17 15:33:48"},
+  {id: 34, topic_id: 19, text: "Sulfur exists as S 8 molecules and chlorine as Cl 2 molecules. Use this information to\r\nexplain the difference in their melting points.", total_marks: 2, created_at: "2015-02-17 15:34:01", updated_at: "2015-02-17 15:34:01"},
+  {id: 35, topic_id: 19, text: "Explain the decrease in the atomic radii across the period from Na to Cl.\r\nIn your answer, you should use appropriate technical terms, spelt correctly.", total_marks: 3, created_at: "2015-02-17 15:34:18", updated_at: "2015-02-17 15:34:18"},
+  {id: 36, topic_id: 20, text: "Predict the formula of:\r\nbarium oxide ..............................\r\nbarium nitride ..............................", total_marks: 2, created_at: "2015-02-17 15:34:36", updated_at: "2015-02-17 15:34:36"},
+  {id: 37, topic_id: 14, text: "A 0.11 g sample of pure barium was added to 100 cm 3 of water. |||\r\nBa(s) + 2H 2 O(l) -> Ba(OH) 2 (aq) + H 2 (g) ||||\r\nShow that 8.0 × 10 −4 mol of Ba were added to the water.", total_marks: 1, created_at: "2015-02-17 15:35:35", updated_at: "2015-02-17 15:35:35"},
+  {id: 38, topic_id: 14, text: "Calculate the volume of hydrogen, in cm 3 , produced at room temperature and pressure.", total_marks: 1, created_at: "2015-02-17 15:35:50", updated_at: "2015-02-17 15:35:50"},
+  {id: 39, topic_id: 14, text: "Calculate the concentration, in mol dm −3 , of the Ba(OH) 2 (aq) solution formed.", total_marks: 1, created_at: "2015-02-17 15:36:17", updated_at: "2015-02-17 15:36:17"},
+  {id: 40, topic_id: 20, text: "State the approximate pH of the Ba(OH) 2 (aq) solution.", total_marks: 1, created_at: "2015-02-17 15:36:33", updated_at: "2015-02-17 15:36:33"},
+  {id: 41, topic_id: 20, text: "A student repeated the experiment in (b) using a 0.11 g sample of barium that had blackened\r\nfollowing exposure to the air.\r\nSuggest why the volume of hydrogen produced would be slightly less than the volume\r\ncollected using pure barium.", total_marks: 1, created_at: "2015-02-17 15:36:52", updated_at: "2015-02-17 15:36:52"},
+  {id: 42, topic_id: 20, text: "Describe and explain the trend, down the group, in the reactivity of the Group 2 elements with\r\nwater.", total_marks: 5, created_at: "2015-02-17 15:37:08", updated_at: "2015-02-17 15:37:08"}
 ])
 Answer.create!([
   {id: 8, question_id: 1, user_id: 2, text: "sdfsdf", marks_integer: "21", created_at: "2015-02-16 23:08:06", updated_at: "2015-02-16 23:08:06"},
@@ -57,46 +113,7 @@ Improvement.create!([
   {id: 71, area_to_improve: "Explaining the difference between the melting points of metals", checked: false, user_id: 2, created_at: "2015-02-25 21:44:25", updated_at: "2015-02-25 21:44:25", subject_id: 13, topic_id: 19},
   {id: 72, area_to_improve: "Explaining the difference in melting points in non metals", checked: false, user_id: 2, created_at: "2015-02-25 21:44:48", updated_at: "2015-02-25 21:44:48", subject_id: 13, topic_id: 19}
 ])
-Question.create!([
-  {id: 5, topic_id: 13, text: "State what is meant by the term isotopes", total_marks: 1, created_at: "2015-02-17 15:19:00", updated_at: "2015-02-17 15:19:00"},
-  {id: 6, topic_id: 13, text: "Isotopes of carbon have the same chemical properties.\r\nExplain why", total_marks: 1, created_at: "2015-02-17 15:19:18", updated_at: "2015-02-17 15:19:18"},
-  {id: 7, topic_id: 13, text: "The 12 C isotope is used as the standard measurement of relative masses.\r\nDefine the term relative isotopic mass", total_marks: 2, created_at: "2015-02-17 15:19:30", updated_at: "2015-02-17 15:19:34"},
-  {id: 8, topic_id: 18, text: "• Describe the bonding and structure in graphite.\r\n• Explain, in terms of bonding and structure, the properties of graphite shown above.\r\nIn your answer, you should use appropriate technical terms, spelt correctly", total_marks: 5, created_at: "2015-02-17 15:20:30", updated_at: "2015-02-17 15:20:30"},
-  {id: 9, topic_id: 14, text: "Calculate the amount, in mol, of carbon atoms in the student’s pencil lead.\r\nAssume that the ‘pencil lead’ is pure graphite.", total_marks: 1, created_at: "2015-02-17 15:21:27", updated_at: "2015-02-17 15:21:27"},
-  {id: 10, topic_id: 14, text: "Using the Avogadro constant, N A , calculate the number of carbon atoms in the student’s\r\n‘pencil lead’.", total_marks: 1, created_at: "2015-02-17 15:21:42", updated_at: "2015-02-17 15:21:42"},
-  {id: 11, topic_id: 18, text: "Explain what is meant by a covalent bond.", total_marks: 1, created_at: "2015-02-17 15:21:59", updated_at: "2015-02-17 15:21:59"},
-  {id: 12, topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 3 .\r\nShow outer electrons only.", total_marks: 1, created_at: "2015-02-17 15:22:24", updated_at: "2015-02-18 01:01:24"},
-  {id: 13, topic_id: 18, text: "Name the shape of the ammonia molecule.\r\nExplain, using your ‘dot-and-cross’ diagram, why ammonia has this shape and has a\r\nbond angle of 107°.", total_marks: 3, created_at: "2015-02-17 15:22:46", updated_at: "2015-02-17 15:22:46"},
-  {id: 14, topic_id: 17, text: "Complete the electron configuration of the Cl – ion.", total_marks: 1, created_at: "2015-02-17 15:23:13", updated_at: "2015-02-17 15:23:13"},
-  {id: 15, topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 4+ .\r\nShow outer electrons only.", total_marks: 1, created_at: "2015-02-17 15:23:31", updated_at: "2015-02-17 15:23:31"},
-  {id: 16, topic_id: 18, text: "State the shape of, and bond angle in, an NH 4+ ion.", total_marks: 2, created_at: "2015-02-17 15:23:51", updated_at: "2015-02-17 15:23:56"},
-  {id: 17, topic_id: 18, text: "A student investigated the conductivity of ammonium chloride.\r\nShe noticed that when the ammonium chloride was solid it did not conduct electricity.\r\nHowever, when ammonium chloride was dissolved in water, the resulting solution did\r\nconduct electricity.\r\nExplain these observations.", total_marks: 2, created_at: "2015-02-17 15:24:12", updated_at: "2015-02-17 15:24:12"},
-  {id: 18, topic_id: 15, text: "Write a balanced equation to show how ammonium sulfate could be formed by the\r\nreaction between aqueous ammonia and sulfuric acid.", total_marks: 1, created_at: "2015-02-17 15:25:16", updated_at: "2015-02-17 15:25:16"},
-  {id: 19, topic_id: 15, text: "Explain what is meant by the term salt.", total_marks: 1, created_at: "2015-02-17 15:25:30", updated_at: "2015-02-17 15:25:30"},
-  {id: 20, topic_id: 15, text: "Why is ammonia acting as a base in this neutralisation?", total_marks: 1, created_at: "2015-02-17 15:25:40", updated_at: "2015-02-17 15:25:40"},
-  {id: 21, topic_id: 13, text: "What is the relative formula mass of (NH 4 ) 2 SO 4 ?\r\nGive your answer to one decimal place.", total_marks: 1, created_at: "2015-02-17 15:25:53", updated_at: "2015-02-17 15:25:53"},
-  {id: 22, topic_id: 21, text: "A student used the internet to research chlorine and some of its compounds.\r\nHe discovered that sea water contains chloride ions. The student added aqueous silver nitrate\r\nto a sample of sea water.\r\nWhat would the student see?", total_marks: 1, created_at: "2015-02-17 15:27:47", updated_at: "2015-02-17 15:27:47"},
-  {id: 23, topic_id: 21, text: "Write an ionic equation, including state symbols, for the reaction that would occur.", total_marks: 2, created_at: "2015-02-17 15:28:28", updated_at: "2015-02-17 15:29:24"},
-  {id: 24, topic_id: 21, text: "After carrying out the test in (i), the student added dilute aqueous ammonia to the\r\nmixture.\r\nWhat would the student see?", total_marks: 1, created_at: "2015-02-17 15:28:38", updated_at: "2015-02-17 15:29:33"},
-  {id: 25, topic_id: 21, text: "The student also discovered that chlorine, Cl 2 , is used in the large-scale treatment of water.\r\n(i)\r\nState one benefit of adding chlorine to water.", total_marks: 1, created_at: "2015-02-17 15:29:51", updated_at: "2015-02-17 15:29:51"},
-  {id: 26, topic_id: 21, text: "Not everyone agrees that chlorine should be added to drinking water.\r\nSuggest one possible hazard of adding chlorine to drinking water.", total_marks: 1, created_at: "2015-02-17 15:30:05", updated_at: "2015-02-17 15:30:05"},
-  {id: 27, topic_id: 16, text: "State the oxidation number of chlorine in:\r\nCl 2 ..................... HCl ..................... HCl O .....................", total_marks: 1, created_at: "2015-02-17 15:30:33", updated_at: "2015-02-17 15:30:33"},
-  {id: 28, topic_id: 16, text: "The reaction of chlorine with water is a disproportionation reaction.\r\nUse the oxidation numbers in (i) to explain why.", total_marks: 2, created_at: "2015-02-17 15:30:55", updated_at: "2015-02-17 15:31:13"},
-  {id: 29, topic_id: 21, text: "Chlorine reacts with sodium hydroxide to form bleach in another disproportionation\r\nreaction.\r\nWrite an equation for this reaction.", total_marks: 1, created_at: "2015-02-17 15:31:28", updated_at: "2015-02-17 15:31:28"},
-  {id: 30, topic_id: 21, text: "Two other chlorine compounds of chlorine are chlorine dioxide and chloric( V ) acid.\r\n(i)\r\nChlorine dioxide, Cl O 2 , is used as a bleaching agent in both the paper and the flour\r\nindustry. When dry, Cl O 2 decomposes explosively to form oxygen and chlorine.\r\nConstruct an equation for the decomposition of Cl O 2 .", total_marks: 1, created_at: "2015-02-17 15:32:38", updated_at: "2015-02-17 15:32:38"},
-  {id: 31, topic_id: 14, text: "Chloric( V ) acid has the following percentage composition by mass:\r\nH, 1.20%; Cl, 42.0%; O, 56.8%.\r\nUsing this information, calculate the empirical formula of chloric( V ) acid.\r\nShow all of your working.", total_marks: 2, created_at: "2015-02-17 15:32:51", updated_at: "2015-02-17 15:32:51"},
-  {id: 32, topic_id: 16, text: "What does ( V ) represent in chloric( V ) acid?", total_marks: 1, created_at: "2015-02-17 15:33:24", updated_at: "2015-02-17 15:33:24"},
-  {id: 33, topic_id: 19, text: "Explain the difference in melting point for the elements Na and Mg.", total_marks: 3, created_at: "2015-02-17 15:33:48", updated_at: "2015-02-17 15:33:48"},
-  {id: 34, topic_id: 19, text: "Sulfur exists as S 8 molecules and chlorine as Cl 2 molecules. Use this information to\r\nexplain the difference in their melting points.", total_marks: 2, created_at: "2015-02-17 15:34:01", updated_at: "2015-02-17 15:34:01"},
-  {id: 35, topic_id: 19, text: "Explain the decrease in the atomic radii across the period from Na to Cl.\r\nIn your answer, you should use appropriate technical terms, spelt correctly.", total_marks: 3, created_at: "2015-02-17 15:34:18", updated_at: "2015-02-17 15:34:18"},
-  {id: 36, topic_id: 20, text: "Predict the formula of:\r\nbarium oxide ..............................\r\nbarium nitride ..............................", total_marks: 2, created_at: "2015-02-17 15:34:36", updated_at: "2015-02-17 15:34:36"},
-  {id: 37, topic_id: 14, text: "A 0.11 g sample of pure barium was added to 100 cm 3 of water. |||\r\nBa(s) + 2H 2 O(l) -> Ba(OH) 2 (aq) + H 2 (g) ||||\r\nShow that 8.0 × 10 −4 mol of Ba were added to the water.", total_marks: 1, created_at: "2015-02-17 15:35:35", updated_at: "2015-02-17 15:35:35"},
-  {id: 38, topic_id: 14, text: "Calculate the volume of hydrogen, in cm 3 , produced at room temperature and pressure.", total_marks: 1, created_at: "2015-02-17 15:35:50", updated_at: "2015-02-17 15:35:50"},
-  {id: 39, topic_id: 14, text: "Calculate the concentration, in mol dm −3 , of the Ba(OH) 2 (aq) solution formed.", total_marks: 1, created_at: "2015-02-17 15:36:17", updated_at: "2015-02-17 15:36:17"},
-  {id: 40, topic_id: 20, text: "State the approximate pH of the Ba(OH) 2 (aq) solution.", total_marks: 1, created_at: "2015-02-17 15:36:33", updated_at: "2015-02-17 15:36:33"},
-  {id: 41, topic_id: 20, text: "A student repeated the experiment in (b) using a 0.11 g sample of barium that had blackened\r\nfollowing exposure to the air.\r\nSuggest why the volume of hydrogen produced would be slightly less than the volume\r\ncollected using pure barium.", total_marks: 1, created_at: "2015-02-17 15:36:52", updated_at: "2015-02-17 15:36:52"},
-  {id: 42, topic_id: 20, text: "Describe and explain the trend, down the group, in the reactivity of the Group 2 elements with\r\nwater.", total_marks: 5, created_at: "2015-02-17 15:37:08", updated_at: "2015-02-17 15:37:08"}
-])
+
 Review.create!([
   {id: 34, user_id: 2, improvement_id: 64, created_at: "2015-02-22 00:33:11", updated_at: "2015-02-22 00:33:11"},
   {id: 35, user_id: 2, improvement_id: 63, created_at: "2015-02-22 00:33:13", updated_at: "2015-02-22 00:33:13"},
@@ -107,23 +124,4 @@ Review.create!([
 SetGroup.create!([
   {id: 1, name: "E", year: 12, subject_id: 14, created_at: "2015-02-08 01:40:33", updated_at: "2015-02-08 01:40:33"}
 ])
-Subject.create!([
-  {id: 12, name: "Biology", created_at: "2015-02-07 11:59:02", updated_at: "2015-02-07 11:59:02", user_id: 2},
-  {id: 13, name: "Chemistry", created_at: "2015-02-07 20:24:40", updated_at: "2015-02-07 20:24:40", user_id: 2},
-  {id: 14, name: "Maths", created_at: "2015-02-07 22:05:25", updated_at: "2015-02-07 22:05:25", user_id: 1}
-])
-Topic.create!([
-  {id: 8, name: "Meiosis", subject_id: 12, created_at: "2015-02-07 12:00:18", updated_at: "2015-02-07 12:00:18"},
-  {id: 10, name: "Mitosis", subject_id: 12, created_at: "2015-02-07 21:59:13", updated_at: "2015-02-07 21:59:13"},
-  {id: 11, name: "Polynomials", subject_id: 14, created_at: "2015-02-07 22:21:39", updated_at: "2015-02-07 22:21:39"},
-  {id: 12, name: "fff", subject_id: 14, created_at: "2015-02-10 23:15:03", updated_at: "2015-02-10 23:15:03"},
-  {id: 13, name: "Atoms", subject_id: 13, created_at: "2015-02-17 15:15:31", updated_at: "2015-02-17 15:15:31"},
-  {id: 14, name: "Moles & equations", subject_id: 13, created_at: "2015-02-17 15:15:44", updated_at: "2015-02-17 15:15:44"},
-  {id: 15, name: "Acids", subject_id: 13, created_at: "2015-02-17 15:15:53", updated_at: "2015-02-17 15:15:53"},
-  {id: 16, name: "Redox", subject_id: 13, created_at: "2015-02-17 15:16:07", updated_at: "2015-02-17 15:16:07"},
-  {id: 17, name: "Electron structure", subject_id: 13, created_at: "2015-02-17 15:16:23", updated_at: "2015-02-17 15:16:23"},
-  {id: 18, name: "Bonding & structure", subject_id: 13, created_at: "2015-02-17 15:16:40", updated_at: "2015-02-17 15:16:40"},
-  {id: 19, name: "Peroidicity", subject_id: 13, created_at: "2015-02-17 15:17:16", updated_at: "2015-02-17 15:17:16"},
-  {id: 20, name: "Group 2", subject_id: 13, created_at: "2015-02-17 15:18:02", updated_at: "2015-02-17 15:18:02"},
-  {id: 21, name: "Group 7", subject_id: 13, created_at: "2015-02-17 15:18:10", updated_at: "2015-02-17 15:27:57"}
-])
+
