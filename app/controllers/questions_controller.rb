@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_filter :require_user_signed_in
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index

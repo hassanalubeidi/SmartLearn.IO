@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_filter :require_user_signed_in
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   def index

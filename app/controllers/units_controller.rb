@@ -1,4 +1,5 @@
 class UnitsController < ApplicationController
+  before_filter :require_user_signed_in
   before_action :set_unit, only: [:show, :edit, :update, :destroy]
 
   def index

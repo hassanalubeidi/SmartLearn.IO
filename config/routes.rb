@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :arcticles
   resources :subjects
 
-  root 'improvements#index'
+  root 'subjects#index'
   resources :improvements
   resources :reviews
   resources :dashboard

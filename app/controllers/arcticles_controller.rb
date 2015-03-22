@@ -1,4 +1,5 @@
 class ArcticlesController < ApplicationController
+  before_filter :require_user_signed_in
   before_action :set_arcticle, only: [:show, :edit, :update, :destroy]
 
   def index

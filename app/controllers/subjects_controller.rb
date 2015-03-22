@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy, :index]
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   # GET /subjects

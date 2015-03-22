@@ -1,4 +1,5 @@
 class SetGroupsController < ApplicationController
+  before_filter :require_user_signed_in
   before_action :set_set_group, only: [:show, :edit, :update, :destroy]
 
   def index
