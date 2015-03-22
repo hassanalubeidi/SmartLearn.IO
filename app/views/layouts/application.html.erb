@@ -10,6 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <% if current_user != nil %>
 <%= render 'layouts/menubar' %>
 <% end %>
@@ -20,4 +21,7 @@
   </div>
 </div>
 </body>
+<% if current_user != nil %>
+  <%= render 'layouts/sidebar' %>
+<% end %>
 </html>

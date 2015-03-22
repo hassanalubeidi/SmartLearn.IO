@@ -39,6 +39,9 @@ $(document)
 	$('.message .close').on('click', function() {
 	  $(this).closest('.message').fadeOut();
 	});
-
+	$('.ui.sidebar').sidebar('attach events', '.sidebar-open');
+	$('.ui.sidebar')
+	  .sidebar('attach events', '#sidebar-open')
+	;
   })
 ;
