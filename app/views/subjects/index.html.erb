@@ -1,23 +1,16 @@
-<h1>Listing subjects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= subject.name %><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="ui selection list">
+  <% @subjects.each do |subject| %>
+  <div class="item" onclick="location.href='<%=  subject_path(subject) %>';" style="cursor: pointer;" >
+      <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "right floated compact ui button" %>
+      <%= link_to 'Edit', edit_subject_path(subject), class: "ui right floated compact ui button" %>
+    <div class="content">
+      <h2 class="header"><%= subject.name %>
+      </h2>
+      
+    </div>
+  </div>
+  <% end %>
+</div>
 
 <%= link_to 'New Subject', new_subject_path %>
