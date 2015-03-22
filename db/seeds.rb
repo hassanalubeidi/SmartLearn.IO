@@ -1,7 +1,3 @@
-User.create!([
-  {id: 1, email: "admin@admin.com", encrypted_password: "$2a$10$M7xSct4o7BavzV3QmL620ubFJYwNREmk3xQGXlKMAqn4Lxm3uGvCO", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 10, current_sign_in_at: "2015-03-17 23:30:18", last_sign_in_at: "2015-02-17 23:12:19", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2015-01-31 19:49:26", updated_at: "2015-03-17 23:30:18", username: "admin", power: "admin", password: "topsecret"},
-  {id: 2, email: "hassanalubeidi1996@gmail.com", encrypted_password: "$2a$10$mm/OPBG/q47uOMKEJb.M5uIxla3p4ZrFXBx5cYuYq256nzfQkEpga", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2015-03-22 18:01:31", last_sign_in_at: "2015-03-22 17:40:27", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2015-02-07 11:42:14", updated_at: "2015-03-22 18:01:31", username: "hassan", power: nil, password: "4432691abc"}
-])
 Answer.create!([
   {id: 8, question_id: 1, user_id: 2, text: "sdfsdf", marks_integer: "21", created_at: "2015-02-16 23:08:06", updated_at: "2015-02-16 23:08:06"},
   {id: 9, question_id: 3, user_id: 2, text: "", marks_integer: "8", created_at: "2015-02-16 23:17:54", updated_at: "2015-02-16 23:17:54"},
