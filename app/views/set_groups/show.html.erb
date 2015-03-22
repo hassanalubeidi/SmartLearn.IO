@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @set_group.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @set_group.year %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @set_group.subject %>
+</p>
+
+<%= link_to 'Edit', edit_set_group_path(@set_group) %> |
+<%= link_to 'Back', set_groups_path %>

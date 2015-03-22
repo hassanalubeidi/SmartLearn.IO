@@ -1,51 +1,25 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div id="cl-wrapper" class="login-container">
-
-  <div class="middle-login">
-    <div class="block-flat">
-      <div class="header">              
-        <h3 class="text-center"><img class="logo-img" src="images/logo.png" alt="logo"/></h3>
-      </div>
-      <div>
-        <form style="margin-bottom: 0px !important;" class="form-horizontal" action="index.html">
-          <div class="content">
-            <h4 class="title">Login Access</h4>
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <%= f.text_field :login, class: "form-control", id: "username", placeholder: "Username" %>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <%= f.password_field :password, class: "form-control", id: "password", placeholder: "Password" %>
-                  </div>
-                </div>
-              </div>
-              
-          </div>
-          <div class="foot">
-            <%= link_to "Register", new_user_registration_path, class: "btn btn-default" %>
-            <%= f.submit "Log me in", class: "btn btn-primary" %>
-          </div>
-        </form>
+<div class="ui header">
+  <h1>Sign in</h1>
+</div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'ui form'}) do |f| %>
+<div class="ui fluid form segment">
+  <div class="two fields">
+    <div class="field">
+      <label>Username</label>
+      <%= f.text_field :login, class: "form-control", id: "username", placeholder: "Username" %>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <%= f.password_field :password, class: "form-control", id: "password", placeholder: "Password" %>
+    </div>
+  </div>
+  <div class="inline field">
+      <div class="ui checkbox">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
       </div>
     </div>
-    <div class="text-center out-links"><a href="#">&copy; 2014 Fudder</a></div>
-  </div> 
-  
+  <%= link_to "Register", new_user_registration_path, class: "ui button" %>
+            <%= f.submit "Log me in", class: "btn btn-primary", class: "ui blue button" %>
 </div>
 <% end %>
-
-<script src="js/jquery.js"></script>
-  <script type="text/javascript">
-    $(function(){
-      $("body").addClass("texture")
-      $("#cl-wrapper").css({opacity:1,'margin-left':0});
-
-    });
-  </script>

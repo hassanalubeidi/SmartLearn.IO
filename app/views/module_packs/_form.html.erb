@@ -1,0 +1,45 @@
+<%= form_for(@module_pack, :html => {:class => 'ui form'}) do |f| %>
+  <% if @module_pack.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@module_pack.errors.count, "error") %> prohibited this module_pack from being saved:</h2>
+
+      <ul>
+      <% @module_pack.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <% subject_array = [] %>
+    <% Subject.all.each do |subject| %>
+      
+      <% subject_array.push(subject.name) %>
+    <% end %>
+    <%= select_tag(:subject, options_for_select(subject_array)) %>
+  </div>
+  <div class="field">
+
+    <%= f.label :topic_id %><br>
+    <%= f.grouped_collection_select(:topic ,Subject.all,:topics,:name,:id,:name, :multiple => true) %>
+  </div>
+  <div class="field">
+
+    <%= f.label :topic_id %><br>
+    <%= f.grouped_collection_select(:topic ,Subject.all,:topics,:name,:id,:name, :multiple => true) %>
+  </div>
+  <div class="field">
+
+    <%= f.label :topic_id %><br>
+    <%= f.grouped_collection_select(:topic ,Subject.all,:topics,:name,:id,:name, :multiple => true) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,6 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-$(function() {
-	$('#test').dataTable();
-}
+$(function() {                       //run when the DOM is ready
+  $(".review").click(function() {  //use a class, since your ID gets mangled
+    $(this).addClass("loading");      //add the class to the clicked element
+    console.log("yup");
+
+    $(this).delay(1000).queue(function(){
+        $(this).removeClass('loading').clearQueue();
+        $(this).addClass("disabled").clearQueue;
+    });
+
+  });
+});

@@ -1,0 +1,26 @@
+<%= form_for(@topic, :html => {:class => 'ui form'}) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "ui primary button" %>
+    <%= link_to 'Back', topics_path, class: "ui button" %>
+  </div>
+<% end %>

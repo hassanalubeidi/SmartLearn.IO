@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @answer.question %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @answer.user %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @answer.text %>
+</p>
+
+<p>
+  <strong>Marks integer:</strong>
+  <%= @answer.marks_integer %>
+</p>
+
+<%= link_to 'Edit', edit_question_answer_path(@answer) %> |
+<%= link_to 'Back', question_answers_path %>

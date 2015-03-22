@@ -1,10 +1,12 @@
-<%= form_for(@improvement) do |f| %>
+<%= form_for(@improvement, :html => {:class => 'ui form'}) do |f| %>
   <% if @improvement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@improvement.errors.count, "error") %> prohibited this improvement from being saved:</h2>
-
-      <ul>
-      <% @improvement.errors.full_messages.each do |message| %>
+    <div class="ui yellow message">
+      <i class="close icon"></i>
+      <div class="header">
+        <%= pluralize(@improvement.errors.count, "error") %> prohibited this improvement from being saved:
+      </div>
+      <ul class="list">
+        <% @improvement.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,21 +14,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :topic %><br>
-    <%= f.text_field :topic %>
-  </div>
-  <div class="field">
     <%= f.label :area_to_improve %><br>
     <%= f.text_area :area_to_improve %>
   </div>
   <div class="filed">
-    <%= f.select(:subject_id, [[Subject.first.id]] ,{ :prompt => "Subject"}) %>
+    <%= f.label :topic %>
+    <%= f.grouped_collection_select(:topic_id,Subject.all,:topics,:name,:id,:name) %>
+    <%= link_to "Add new topic", new_topic_path %>
   </div>
-  <div class="field">
+  <div class="field" style="display: inline">
     <%= f.label :checked %><br>
+    <span class="ui checkbox" style="display: inline-block;">
     <%= f.check_box :checked %>
+    </span>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "ui primary button" %>
+    <%= link_to 'Back', improvements_path, class: "ui button" %>
   </div>
 <% end %>

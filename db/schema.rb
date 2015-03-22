@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128151925) do
+ActiveRecord::Schema.define(version: 20150222181210) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.string   "marks_integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
   create_table "arcticles", force: true do |t|
     t.string   "title"
@@ -21,16 +33,35 @@ ActiveRecord::Schema.define(version: 20141128151925) do
   end
 
   create_table "improvements", force: true do |t|
-    t.string   "topic"
     t.text     "area_to_improve"
     t.boolean  "checked"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"
+    t.integer  "topic_id"
   end
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
+
+  create_table "module_packs", force: true do |t|
+    t.string   "name"
+    t.integer  "unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "module_packs", ["unit_id"], name: "index_module_packs_on_unit_id"
+
+  create_table "questions", force: true do |t|
+    t.integer  "topic_id"
+    t.text     "text"
+    t.integer  "total_marks"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
 
   create_table "reviews", force: true do |t|
     t.integer  "user_id"
@@ -42,11 +73,40 @@ ActiveRecord::Schema.define(version: 20141128151925) do
   add_index "reviews", ["improvement_id"], name: "index_reviews_on_improvement_id"
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
+  create_table "set_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "set_groups", ["subject_id"], name: "index_set_groups_on_subject_id"
+
   create_table "subjects", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["subject_id"], name: "index_topics_on_subject_id"
+
+  create_table "units", force: true do |t|
+    t.string   "name"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "units", ["subject_id"], name: "index_units_on_subject_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

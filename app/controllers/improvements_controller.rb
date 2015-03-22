@@ -42,6 +42,11 @@ class ImprovementsController < ApplicationController
   # GET /improvements/new
   def new
     @improvement = Improvement.new
+    @subjects = Subject.all
+    @subjects_array = []
+    @subjects.each do |subject|
+      @subjects_array.push(subject.name)
+    end
   end
 
   # GET /improvements/1/edit
@@ -52,6 +57,7 @@ class ImprovementsController < ApplicationController
   # POST /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
+    @improvement.subject = @improvement.topic.subject
     @improvement.user = current_user
 
     respond_to do |format|
@@ -97,6 +103,6 @@ class ImprovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def improvement_params
-      params.require(:improvement).permit(:topic, :area_to_improve, :checked, :user_id, :subject, :subject_id)
+      params.require(:improvement).permit(:topic_id, :area_to_improve, :checked, :user_id, :subject, :subject_id)
     end
 end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @module_pack.name %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @module_pack.unit %>
+</p>
+
+<%= link_to 'Edit', edit_module_pack_path(@module_pack) %> |
+<%= link_to 'Back', module_packs_path %>

@@ -12,7 +12,33 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+$(document)
+  .ready(function() {
+
+    $('.filter.menu .item')
+      .tab()
+    ;
+
+    $('.ui.rating')
+      .rating({
+        clearable: true
+      })
+    ;
+
+    $('.ui.sidebar')
+      .sidebar('attach events', '.launch.button')
+    ;
+
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+    $('.ui.checkbox')
+	  .checkbox()
+	;
+	$('.message .close').on('click', function() {
+	  $(this).closest('.message').fadeOut();
+	});
+
+  })
+;

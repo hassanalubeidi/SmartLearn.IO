@@ -1,0 +1,35 @@
+<div class="ui red tertiary top attached segment">
+  <strong>Atoms lol</strong>
+</div>
+<div class="ui attached segment">
+  <p>This segment is attached on both sides</p>
+</div>
+<div class="ui bottom attached segment">
+  <div class="ui black buttons">
+    <div class="ui button">None</div>
+    <div class="ui button">Partly</div>
+    <div class="ui button">Not fluent</div>
+    <div class="ui button">Perfect</div>
+  </div>
+</div>
+
+<div class="ui stackable grid">
+  <% @topics.each do |topic| %>
+    <div class="eight wide column">
+      <div class="ui red tertiary top attached segment">
+        <strong><%= topic.area_to_learn.title %></strong>
+      </div>
+      <div class="ui attached segment">
+        <p><%= topic.area_to_learn.text %></p>
+      </div>
+      <div class="ui bottom attached segment">
+        <div class="ui black buttons">
+          <div class="ui button <%= determine_state(topic.area_to_learn, 0) %>">None</div>
+          <div class="ui button <%= determine_state(topic.area_to_learn, 1) %>">Partly</div>
+          <div class="ui button <%= determine_state(topic.area_to_learn, 2) %>">Not fluent</div>
+          <div class="ui button <%= determine_state(topic.area_to_learn, 3) %>">Perfect</div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

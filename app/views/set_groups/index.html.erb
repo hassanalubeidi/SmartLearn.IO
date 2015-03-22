@@ -1,0 +1,29 @@
+<h1>Listing set_groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @set_groups.each do |set_group| %>
+      <tr>
+        <td><%= set_group.name %></td>
+        <td><%= set_group.year %></td>
+        <td><%= set_group.subject %></td>
+        <td><%= link_to 'Show', set_group %></td>
+        <td><%= link_to 'Edit', edit_set_group_path(set_group) %></td>
+        <td><%= link_to 'Destroy', set_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Set group', new_set_group_path %>

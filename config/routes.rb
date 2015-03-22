@@ -1,8 +1,22 @@
 Rails.application.routes.draw do
+  
+
+  resources :questions do 
+    resources :answers
+  end
+
+  resources :module_packs
+
+  resources :units
+
+  resources :set_groups
+
+  resources :topics
+
   resources :arcticles
   resources :subjects
 
-  root 'dashboard#index'
+  root 'improvements#index'
   resources :improvements
   resources :reviews
   resources :dashboard

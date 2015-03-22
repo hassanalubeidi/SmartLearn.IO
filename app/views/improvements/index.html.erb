@@ -1,58 +1,24 @@
-<h1 class="page-header"><%= current_user.username %></h1>
-<h3>role: <%= current_user.power %></h3>
-<% if current_user.power == "teacher" %>
-  <h3>Table containing all improvments, from all users</h3>
-  <table id ="test">
-    <thead>
-      <tr>
-        <th>Student name</th>
-        <th>Topic</th>
-        <th>Area to improve</th>
-        <th>Date</th>
-        <th>Checked?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% Improvement.all.each do |improvement| %>
-        <tr>
-          <td><%= improvement.user.username %></td>
-          <td><%= improvement.topic %></td>
-          <td><%= improvement.area_to_improve %></td>
-          <td><%= improvement.created_at %></td>
-          <td><%= improvement.reviews.count %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% elsif current_user.power == "admin" %>
-  <% User.all.each do |user| %>
-    <div class="block-flat">
-      <h3><%= user.username %></h3>
-      <p>
 
-        <%= user.power %> 
-        <% if user.power == "student" %>
-          <%= link_to "set as teacher", set_user_as_teacher_path(user) %>
-        <% elsif user.power == "teacher" or user.power == nil %>
-          <%= link_to "set as student", set_user_as_student_path(user) %>
-        <% end %>
-    </p>
+
+<%= link_to "new improvement", new_improvement_path, class: "ui primary button" %>
+<div class="ui cards">
+  <% Subject.all.each do |subject| %>
+  <h2><%= subject.name %></h2>
+  <div class="ui cards">
+    
+    <% @improvements.last(10).each do |improvement| %>
+      <% if improvement.subject == subject %>
+        <%= render "improvement", improvement: improvement %>
+      <% end %>
+    <% end %>
   </div>
   <% end %>
-<% end %>
-
-
+</div>
 <% if @improvements.count != 0 %>
-  <p><%= @improvements.count %> improvement(s), most recent being at <%= Improvement.last.created_at %>, <%= link_to "create a new one", new_improvement_path %></p>
+  <p><%= current_user.improvements.count %> improvement<%= if @improvements.count != 1 then "s" else "" end %>, most recent being at <%= Improvement.last.created_at %>, <%= link_to "create a new one", new_improvement_path %></p>
 <% else %>
   <p>You have no current improvements, perhaps you should <%= link_to "add one.", new_improvement_path %>
 <% end %>
-<div class="row">
-  <% @improvements.each do |improvement| %>
-    <%= render "improvement", improvement: improvement %>
-  <% end %>
-</div>
-
 
 
  

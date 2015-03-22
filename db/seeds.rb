@@ -1,9 +1,128 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-User.create! :username => 'admin', :email => 'admin@admin.com', :password => 'topsecret', :password_confirmation => 'topsecret', :power => 'admin'
+User.create!([
+  {email: "admin@admin.com", encrypted_password: "$2a$10$M7xSct4o7BavzV3QmL620ubFJYwNREmk3xQGXlKMAqn4Lxm3uGvCO", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 10, current_sign_in_at: "2015-03-17 23:30:18", last_sign_in_at: "2015-02-17 23:12:19", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", username: "admin", power: "admin"},
+  {email: "hassanalubeidi1996@gmail.com", encrypted_password: "$2a$10$mm/OPBG/q47uOMKEJb.M5uIxla3p4ZrFXBx5cYuYq256nzfQkEpga", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 14, current_sign_in_at: "2015-03-22 18:01:31", last_sign_in_at: "2015-03-22 17:40:27", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", username: "hassan", power: nil}
+])
+Answer.create!([
+  {question_id: 1, user_id: 2, text: "sdfsdf", marks_integer: "21"},
+  {question_id: 3, user_id: 2, text: "", marks_integer: "8"},
+  {question_id: 5, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 6, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 7, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 8, user_id: 2, text: "", marks_integer: "4"},
+  {question_id: 9, user_id: 2, text: "", marks_integer: "0"},
+  {question_id: 10, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 11, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 12, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 13, user_id: 2, text: "", marks_integer: "3"},
+  {question_id: 14, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 15, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 16, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 17, user_id: 2, text: "", marks_integer: "0"},
+  {question_id: 18, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 19, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 20, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 21, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 22, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 23, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 24, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 25, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 26, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 27, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 28, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 29, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 30, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 31, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 32, user_id: 2, text: "", marks_integer: "0"},
+  {question_id: 33, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 34, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 35, user_id: 2, text: "", marks_integer: "0"},
+  {question_id: 36, user_id: 2, text: "", marks_integer: "2"},
+  {question_id: 37, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 38, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 39, user_id: 2, text: "", marks_integer: "0"},
+  {question_id: 40, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 41, user_id: 2, text: "", marks_integer: "1"},
+  {question_id: 42, user_id: 2, text: "", marks_integer: "4"}
+])
+Improvement.create!([
+  {area_to_improve: "Shape of NH3", checked: false, user_id: 2, subject_id: 13, topic_id: 18},
+  {area_to_improve: "Aqueous silver nitrate  + group 2 reactions", checked: false, user_id: 2, subject_id: 13, topic_id: 20},
+  {area_to_improve: "Roman neumerals", checked: false, user_id: 2, subject_id: 13, topic_id: 16},
+  {area_to_improve: "Concentrations", checked: false, user_id: 2, subject_id: 13, topic_id: 14},
+  {area_to_improve: "Mass to moles equation order", checked: false, user_id: 2, subject_id: 13, topic_id: 14},
+  {area_to_improve: "Distribution of electrons in ionic diagrams", checked: false, user_id: 2, subject_id: 13, topic_id: 18},
+  {area_to_improve: "Atomic number defenition", checked: false, user_id: 2, subject_id: 13, topic_id: 13},
+  {area_to_improve: "Isotope defenition", checked: false, user_id: 2, subject_id: 12, topic_id: 13},
+  {area_to_improve: "Isotope defenition", checked: false, user_id: 2, subject_id: 13, topic_id: 13},
+  {area_to_improve: "Explaining the difference between the melting points of metals", checked: false, user_id: 2, subject_id: 13, topic_id: 19},
+  {area_to_improve: "Explaining the difference in melting points in non metals", checked: false, user_id: 2, subject_id: 13, topic_id: 19}
+])
+Question.create!([
+  {topic_id: 13, text: "State what is meant by the term isotopes", total_marks: 1},
+  {topic_id: 13, text: "Isotopes of carbon have the same chemical properties.\r\nExplain why", total_marks: 1},
+  {topic_id: 13, text: "The 12 C isotope is used as the standard measurement of relative masses.\r\nDefine the term relative isotopic mass", total_marks: 2},
+  {topic_id: 18, text: "• Describe the bonding and structure in graphite.\r\n• Explain, in terms of bonding and structure, the properties of graphite shown above.\r\nIn your answer, you should use appropriate technical terms, spelt correctly", total_marks: 5},
+  {topic_id: 14, text: "Calculate the amount, in mol, of carbon atoms in the student’s pencil lead.\r\nAssume that the ‘pencil lead’ is pure graphite.", total_marks: 1},
+  {topic_id: 14, text: "Using the Avogadro constant, N A , calculate the number of carbon atoms in the student’s\r\n‘pencil lead’.", total_marks: 1},
+  {topic_id: 18, text: "Explain what is meant by a covalent bond.", total_marks: 1},
+  {topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 3 .\r\nShow outer electrons only.", total_marks: 1},
+  {topic_id: 18, text: "Name the shape of the ammonia molecule.\r\nExplain, using your ‘dot-and-cross’ diagram, why ammonia has this shape and has a\r\nbond angle of 107°.", total_marks: 3},
+  {topic_id: 17, text: "Complete the electron configuration of the Cl – ion.", total_marks: 1},
+  {topic_id: 18, text: "Draw a ‘dot-and-cross’ diagram to show the bonding in NH 4+ .\r\nShow outer electrons only.", total_marks: 1},
+  {topic_id: 18, text: "State the shape of, and bond angle in, an NH 4+ ion.", total_marks: 2},
+  {topic_id: 18, text: "A student investigated the conductivity of ammonium chloride.\r\nShe noticed that when the ammonium chloride was solid it did not conduct electricity.\r\nHowever, when ammonium chloride was dissolved in water, the resulting solution did\r\nconduct electricity.\r\nExplain these observations.", total_marks: 2},
+  {topic_id: 15, text: "Write a balanced equation to show how ammonium sulfate could be formed by the\r\nreaction between aqueous ammonia and sulfuric acid.", total_marks: 1},
+  {topic_id: 15, text: "Explain what is meant by the term salt.", total_marks: 1},
+  {topic_id: 15, text: "Why is ammonia acting as a base in this neutralisation?", total_marks: 1},
+  {topic_id: 13, text: "What is the relative formula mass of (NH 4 ) 2 SO 4 ?\r\nGive your answer to one decimal place.", total_marks: 1},
+  {topic_id: 21, text: "A student used the internet to research chlorine and some of its compounds.\r\nHe discovered that sea water contains chloride ions. The student added aqueous silver nitrate\r\nto a sample of sea water.\r\nWhat would the student see?", total_marks: 1},
+  {topic_id: 21, text: "Write an ionic equation, including state symbols, for the reaction that would occur.", total_marks: 2},
+  {topic_id: 21, text: "After carrying out the test in (i), the student added dilute aqueous ammonia to the\r\nmixture.\r\nWhat would the student see?", total_marks: 1},
+  {topic_id: 21, text: "The student also discovered that chlorine, Cl 2 , is used in the large-scale treatment of water.\r\n(i)\r\nState one benefit of adding chlorine to water.", total_marks: 1},
+  {topic_id: 21, text: "Not everyone agrees that chlorine should be added to drinking water.\r\nSuggest one possible hazard of adding chlorine to drinking water.", total_marks: 1},
+  {topic_id: 16, text: "State the oxidation number of chlorine in:\r\nCl 2 ..................... HCl ..................... HCl O .....................", total_marks: 1},
+  {topic_id: 16, text: "The reaction of chlorine with water is a disproportionation reaction.\r\nUse the oxidation numbers in (i) to explain why.", total_marks: 2},
+  {topic_id: 21, text: "Chlorine reacts with sodium hydroxide to form bleach in another disproportionation\r\nreaction.\r\nWrite an equation for this reaction.", total_marks: 1},
+  {topic_id: 21, text: "Two other chlorine compounds of chlorine are chlorine dioxide and chloric( V ) acid.\r\n(i)\r\nChlorine dioxide, Cl O 2 , is used as a bleaching agent in both the paper and the flour\r\nindustry. When dry, Cl O 2 decomposes explosively to form oxygen and chlorine.\r\nConstruct an equation for the decomposition of Cl O 2 .", total_marks: 1},
+  {topic_id: 14, text: "Chloric( V ) acid has the following percentage composition by mass:\r\nH, 1.20%; Cl, 42.0%; O, 56.8%.\r\nUsing this information, calculate the empirical formula of chloric( V ) acid.\r\nShow all of your working.", total_marks: 2},
+  {topic_id: 16, text: "What does ( V ) represent in chloric( V ) acid?", total_marks: 1},
+  {topic_id: 19, text: "Explain the difference in melting point for the elements Na and Mg.", total_marks: 3},
+  {topic_id: 19, text: "Sulfur exists as S 8 molecules and chlorine as Cl 2 molecules. Use this information to\r\nexplain the difference in their melting points.", total_marks: 2},
+  {topic_id: 19, text: "Explain the decrease in the atomic radii across the period from Na to Cl.\r\nIn your answer, you should use appropriate technical terms, spelt correctly.", total_marks: 3},
+  {topic_id: 20, text: "Predict the formula of:\r\nbarium oxide ..............................\r\nbarium nitride ..............................", total_marks: 2},
+  {topic_id: 14, text: "A 0.11 g sample of pure barium was added to 100 cm 3 of water. |||\r\nBa(s) + 2H 2 O(l) -> Ba(OH) 2 (aq) + H 2 (g) ||||\r\nShow that 8.0 × 10 −4 mol of Ba were added to the water.", total_marks: 1},
+  {topic_id: 14, text: "Calculate the volume of hydrogen, in cm 3 , produced at room temperature and pressure.", total_marks: 1},
+  {topic_id: 14, text: "Calculate the concentration, in mol dm −3 , of the Ba(OH) 2 (aq) solution formed.", total_marks: 1},
+  {topic_id: 20, text: "State the approximate pH of the Ba(OH) 2 (aq) solution.", total_marks: 1},
+  {topic_id: 20, text: "A student repeated the experiment in (b) using a 0.11 g sample of barium that had blackened\r\nfollowing exposure to the air.\r\nSuggest why the volume of hydrogen produced would be slightly less than the volume\r\ncollected using pure barium.", total_marks: 1},
+  {topic_id: 20, text: "Describe and explain the trend, down the group, in the reactivity of the Group 2 elements with\r\nwater.", total_marks: 5}
+])
+Review.create!([
+  {user_id: 2, improvement_id: 64},
+  {user_id: 2, improvement_id: 63},
+  {user_id: 2, improvement_id: 66},
+  {user_id: 2, improvement_id: 67}
+])
+SetGroup.create!([
+  {name: "E", year: 12, subject_id: 14}
+])
+Subject.create!([
+  {name: "Biology", user_id: 2},
+  {name: "Chemistry", user_id: 2},
+  {name: "Maths", user_id: 1}
+])
+Topic.create!([
+  {name: "Meiosis", subject_id: 12},
+  {name: "Mitosis", subject_id: 12},
+  {name: "Polynomials", subject_id: 14},
+  {name: "fff", subject_id: 14},
+  {name: "Atoms", subject_id: 13},
+  {name: "Moles & equations", subject_id: 13},
+  {name: "Acids", subject_id: 13},
+  {name: "Redox", subject_id: 13},
+  {name: "Electron structure", subject_id: 13},
+  {name: "Bonding & structure", subject_id: 13},
+  {name: "Peroidicity", subject_id: 13},
+  {name: "Group 2", subject_id: 13},
+  {name: "Group 7", subject_id: 13}
+])

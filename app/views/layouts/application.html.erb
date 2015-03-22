@@ -9,67 +9,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<% if user_signed_in? %>
 <body>
-<div id="cl-wrapper">
-  <div class="container-fluid" id="pcont">
-   <!-- TOP NAVBAR -->
-  <div id="head-nav" class="topbar navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="fa fa-bars"></span>
-        </button>
-      </div>
-      <div class="navbar-collapse collapse">
-        <div class="sidebar-logo">
-          <div class="logo">
-              <a href="index2.html"></a>
-          </div>
-        </div>
-        <ul class="nav navbar-nav horizontal">
-            <li class="active"><%=  link_to "Home", root_path %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Subjects<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-              <% Subject.all.each do |subject| %>
-                <li><%= link_to subject.name, subject_path(subject) %></li>
-              <% end %>
-              </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right user-nav">
-          <li class="dropdown profile_menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="images/avatar6-2.jpg" /><span><%= current_user.username %></span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", edit_user_registration_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
-            </ul>
-          </li>
-        </ul>			
-        <ul class="nav navbar-nav not-nav">
-          				
-        </ul>
-
-      </div><!--/.nav-collapse animate-collapse -->
-    </div>
-  </div>
-  
-    
-	<div class="cl-mcont container">
-    <%= render 'layouts/messages' %>
-		<%= yield %>
-	</div>
-
-</div> 
-<% else %>
-<body>
-  <%= render 'layouts/messages' %>
-	<%= yield %>
-
-
-
+<% if current_user != nil %>
+<%= render 'layouts/menubar' %>
 <% end %>
+<div class="ui page grid" style="margin-top:0">
+  
+  <div class="sixteen wide column">
+    <%= yield %>
+  </div>
+</div>
 </body>
 </html>

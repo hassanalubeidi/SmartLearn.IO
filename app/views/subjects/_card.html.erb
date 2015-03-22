@@ -1,0 +1,15 @@
+
+<div class="fluid card">
+    <div class="content">
+      <div class="header">
+      <%= if question.answers.where(question: question, user: current_user).count != 0 then marks(question) end %>
+      </div>
+      <div class="meta">
+        <%= link_to time_ago_in_words(question.created_at), question_path(question), class: "group" %> ago
+      </div>
+      <div class="description">
+        <%= question.text %>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->

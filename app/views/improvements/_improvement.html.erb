@@ -1,51 +1,25 @@
-<div class="col-sm-4 col-md-4">
-  <div class="block-flat <%= determine_state(improvement.checked) %>">
-    <div class="header">
-      <div class="actions">
-        <%= link_to "Edit".html_safe, edit_improvement_path(improvement) %>
-        <%= link_to "Delete".html_safe, improvement_path(improvement), method: "delete" %>
+
+<div class="fluid card">
+    <div class="content">
+      <i class="right floated <%= if improvement.checked == true then 'active' end %> star icon"></i>
+      <div class="header"><%= improvement.topic.name %></div>
+      <div class="meta">
+        <%= link_to time_ago_in_words(improvement.created_at), improvement_path(improvement), class: "group" %> ago
       </div>
-      <h3><%= improvement.topic %></h3>
-      <h6> Created <%= time_ago_in_words(improvement.created_at) %> ago</h6>
-    </div>
-    <div class="content" style="display: block;">
-      <p>
+      <div class="description">
         <%= improvement.area_to_improve %>
-        belongs to <%= improvement.subject.name %>
-      </p>
-      <% if improvement.reviews.count != 0 %>
-        <div><%= improvement.reviews.count %> reviews</div>
-        <button type="button" class="btn btn-trans" data-toggle="modal" data-target="#details_<%= improvement.id %>">Details</button> 
-      <% else %>
-        <div>You haven't reviewed this</div>
-
-      <% end %>
-      <%= link_to "Review this", add_review_path(improvement), class: "btn btn-success " %>
+      </div>
     </div>
-  <div class="loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div><div class="loading" style="display: none;"><i class="fa fa-refresh fa-spin"></i></div></div>
-</div>
-
+    <% if improvement.reviews.count < 1 then %>
+    <a href=" <%=  add_review_path(improvement) %> " class="ui bottom attached button review">
+      <i class="add icon"></i>
+      Review this
+    </a>
+    <% else %>
+    <a href=" <%=  add_review_path(improvement) %> " class="ui green bottom attached button disabled">
+      <i class="add icon"></i>
+      Reviewed
+    </a>
+    <% end %>
+  </div>
 <!-- Modal -->
-<div class="modal fade" id="details_<%= improvement.id %>" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button " class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center">
-          <div class="i-circle primary"><i class="fa fa-check"></i></div>
-          <h4>Awesome!</h4>
-          <ul>
-            <% improvement.reviews.reverse.each do |review| %>
-              <li>Reviewd <%= time_ago_in_words(review.created_at) %> ago, <%= link_to "undo?", review_path(review), method: "delete" %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">Proceed</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>

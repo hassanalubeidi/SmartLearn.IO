@@ -47,3 +47,6 @@ gem 'tzinfo-data'
 gem 'validates_formatting_of'
 gem "font-awesome-rails"
 gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails"
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
+gem 'jquery-turbolinks'
+gem 'seed_dump'

@@ -1,0 +1,58 @@
+<h1>Listing questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Text</th>
+      <th>Total marks</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.topic.name %></td>
+        <td><%= question.text %></td>
+        <td><%= question.total_marks %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>
+
+<div class="ui divided selection list">
+<% @questions.each do |question| %>
+  <div class="red item">
+    <div class="right floated compact ui button">Add</div>
+    <div class="content">
+      <h1 class="header"><%= question.topic.name %></h1>
+      <div class="description">
+        <p>
+          <%= question.text %>
+        </p>
+        <% if question.answers.where(:user => current_user).count == 0 then %>
+    <%= link_to "you need to answer this", new_question_answer_path(@question) %>
+  <% else %>
+    you got <%= @marks %> out of <%= question.total_marks %> ,  
+    <%= (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400 %> TIME DEGREDATION
+  <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+  <div class="item">
+    <div class="right floated compact ui button">Add</div>
+    <img class="ui avatar image" src="/images/avatar/small/joe.jpg">
+    <div class="content">
+      <div class="header">Joe Henderson</div>
+    </div>
+  </div>
+</div>

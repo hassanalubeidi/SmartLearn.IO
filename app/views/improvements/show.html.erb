@@ -19,6 +19,8 @@
   <strong>User:</strong>
   <%= @improvement.user %>
 </p>
+	<%= @improvement.topic %>
+	<%= @improvement.subject.name %>
 
 <%= link_to 'Edit', edit_improvement_path(@improvement) %> |
 <%= link_to 'Back', improvements_path %>
