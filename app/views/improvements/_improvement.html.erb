@@ -2,6 +2,7 @@
 <div class="fluid card">
     <div class="content">
       <i class="right floated <%= if improvement.checked == true then 'active' end %> star icon"></i>
+      <%= link_to "<i class='right floated trash link icon'></i>".html_safe, improvement_path(improvement), method: :delete, data: { confirm: 'Are you sure?' } %>
       <div class="header"><%= improvement.topic.name %></div>
       <div class="meta">
         <%= link_to time_ago_in_words(improvement.created_at), improvement_path(improvement), class: "group" %> ago

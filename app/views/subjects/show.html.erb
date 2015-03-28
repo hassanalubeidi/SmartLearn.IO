@@ -1,18 +1,16 @@
-<p id="notice"><%= notice %></p>
 <div class="ui blue message">
   <div class="header">
     How scoring works
   </div>
   <p>The amount of marks per topic is added together, then multiplied multiplied by the time degredation function</p>
-  <p>The time degredation function works by working out how many days it has been since the user has done that question. These are the current ratios:
-  <ul>
-  	<li><strong>0 to 10 days</strong>: multiply by 1 (full score)</li>
-  	<li><strong>11 to 30 days</strong>: multiply by 0.8</li>
-  	<li><strong>31 to 50 days</strong>: multiply by 0.5 (half score)</li>
-  	<li><strong>51+ days</strong>: multiply by 0.2</li>
-
-  </ul>
+  <p>This takes into account how long ago the question was done, and the time of year it was done it (revision or new content?)
   (Remove this on release)
+</div>
+<div class="ui yellow message">
+  <div class="header">
+    No topics!
+  </div>
+  <p>It looks like you don't have any topics for this subject. Create some?</p>
 </div>
 <% @subject.topics.each do |topic| %>
 <div>

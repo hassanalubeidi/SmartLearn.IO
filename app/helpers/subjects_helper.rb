@@ -15,10 +15,20 @@ module SubjectsHelper
 	private
 	def time_degredation(question)
 		a = (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400
-		if a < 10 then return 1
-		elsif a < 30 then return 0.8
-		elsif a < 50 then return 0.5
-		else return 0.2
-		end
+		return half_life(question.created_at) ** -(a) # exponentail graph
 	end
+	def half_life(date)
+		case date.strftime("%B")
+		when "September", "October" , "November" , "December"
+			return 1.02337 #30 day half life - learning process
+		when "January" , "February"
+			return 1.01748 #40 day half life - applying knowlege from previous terms
+		when "March"
+			return 1.01369 #50 day half life - almost finished learning, started revising
+		when "April" , "May" , "June"
+			return 1.00995 #70 day - completely finished learning, just revising
+		end
+
+
+	end	
 end

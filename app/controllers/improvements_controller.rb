@@ -57,12 +57,17 @@ class ImprovementsController < ApplicationController
   # POST /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
-    @improvement.subject = @improvement.topic.subject
     @improvement.user = current_user
 
     respond_to do |format|
       if @improvement.save
-        format.html { redirect_to @improvement, notice: 'Improvement was successfully created.' }
+        format.html { 
+          unless @improvement.topic.subject.blank?
+            redirect_to @improvement, :flash => { :success => "Improvement was successfully created." }
+          else 
+            redirect_to edit_topic_path(@improvement.topic, {:go_back => @improvement.id }), :flash => { :warning => "This topic needs to assigned to a subject" }
+          end
+        }
         format.json { render :show, status: :created, location: @improvement }
       else
         format.html { render :new }
@@ -76,7 +81,7 @@ class ImprovementsController < ApplicationController
   def update
     respond_to do |format|
       if @improvement.update(improvement_params)
-        format.html { redirect_to @improvement, notice: 'Improvement was successfully updated.' }
+        format.html { redirect_to @improvement, :flash => { :success => "Improvement was successfully updated." } }
         format.json { render :show, status: :ok, location: @improvement }
       else
         format.html { render :edit }
@@ -103,6 +108,6 @@ class ImprovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def improvement_params
-      params.require(:improvement).permit(:topic_id, :area_to_improve, :checked, :user_id, :subject, :subject_id)
+      params.require(:improvement).permit(:topic_id, :area_to_improve, :checked, :user_id, :subject, :subject_id, :topic_name)
     end
 end
