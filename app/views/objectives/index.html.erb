@@ -1,0 +1,31 @@
+<h1>Listing objectives</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Module pack info</th>
+      <th>Total marks</th>
+      <th>Belongs to</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @objectives.each do |objective| %>
+      <tr>
+        <td><%= objective.name %></td>
+        <td><%= objective.module_pack_info %></td>
+        <td><%= objective.total_marks %></td>
+        <td><%= objective.belongs_to %></td>
+        <td><%= link_to 'Show', objective %></td>
+        <td><%= link_to 'Edit', edit_objective_path(objective) %></td>
+        <td><%= link_to 'Destroy', objective, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Objective', new_objective_path %>

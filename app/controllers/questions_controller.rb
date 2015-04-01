@@ -11,7 +11,9 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @test = 0
     @question = Question.new
+    @question.objectives.build
   end
 
   def edit
@@ -19,7 +21,11 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.total_marks = 0
     @question.save
+    @question.objectives do |objective|
+      objective.questions << question
+    end
     redirect_to questions_path
   end
 
@@ -39,6 +45,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:topic_id, :text, :total_marks)
+      params.require(:question).permit(:topic_id, :text, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ])
     end
 end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :objectives
+
   resources :questions do 
     resources :answers
   end
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
   get 'improvements/:id/add_review' => 'improvements#add_review', as: :add_review
   get ':id/set_user_as_teacher' => 'improvements#set_user_as_teacher', as: :set_user_as_teacher
   get ':id/set_user_as_student' => 'improvements#set_user_as_student', as: :set_user_as_student
+  get 'potatos' => 'improvements#edit_subject', as: :potato
 
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]

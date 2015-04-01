@@ -12,6 +12,16 @@ module SubjectsHelper
 		return (marks.to_f / total_marks.to_f) * 100
 	end
 
+	def progress_in_objective(objective)
+		marks = 0
+		total_marks = 0
+		objective.questions.each do |question|
+			marks += question.latest_mark * time_degredation(question)
+			total_marks += question.total_marks
+		end
+		return (marks.to_f / total_marks.to_f) * 100
+	end
+
 	private
 	def time_degredation(question)
 		a = (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400

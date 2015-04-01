@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @objective.name %>
+</p>
+
+<p>
+  <strong>Module pack info:</strong>
+  <%= @objective.module_pack_info %>
+</p>
+
+<p>
+  <strong>Total marks:</strong>
+  <%= @objective.total_marks %>
+</p>
+
+<p>
+  <strong>Belongs to:</strong>
+  <%= @objective.belongs_to %>
+</p>
+
+<%= link_to 'Edit', edit_objective_path(@objective) %> |
+<%= link_to 'Back', objectives_path %>

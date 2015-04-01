@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222181210) do
+ActiveRecord::Schema.define(version: 20150329112602) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20150222181210) do
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
 
+  create_table "lines", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "objective_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lines", ["objective_id"], name: "index_lines_on_objective_id"
+  add_index "lines", ["question_id"], name: "index_lines_on_question_id"
+
   create_table "module_packs", force: true do |t|
     t.string   "name"
     t.integer  "unit_id"
@@ -52,6 +62,15 @@ ActiveRecord::Schema.define(version: 20150222181210) do
   end
 
   add_index "module_packs", ["unit_id"], name: "index_module_packs_on_unit_id"
+
+  create_table "objectives", force: true do |t|
+    t.text     "name"
+    t.text     "module_pack_info"
+    t.integer  "total_marks"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", force: true do |t|
     t.integer  "topic_id"

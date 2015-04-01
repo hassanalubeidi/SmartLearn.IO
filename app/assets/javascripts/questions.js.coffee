@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery -> 
+	
 	questions = $('#question_topic_id').html()
 	$("#subject").change ->
 		subject = $('#subject :selected').text()
@@ -10,3 +11,17 @@ jQuery ->
 			$("#question_topic_id").html(options)
 		else
 			$("#question_topic_id").empty()
+
+test = undefined
+test = 0
+woohoo = undefined
+$('.add_fields').click ->
+  test += 1
+  if test > 0
+    woohoo = $('.nested-fields .select .optional').last().attr('id')
+    $('#' + woohoo).dropdown()
+  return
+
+	
+
+	
