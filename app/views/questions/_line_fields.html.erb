@@ -1,10 +1,10 @@
 <div class="nested-fields">
-	<div class="ui eight column grid">
-		<div class="six wide column">
+	<div class="ui doubling grid">
+		<div class="twelve wide column">
 		<%= f.input :objective_id, collection: Objective.all, input_html: { class: "ui fluid search dropdown select", style: "display:inline" }, label: false %>
 		</div>
 		<div class="two wide column">
-		 <%= link_to_remove_association "remove objective", f, class: "ui red tiny button", style: "display:inline-block" %>
+		 <%= link_to_remove_association "<i class=' ui large trash link icon'></i>".html_safe, f, class: "ui small red icon button", style: "display:inline-block" %>
 		</div>
   </div>
   <div class="ui divider"></div>

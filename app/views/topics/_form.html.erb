@@ -1,5 +1,8 @@
+
+
+
 <%= form_for(@topic, :html => {:class => 'ui form'}) do |f| %>
-  <% if @topic.errors.any? %>
+<% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 
@@ -10,17 +13,25 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :subject_id %><br>
     <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
   </div>
-  <div class="actions">
-    <%= f.submit :class => "ui primary button" %>
-    <%= link_to 'Back', topics_path, class: "ui button" %>
+  <div class=" ui segment">
+  <h3 class="ui header">Objectives</h3>
+  <div id="objectives">
+    <%= f.fields_for :objectives, :html => {:class => 'ui segment'} do |objective| %>
+      <%= render 'objective_fields', :f => objective %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add objective', f, :objectives, class: "ui button" %>
+    </div>
   </div>
+  </div>
+  <%= f.submit  class: "ui blue button"  %>
 <% end %>
+
