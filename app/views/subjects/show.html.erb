@@ -26,3 +26,18 @@
 <% end %>
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <strong><%= @subject.user.username %></strong>
+
+<% @subject.topics.each do |topic| %>
+<h3><%= topic.name %></h3>
+<div class="ui segment">
+	<ul>
+	<% topic.objectives.each do |objective| %>
+
+	<li><%= objective.name %></li>
+
+
+
+	<% end %>
+	</ul>
+</div>
+<% end %>
