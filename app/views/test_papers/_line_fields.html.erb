@@ -1,0 +1,25 @@
+<div class="nested-fields">
+	<div class="ui doubling grid">
+		<div class="twelve wide column">
+		<%= f.input :objective_id, collection: Objective.all, input_html: { class: "ui fluid search dropdown select", style: "display:inline" }, label: false %>
+		</div>
+		<div class="two wide column">
+		 <%= link_to_remove_association "<i class=' ui large trash link icon'></i>".html_safe, f, class: "ui small icon  button", style: "display:inline-block" %>
+		</div>
+  </div>
+  <div class="ui divider"></div>
+</div>
+<script>
+var test;
+
+test = 0;
+var woohoo;
+$('.add_fields').click(function() {
+  test += 1;
+  if (test > 0) {
+    woohoo = $(".nested-fields .select .optional").last().attr('id');
+    $("#" + woohoo).dropdown()
+  }
+});
+</script>
+

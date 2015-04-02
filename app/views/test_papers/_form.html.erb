@@ -1,0 +1,51 @@
+<%= form_for(@test_paper, html: {:class => "ui form"}) do |f| %>
+<% if @test_paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_paper.errors.count, "error") %> prohibited this test_paper from being saved:</h2>
+
+      <ul>
+      <% @test_paper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.select(:date, [['June 2014', Date.new(2014,6,1)], 
+            ['Jan 2014', Date.new(2014,1,1)],
+            ['June 2013', Date.new(2013,6,1)],
+            ['Jan 2013', Date.new(2013,1,1)],
+            ['June 2012', Date.new(2012,6,1)],
+            ['Jan 2012', Date.new(2012,1,1)],
+            ['June 2011', Date.new(2011,6,1)],
+            ['Jan 2011', Date.new(2011,1,1)],
+            ['June 2010', Date.new(2010,6,1)],
+            ['Jan 2010', Date.new(2010,1,1)],
+            ['June 2009', Date.new(2009,6,1)],
+            ['Jan 2009', Date.new(2009,1,1)],
+            ['June 2014', Date.new(2009,6,1)],
+            ], { :class => 'ui dropdown' })
+  %>
+  </div>
+  <div class="field">
+    <%= f.label :calc_allowed %><br>
+    <%= f.check_box :calc_allowed, class: "ui checkbox" %>
+  </div>
+  <h3>Create questions:</h3>
+  <div id="tasks">
+    <%= f.fields_for :questions do |question| %>
+      <%= render 'questions/form', :f => question %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add question', f, :questions, :class => "ui button" %>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <%= f.submit class: "ui blue button" %>
+<% end %>

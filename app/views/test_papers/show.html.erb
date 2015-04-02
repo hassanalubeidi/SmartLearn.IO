@@ -1,0 +1,7 @@
+<%= @test_paper.date %>
+<% @test_paper.questions.each do |question| %>
+<div><%= question.text %></div>
+<% question.objectives.each do |objective| %>
+	<div><strong><%= objective.name %></strong></div>
+<% end %>
+<% end %>

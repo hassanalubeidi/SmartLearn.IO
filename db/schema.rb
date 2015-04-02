@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401230216) do
+ActiveRecord::Schema.define(version: 20150402113715) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150401230216) do
     t.integer  "total_marks"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "test_paper_id"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
@@ -109,6 +110,16 @@ ActiveRecord::Schema.define(version: 20150401230216) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  create_table "test_papers", force: true do |t|
+    t.integer  "subject_id"
+    t.date     "date"
+    t.boolean  "calc_allowed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "test_papers", ["subject_id"], name: "index_test_papers_on_subject_id"
 
   create_table "topics", force: true do |t|
     t.string   "name"
