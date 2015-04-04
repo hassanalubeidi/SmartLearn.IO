@@ -1,3 +1,6 @@
+<h1 class="ui header">
+<%= @subject.name %>
+</h1>
 <div class="ui blue message">
   <div class="header">
     How scoring works
@@ -6,21 +9,25 @@
   <p>This takes into account how long ago the question was done, and the time of year it was done it (revision or new content?)
   (Remove this on release)
 </div>
-<div class="ui yellow message">
+<% if Topic.count == 0 then %>
+<div class="ui message">
   <div class="header">
     No topics!
   </div>
-  <p>It looks like you don't have any topics for this subject. Create some?</p>
+  <p>It looks like you don't have any topics for this subject. <%= link_to "Create some?", new_topic_path %></p>
 </div>
+<% end %>
+<%= link_to "Add a question?", new_question_path, class: "ui fluid teal button" %>
 <% @subject.topics.each do |topic| %>
 <div>
 	<h3><%= link_to topic.name, topic_path(topic) %></h3>
 	<strong>Score: </strong><%= '%.2f' % progress_in_topic(topic) %>
 	<div class="ui cards">
-	<% topic.questions.each do |question| %>
+	<% get_questions_of_topic(topic).each do |question| %>
 		<%= render "card", question: question %>
 	<% end %>
 	</div>
+
 	<div class="ui accordion">
 		
 	    <div class="title">
@@ -42,4 +49,3 @@
 <% end %>
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <strong><%= @subject.user.username %></strong>
-

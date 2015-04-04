@@ -5,9 +5,11 @@ module SubjectsHelper
 	def progress_in_topic(topic)
 		marks = 0
 		total_marks = 0
-		topic.questions.where(topic: topic).each do |question|
-			marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
-			total_marks += question.total_marks
+		get_questions_of_topic(topic).each do |question|
+			unless question.answers.where(:user => current_user).blank?
+				marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
+				total_marks += question.total_marks
+			end
 		end
 		return (marks.to_f / total_marks.to_f) * 100
 	end
@@ -21,6 +23,19 @@ module SubjectsHelper
 		end
 		return (marks.to_f / total_marks.to_f) * 100
 	end
+
+	def get_questions_of_topic(topic)
+		questionss = []
+
+		topic.objectives.first.questions.count
+		topic.objectives.each do |objective|
+			objective.questions.each do |question|
+				questionss.push(question)
+			end
+		end
+
+		questionss.uniq
+	end	
 
 	private
 	def time_degredation(question)
@@ -40,5 +55,7 @@ module SubjectsHelper
 		end
 
 
-	end	
+	end
+
+	
 end

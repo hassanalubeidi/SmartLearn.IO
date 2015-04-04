@@ -13,23 +13,8 @@
   <% end %>
 </div>
 
-<%= link_to 'New Subject', new_subject_path %>
 
-<div class="ui blue message">
-<h2 class="ui header">Upon visiting:</h1>
-<ul>
-  <li>
-  Create subjects
-  </li>
-  <li>
-  Create topics
-  </li>
-  <li>
-  Create objectives
-  </li>
 
-  <li>
-  Then you can input questions!
-  </li>
-</ul>
-</div>
+<% if Subject.count == 0 then %>
+<%= render 'subjects/empty' %>
+<% end %>

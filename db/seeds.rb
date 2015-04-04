@@ -124,4 +124,3 @@ Review.create!([
 SetGroup.create!([
   {id: 1, name: "E", year: 12, subject_id: 14, created_at: "2015-02-08 01:40:33", updated_at: "2015-02-08 01:40:33"}
 ])
-

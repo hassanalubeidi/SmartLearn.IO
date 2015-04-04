@@ -1,5 +1,6 @@
 <%= simple_form_for @question, html: { class: "ui form"}  do |f| %>
     <%= f.input :text, input_html: { class: 'ui text' } %>
+    <%= f.input :total_marks %>
     <h3>Objectives</h3>
     <p>Add the relevant objectives for your question using the dropdown search provided.</p>
     <div id='tasks' class="ui segment">
@@ -7,8 +8,7 @@
 
       <%= f.simple_fields_for :lines do |line| %>
       
-        <%= render 'lines_fields', :f => line, :index => index %>
-        <div class="ui divider"></div>
+        <%= render 'line_fields', :f => line %>
       <% end %>
     <% end %>
       <div class='links'>
