@@ -17,7 +17,10 @@
   <p>It looks like you don't have any topics for this subject. <%= link_to "Create some?", new_topic_path %></p>
 </div>
 <% end %>
-<%= link_to "Add a question?", new_question_path, class: "ui fluid teal button" %>
+<%= link_to "Add a question?", new_question_path, class: "ui fluid top attached button" %>
+<%= link_to "Or maybe a testpaper?!", new_test_paper_path, class: "ui fluid bottom attached button" %>
+</br>
+<%= link_to "Hell, maybe you want to add an improvement..", new_improvement_path, class: "ui fluid  button" %>
 <% @subject.topics.each do |topic| %>
 <div>
 	<h3><%= link_to topic.name, topic_path(topic) %></h3>
