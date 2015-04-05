@@ -10,45 +10,42 @@
   (Remove this on release)
 </div>
 <% if Topic.count == 0 then %>
-<div class="ui message">
-  <div class="header">
-    No topics!
-  </div>
-  <p>It looks like you don't have any topics for this subject. <%= link_to "Create some?", new_topic_path %></p>
-</div>
-<% end %>
-<%= link_to "Add a question?", new_question_path, class: "ui fluid top attached button" %>
-<%= link_to "Or maybe a testpaper?!", new_test_paper_path, class: "ui fluid bottom attached button" %>
-</br>
-<%= link_to "Hell, maybe you want to add an improvement..", new_improvement_path, class: "ui fluid  button" %>
-<% @subject.topics.each do |topic| %>
-<div>
-	<h3><%= link_to topic.name, topic_path(topic) %></h3>
-	<strong>Score: </strong><%= '%.2f' % progress_in_topic(topic) %>
-	<div class="ui cards">
-	<% get_questions_of_topic(topic).each do |question| %>
-		<%= render "card", question: question %>
-	<% end %>
+	<div class="ui message">
+	  <div class="header">
+	    No topics!
+	  </div>
+	  <p>It looks like you don't have any topics for this subject. <%= link_to "Create some?", new_topic_path %></p>
 	</div>
 
-	<div class="ui accordion">
-		
-	    <div class="title">
-	      <i class="dropdown icon"></i>
-	      Objectives
-	    </div>
-	    <div class="content">
-	    	<div class="ui segment"><ul>
-		    <% topic.objectives.each do |objective| %>
-		      <li><%= objective.name %></li>
-		    <% end %>
-	    	</ul></div>
-	    </div>
-	   
-	  </div>
-</div>
-</div>
+	<% end %>
+	<%= link_to "Add a question?", new_question_path, class: "ui fluid top attached button" %>
+	<%= link_to "Or maybe a testpaper?!", new_test_paper_path, class: "ui fluid bottom attached button" %>
+	</br>
+	<%= link_to "Hell, maybe you want to add an improvement..", new_improvement_path, class: "ui fluid  button" %>
+	<% @subject.topics.each do |topic| %>
+	<div>
+		<h3><%= link_to topic.name, topic_path(topic) %></h3>
+		<strong>Score: </strong><%= '%.2f' % progress_in_topic(topic) %>
+		<div class="ui cards">
+		<% get_questions_of_topic(topic).each do |question| %>
+			<%= render "card", question: question %>
+		<% end %>
+		</div>
 
+		<div class="ui accordion">
+			
+		    <div class="title">
+		      <i class="dropdown icon"></i>
+		      Objectives
+		    </div>
+		    <div class="content">
+		    	<div class="ui segment"><ul>
+			    <% topic.objectives.each do |objective| %>
+			      <li><%= objective.name %></li>
+			    <% end %>
+		    	</ul></div>
+		    </div>
+		   
+		  </div>
+	</div>
 <% end %>
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<strong><%= @subject.user.username %></strong>
