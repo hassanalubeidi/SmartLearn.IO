@@ -1,6 +1,7 @@
 <div class="nested-fields ui segment">
   <div class="field">
     <%= f.text_area :text, placeholder: "Enter your objective here" %>
+    <%= f.integer :total_marks, placeholder: "Total marks" %>
     <%= link_to_remove_association "remove objective", f, class: "ui bottom attached red fluid button" %>
     <div class="ui divider"></div>
   </div>
