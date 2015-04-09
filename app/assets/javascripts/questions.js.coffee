@@ -12,6 +12,8 @@ jQuery ->
 		else
 			$("#question_topic_id").empty()
 
+	$('.objectives-modal').modal 'attach events', '#all-objectives'
+
 test = undefined
 test = 0
 woohoo = undefined
@@ -21,6 +23,8 @@ $('.add_fields').click ->
     woohoo = $('.nested-fields .select .optional').last().attr('id')
     $('#' + woohoo).dropdown()
   return
+
+
 
 	
 

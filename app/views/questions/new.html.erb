@@ -1,5 +1,31 @@
 <h1>New question</h1>
+<a class="ui fluid teal button" id="all-objectives">All objectives</a>
+
 
 <%= render 'form' %>
 
 
+
+
+<div class="ui modal objectives-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Objectives
+  </div>
+  <div class="content">
+    
+    <div class="description">
+      <ul>
+      	<% Objective.all.each do |objective| %>
+      		<li><%= objective.name %></li>
+      	<% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui right labeled icon button">
+      Close
+      <i class="remove icon"></i>
+    </div>
+  </div>
+</div>
