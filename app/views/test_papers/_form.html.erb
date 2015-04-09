@@ -53,7 +53,7 @@
   <h3>Create questions:</h3>
   <div id="tasks">
     <%= f.fields_for :questions do |question| %>
-      <%= render 'questions/form', :f => question %>
+      <%= render 'questions/form', :f => question, @question => question %>
     <% end %>
     <div class="links">
       <%= link_to_add_association 'add question', f, :questions, :class => "ui button" %>
