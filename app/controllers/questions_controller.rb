@@ -7,7 +7,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    unless @question.answers.where(:user => current_user).last == nil
       @marks = @question.answers.where(:user => current_user).last.marks_integer
+    end
   end
 
   def new
@@ -36,7 +38,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path
+    redirect_to :back
   end
 
   private

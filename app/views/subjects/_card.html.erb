@@ -4,13 +4,17 @@
       <div class="header">
       <%= if question.answers.where(question: question, user: current_user).count != 0 then marks(question) end %>
       </div>
-      <div class="meta">
-
-        <%= (link_to time_ago_in_words(question.created_at), question_path(question), class: "group") %> ago
-      </div>
+      
       <div class="description">
         <%= link_to "answer", new_question_answer_path(question), class: "ui fluid button" unless question.answers.count > 0 %>
         <%= question.text %>
+      </div>
+      <div class="meta">
+
+        <%= (link_to time_ago_in_words(question.created_at), question_path(question), class: "group") %> ago
+        <div>
+          <%= link_to "delete", question_path(question), method: "delete" %> <%= link_to "edit", edit_question_path(question) %>
+        </div>
       </div>
     </div>
   </div>

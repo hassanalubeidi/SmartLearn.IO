@@ -22,5 +22,5 @@
 	<% end %>
 <div>
 <%= link_to 'Edit', edit_question_path(@question), class: "ui primary button" %>
-<%= link_to 'Back', questions_path, class: "ui button" %>
+<%= link_to 'Back', subject_path(@question.objectives.last.topic.subject), class: "ui button" %>
 </div>
