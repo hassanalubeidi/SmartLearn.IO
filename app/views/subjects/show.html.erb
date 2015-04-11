@@ -1,4 +1,4 @@
-<h1 class="ui header">
+<h1 >
 <%= @subject.name %>
 </h1>
 <div class="ui blue message">
@@ -8,6 +8,19 @@
   <p>The amount of marks per topic is added together, then multiplied multiplied by the time degredation function</p>
   <p>This takes into account how long ago the question was done, and the time of year it was done it (revision or new content?)
   (Remove this on release)
+</div>
+<div class="ui piled segment">
+	
+	<ul>
+		<h3>Testpapers</h3>
+	<% @subject.test_papers.each do |test_paper| %>
+	<ul class="ui link list">
+		
+		<%= link_to test_paper.date, test_paper_path(test_paper), class: "item" %>
+	</ul>
+	<% end %>
+	<%= link_to "Create a testpaper", new_test_paper_path, class: 'ui basic button' %>
+	</ul>
 </div>
 <% if Topic.count == 0 then %>
 	<div class="ui message">
