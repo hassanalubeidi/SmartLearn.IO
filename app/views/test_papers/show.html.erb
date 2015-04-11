@@ -1,7 +1,10 @@
-<%= @test_paper.date %>
+<h1 class="ui inverted red header"><%= @test_paper.date %></h1>
 <% @test_paper.questions.each do |question| %>
-<div><%= question.text %></div>
-<% question.objectives.each do |objective| %>
-	<div><strong><%= objective.name %></strong></div>
-<% end %>
+<div class="ui segment"><%= question.text %>
+	<div class="labels">
+	<% question.objectives.each do |objective| %>
+		<div class="ui label"><strong><%= objective.name %></strong></div>
+	<% end %>
+	</div>
+</div>
 <% end %>
