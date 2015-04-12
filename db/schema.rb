@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412104043) do
+ActiveRecord::Schema.define(version: 20150412131508) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20150412104043) do
     t.boolean  "calc_allowed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "test_papers", ["subject_id"], name: "index_test_papers_on_subject_id"

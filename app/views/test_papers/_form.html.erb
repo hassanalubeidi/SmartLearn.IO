@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
   <div class="field">
     <%= f.label :subject_id %><br>
     <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>

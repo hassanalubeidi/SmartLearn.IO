@@ -16,7 +16,7 @@
 	<% @subject.test_papers.each do |test_paper| %>
 	<ul class="ui link list">
 		
-		<%= link_to test_paper.date, test_paper_path(test_paper), class: "item" %>
+		<%= link_to "#{test_paper.name}, #{test_paper.date}", test_paper_path(test_paper), class: "item" %>
 	</ul>
 	<% end %>
 	<%= link_to "Create a testpaper", new_test_paper_path, class: 'ui basic button' %>
