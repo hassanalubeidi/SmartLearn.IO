@@ -2,11 +2,15 @@
 <div class="fluid card">
     <div class="content">
       <div class="header">
-      <%= if question.answers.where(question: question, user: current_user).count != 0 then marks(question) end %>
+      <% if question.answers.where(question: question, user: current_user).count != 0 %>
+       <%= marks(question) %>
+       <% else %>
+       <%= link_to "answer", new_question_answer_path(question), class: "ui green basic fluid button" unless question.answers.count > 0 %>
+       <% end %>
       </div>
       
       <div class="description">
-        <%= link_to "answer", new_question_answer_path(question), class: "ui fluid button" unless question.answers.count > 0 %>
+        
         <%= question.text %>
         <% unless question.attachment.blank? %>
         <div class="ui header">
