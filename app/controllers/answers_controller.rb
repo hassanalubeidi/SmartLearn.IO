@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @answer = Answer.new(:question=>@question)
-    
+    session[:prev_url] = request.referer
   end
 
   def edit
@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
     @answer.question = @question
     @answer.user = current_user
     @answer.save
-    if @answer.save then redirect_to :back end
+    if @answer.save then redirect_to session[:prev_url] end
   end
 
   def update

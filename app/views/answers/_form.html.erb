@@ -19,6 +19,7 @@
     <%= f.label :marks_integer %><br>
     <%= f.text_field :marks_integer %>
   </div>
+  <%= f.hidden_field :prev_url, :value => @prev_url %>
   <div class="actions">
     <%= f.submit %>
   </div>
