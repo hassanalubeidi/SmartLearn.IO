@@ -47,6 +47,6 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:topic_id, :text, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ])
+      params.require(:question).permit(:topic_id, :attachment, :text, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ])
     end
 end

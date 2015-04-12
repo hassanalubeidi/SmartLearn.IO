@@ -35,6 +35,6 @@ class TestPapersController < ApplicationController
     end
 
     def test_paper_params
-      params.require(:test_paper).permit(:subject_id, :questions, :date, :calc_allowed, questions_attributes: [:text, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
+      params.require(:test_paper).permit(:subject_id, :questions, :date, :calc_allowed, questions_attributes: [:text, :attachment, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
     end
 end

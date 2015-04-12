@@ -58,3 +58,4 @@ gem 'jquery-turbolinks'
 gem 'seed_dump'
 gem "cocoon"
 gem 'simple_form'
+gem "paperclip", "~> 4.2"

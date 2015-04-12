@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402113715) do
+ActiveRecord::Schema.define(version: 20150412104043) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20150402113715) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "test_paper_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
