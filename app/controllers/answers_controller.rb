@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
     @answer.question = @question
     @answer.user = current_user
     @answer.save
-    if @answer.save then redirect_to @question end
+    if @answer.save then redirect_to :back end
   end
 
   def update
