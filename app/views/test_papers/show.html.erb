@@ -1,4 +1,5 @@
 <h1 class="ui inverted red header"><%= @test_paper.date %></h1>
+<%= total_marks(@test_paper) %>
 <% @test_paper.questions.each do |question| %>
 <div class="ui segment"><%= question.text %>
 	<div class="labels">
