@@ -5,6 +5,11 @@
 	<% question.objectives.each do |objective| %>
 		<div class="ui label"><strong><%= objective.name %></strong></div>
 	<% end %>
+	<% if question.answers.where(question: question, user: current_user).count != 0 %>
+       <%= marks(question) %>
+       <% else %>
+       <%= link_to "answer", new_question_answer_path(question), class: "ui green basic fluid button" unless question.answers.count > 0 %>
+       <% end %>
 	</div>
 </div>
 <% end %>
