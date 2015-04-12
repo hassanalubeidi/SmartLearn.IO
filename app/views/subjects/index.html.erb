@@ -1,4 +1,4 @@
-
+<h1 class="ui green header">Experiment v0.1.0</h1>
 <div class="ui selection list">
   <% @subjects.each do |subject| %>
   <div class="item" onclick="location.href='<%=  subject_path(subject) %>';" style="cursor: pointer;" >
@@ -18,3 +18,6 @@
 <% if Subject.count == 0 then %>
 <%= render 'subjects/no_subjects' %>
 <% end %>
+
+
+roadmap: v0.4 fully student compatible, v0.9 fully teacher student compatible, v1.9 api compatible

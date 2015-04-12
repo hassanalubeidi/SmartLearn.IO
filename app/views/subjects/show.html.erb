@@ -12,14 +12,16 @@
 <div class="ui piled segment">
 	
 	<ul>
-		<h3>Testpapers</h3>
-	<% @subject.test_papers.each do |test_paper| %>
-	<ul class="ui link list">
-		
-		<%= link_to "#{test_paper.name}, #{test_paper.date}", test_paper_path(test_paper), class: "item" %>
-	</ul>
-	<% end %>
-	<%= link_to "Create a testpaper", new_test_paper_path, class: 'ui basic button' %>
+		<div class="ui selection list">
+		<% @subject.test_papers.each do |test_paper| %>
+		  <div class="item">
+		    <%= link_to "<i class='remove icon'></i>".html_safe, test_paper_path(test_paper), method: :delete, data: {confirm: "are you sure???"}, class: "right floated compact ui button" %>
+		    <div class="content">
+		      <div class="header"><%= link_to "#{test_paper.name}, #{test_paper.date}", test_paper_path(test_paper), class: "item" %></div>
+		    </div>
+		  </div>
+		<% end %>
+		</div>
 	</ul>
 </div>
 <% if Topic.count == 0 then %>

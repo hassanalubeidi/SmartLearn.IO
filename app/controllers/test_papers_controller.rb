@@ -27,6 +27,7 @@ class TestPapersController < ApplicationController
 
   def destroy
     @test_paper.destroy
+    redirect_to :back
   end
 
   private
