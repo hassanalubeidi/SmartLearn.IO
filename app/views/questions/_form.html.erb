@@ -1,6 +1,6 @@
 <%= simple_form_for @question, html: { class: "ui form"}  do |f| %>
     <%= f.input :text, input_html: { class: 'ui text' } %>
-    <%= f.input :attachment, as: :file %>
+    <%= f.input :attachment, as: :file, class: 'ui button' %>
     <%= f.input :total_marks %>
     <h3>Objectives</h3>
     <p>Add the relevant objectives for your question using the dropdown search provided.</p>

@@ -29,7 +29,7 @@ $(document)
         clearable: true
       })
     ;
-
+    
     $('.ui.sidebar')
       .sidebar('attach events', '.launch.button')
     ;

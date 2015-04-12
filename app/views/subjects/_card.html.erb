@@ -8,14 +8,50 @@
       <div class="description">
         <%= link_to "answer", new_question_answer_path(question), class: "ui fluid button" unless question.answers.count > 0 %>
         <%= question.text %>
+        <% unless question.attachment.blank? %>
+        <div class="ui header">
+          <strong>Attachments:</strong>
+          
+          <div class="ui teal label"><a class="attachment-button<%= question.id %>">Attachment</a></div>
+          
+        </div>
+        <% end %>
       </div>
       <div class="meta">
 
         <%= (link_to time_ago_in_words(question.created_at), question_path(question), class: "group") %> ago
-        <div>
-          <%= link_to "delete", question_path(question), method: "delete" %> <%= link_to "edit", edit_question_path(question) %>
-        </div>
+        
       </div>
+
     </div>
+    <div class="extra content">
+          <%= link_to "Delete <i class='delete icon'></i>".html_safe, question_path(question), method: "delete", data: {confirm: "Are you sure?"} %> <%= link_to "Edit <i class='pencil icon'></i>".html_safe, edit_question_path(question) %>
+        </div>
   </div>
 <!-- Modal -->
+
+
+<% unless question.attachment.blank? %>
+<div class="ui fullscreen modal attachment<%= question.id %>">
+  <i class="close icon"></i>
+  <div class="header">
+    Attachment
+  </div>
+  <div class="content">
+    <div class="description">
+      <%= image_tag question.attachment.url %>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui positive button">
+      Close
+    </div>
+  </div>
+</div>
+<% end %>
+<script>
+
+    $('.attachment<%= question.id %>').modal('attach events', '.attachment-button<%= question.id %>');
+
+
+</script>
