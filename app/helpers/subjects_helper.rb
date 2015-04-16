@@ -26,6 +26,17 @@ module SubjectsHelper
 		return (marks.to_f / total_marks.to_f) * 100
 	end
 
+	def objective_traffic_light(objective)
+		score = progress_in_objective(objective).to_i
+		if score < 50 then
+			return "red"
+		elsif score < 61
+		 return "yellow"
+		elsif score > 70 
+			return "green"
+		end
+	end
+
 	def get_questions_of_topic(topic)
 		questionss = []
 
