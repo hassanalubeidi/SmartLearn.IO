@@ -55,7 +55,7 @@
 		    <div class="content">
 		    	<div class="ui segment"><ul>
 			    <% topic.objectives.each do |objective| %>
-			      <li><%= objective.name %></li>
+			      <li><%= objective.name %><div class="ui circular label"><%= progress_in_objective(objective)  %></div></li>
 			    <% end %>
 		    	</ul></div>
 		    </div>

@@ -18,8 +18,10 @@ module SubjectsHelper
 		marks = 0
 		total_marks = 0
 		objective.questions.each do |question|
-			marks += question.latest_mark * time_degredation(question)
-			total_marks += question.total_marks
+			unless question.answers.where(:user => current_user).count == 0 then
+				marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
+				total_marks += question.total_marks
+			end
 		end
 		return (marks.to_f / total_marks.to_f) * 100
 	end
