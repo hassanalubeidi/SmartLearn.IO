@@ -1,4 +1,4 @@
-<h1 class="ui inverted red header"><%= @test_paper.date %></h1>
+<h1 class="ui inverted red header"><%= @test_paper.date %> <%= link_to "Edit", edit_test_paper_path(@test_paper), class: "ui basic button float right" %></h1>
 <%= total_marks(@test_paper) %>
 <% @test_paper.questions.each do |question| %>
 <div class="ui segment"><%= question.text %>

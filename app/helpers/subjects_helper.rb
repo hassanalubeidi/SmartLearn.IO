@@ -72,7 +72,7 @@ module SubjectsHelper
 		when "March"
 			return 1.01369 #50 day half life - almost finished learning, started revising
 		when "April" , "May" , "June"
-			return 1.00995 #70 day - completely finished learning, just revising
+			return 1.02337 #70 day - completely finished learning, just revising
 		end
 
 

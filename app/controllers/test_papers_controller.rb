@@ -19,10 +19,12 @@ class TestPapersController < ApplicationController
   def create
     @test_paper = TestPaper.new(test_paper_params)
     @test_paper.save
+    redirect_to :back
   end
 
   def update
     @test_paper.update(test_paper_params)
+    redirect_to @test_paper
   end
 
   def destroy
