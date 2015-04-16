@@ -27,13 +27,21 @@ module SubjectsHelper
 	end
 
 	def objective_traffic_light(objective)
-		score = progress_in_objective(objective).to_i
+		score = progress_in_objective(objective)
+		nan = 0.0/0 # OR nan = Float::NAN
+		nan.class
+		nan.nan?
+		nan.is_a?(Float) && nan.nan?
+		(score.is_a?(Float) && score.nan?) ? 0 : score
+		
+		
 		if score < 50 then
 			return "red"
 		elsif score < 61
 		 return "yellow"
 		elsif score > 70 
 			return "green"
+		else return ""
 		end
 	end
 
