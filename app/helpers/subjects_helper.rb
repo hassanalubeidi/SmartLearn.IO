@@ -58,6 +58,54 @@ module SubjectsHelper
 		questionss.uniq
 	end	
 
+	def get_good_objectives(topic)
+		questions = get_questions_of_topic(topic)
+		good_objectives = []
+		topic.objectives.each do |objective|
+			if progress_in_objective(objective) > 70 then 
+				good_objectives.push(objective)
+			end
+		end
+		good_objectives
+	end
+
+	def get_ok_objectives(topic)
+		questions = get_questions_of_topic(topic)
+		ok_objectives = []
+		topic.objectives.each do |objective|
+			if progress_in_objective(objective) > 50 then 
+				ok_objectives.push(objective)
+			end
+		end
+		ok_objectives
+	end
+
+	def get_bad_objectives(topic)
+		questions = get_questions_of_topic(topic)
+		bad_objectives = []
+		topic.objectives.each do |objective|
+			if progress_in_objective(objective) < 50 then 
+				bad_objectives.push(objective)
+			end
+		end
+		bad_objectives
+	end
+
+	def get_NaN_objectives(topic)
+		questions = get_questions_of_topic(topic)
+		nan = 0.0 / 0.0
+		nan_objectives = []
+		topic.objectives.each do |objective|
+			if progress_in_objective(objective) < 101 then 
+				
+			else
+				nan_objectives.push(objective)
+
+			end
+		end
+		nan_objectives
+	end
+
 	private
 	def time_degredation(question)
 		a = (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400
