@@ -73,7 +73,7 @@ module SubjectsHelper
 		questions = get_questions_of_topic(topic)
 		ok_objectives = []
 		topic.objectives.each do |objective|
-			if progress_in_objective(objective) > 50 then 
+			if progress_in_objective(objective) > 45 and progress_in_objective(objective) < 70 then 
 				ok_objectives.push(objective)
 			end
 		end
@@ -84,7 +84,7 @@ module SubjectsHelper
 		questions = get_questions_of_topic(topic)
 		bad_objectives = []
 		topic.objectives.each do |objective|
-			if progress_in_objective(objective) < 50 then 
+			if progress_in_objective(objective) < 45 then 
 				bad_objectives.push(objective)
 			end
 		end

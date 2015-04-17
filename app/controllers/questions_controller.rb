@@ -23,7 +23,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.total_marks = 0
+    if @question.total_marks == nil then
+      @question.total_marks = 0
+    end
+    
     @question.save
     @question.objectives do |objective|
       objective.questions << question
