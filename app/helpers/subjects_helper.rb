@@ -37,7 +37,7 @@ module SubjectsHelper
 		
 		if score < 50 then
 			return "red"
-		elsif score < 61
+		elsif score < 69
 		 return "yellow"
 		elsif score > 70 
 			return "green"
