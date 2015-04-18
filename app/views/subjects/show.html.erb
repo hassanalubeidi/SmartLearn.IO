@@ -56,9 +56,10 @@
 		    	<div class="ui segment"><ul>
 		    	<h3>The good</h3>
 		    	<ul>
+		    		
 		    	<% get_good_objectives(topic).each do |objective| %>
 		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> label">score: <%= '%.0f' % progress_in_objective(objective)  %> </div>  <div class="ui red label">memory test: <%= objective.objective_states.where(:user => current_user).last.status unless objective.objective_states.where(:user => current_user).count == 0 %></div>
+		    			<%= objective.name %><div class="ui circular <%= objective_traffic_light(objective) %> label"><%= '%.0f' % progress_in_objective(objective)  %> </div>  <%= get_objective_state(objective) %>
 		    			<%= link_to "update status", new_objective_objective_state_path(objective) %>
 		    			
 		    		</li>
@@ -69,7 +70,8 @@
 		    	<ul>
 		    	<% get_ok_objectives(topic).each do |objective| %>
 		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></br>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div><%= get_objective_state(objective) %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
 
 		    		</li>
 		    	<% end %>

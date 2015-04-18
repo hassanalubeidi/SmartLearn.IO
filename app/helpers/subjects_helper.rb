@@ -106,6 +106,19 @@ module SubjectsHelper
 		nan_objectives
 	end
 
+	def get_objective_state(objective)
+		objective_status = objective.objective_states.where(:user => current_user).last.status unless objective.objective_states.where(:user => current_user).count == 0
+		if objective_status == "full" then
+			return "<i class='ui green checkmark icon'></i>".html_safe
+		elsif objective_status == "not fluent" then
+			return "<strong class='letter icon'>F</strong>".html_safe
+		elsif objective_status == "partial" then
+			return "<strong class='letter icon'>P</strong>".html_safe
+		elsif objective_status == "none" then
+			return "<i class='ui red remove icon'></i>".html_safe
+		end
+	end
+
 	private
 	def time_degredation(question)
 		a = (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400
