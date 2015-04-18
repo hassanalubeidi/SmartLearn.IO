@@ -1,0 +1,31 @@
+<%= form_for [@objective, @objective_state], :html => {:class => 'ui form'} do |f| %>
+<div class="ui form">
+    <div class="grouped fields">
+      <div class="field">
+        <div class="ui radio checkbox">
+          <%= f.radio_button :status, "full" , :checked => "" %>
+          <label><i class="ui green checkmark icon"></i> Full</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <%= f.radio_button :status, "not fluent" , :checked => "" %>
+          <label><strong class="letter icon">F</strong>Not fluent</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <%= f.radio_button :status, "partial" , :checked => "" %>
+          <label><strong class="letter icon">P</strong>Partial</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <%= f.radio_button :status, "none" , :checked => "" %>
+          <label><i class="ui red remove icon"></i> None</label>
+        </div>
+      </div>
+    </div>
+    <%= f.submit class: "ui blue button" %>
+  </div>
+<% end %>

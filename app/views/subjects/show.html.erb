@@ -50,35 +50,46 @@
 			
 		    <div class="title">
 		      <i class="dropdown icon"></i>
-		      Objectives
+		      Topic report
 		    </div>
 		    <div class="content">
 		    	<div class="ui segment"><ul>
 		    	<h3>The good</h3>
 		    	<ul>
 		    	<% get_good_objectives(topic).each do |objective| %>
-		    	<li><%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></li>
+		    		<li>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> label">score: <%= '%.0f' % progress_in_objective(objective)  %> </div>  <div class="ui red label">memory test: <%= objective.objective_states.where(:user => current_user).last.status %></div>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective) %>
+		    			
+		    		</li>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>The bad</h3>
 		    	<ul>
 		    	<% get_ok_objectives(topic).each do |objective| %>
-		    	<li><%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></li>
+		    		<li>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></br>
+
+		    		</li>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>The ugly</h3>
 		    	<ul>
 		    	<% get_bad_objectives(topic).each do |objective| %>
-		    	<li><%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></li>
+		    		<li>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
+		    		</li>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>Unassigned</h3>
 		    	<ul>
 			    <% get_NaN_objectives(topic).each do |objective| %>
-		    	<li><%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div></li>
+		    		<li>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
+		    		</li>
 		    	<% end %>
 		    	</ul>
 

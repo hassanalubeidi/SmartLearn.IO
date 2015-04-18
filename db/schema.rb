@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412131508) do
+ActiveRecord::Schema.define(version: 20150418134152) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 20150412131508) do
   end
 
   add_index "module_packs", ["unit_id"], name: "index_module_packs_on_unit_id"
+
+  create_table "objective_states", force: true do |t|
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "objective_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "objective_states", ["objective_id"], name: "index_objective_states_on_objective_id"
+  add_index "objective_states", ["user_id"], name: "index_objective_states_on_user_id"
 
   create_table "objectives", force: true do |t|
     t.text     "name"

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :test_papers
 
-  resources :objectives
+  resources :objectives do 
+    resources :objective_states
+  end
 
   resources :questions do 
     resources :answers
