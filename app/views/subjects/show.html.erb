@@ -59,8 +59,9 @@
 		    		
 		    	<% get_good_objectives(topic).each do |objective| %>
 		    		<li>
-		    			<%= objective.name %><div class="ui circular <%= objective_traffic_light(objective) %> label"><%= '%.0f' % progress_in_objective(objective)  %> </div>  <%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective) %>
+		    			<%= objective.name %><div class="ui circular <%= objective_traffic_light(objective) %> label"><%= '%.0f' % progress_in_objective(objective)  %> </div> 
+		    			<%= get_objective_state(objective) %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
 		    			
 		    		</li>
 		    	<% end %>
@@ -82,6 +83,8 @@
 		    	<% get_bad_objectives(topic).each do |objective| %>
 		    		<li>
 		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
+		    			<%= get_objective_state(objective) %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
 		    		</li>
 		    	<% end %>
 		    	</ul>
@@ -91,6 +94,8 @@
 			    <% get_NaN_objectives(topic).each do |objective| %>
 		    		<li>
 		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
+		    			<%= get_objective_state(objective) %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
 		    		</li>
 		    	<% end %>
 		    	</ul>
