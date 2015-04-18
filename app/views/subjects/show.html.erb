@@ -58,7 +58,7 @@
 		    	<ul>
 		    	<% get_good_objectives(topic).each do |objective| %>
 		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> label">score: <%= '%.0f' % progress_in_objective(objective)  %> </div>  <div class="ui red label">memory test: <%= objective.objective_states.where(:user => current_user).last.status %></div>
+		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> label">score: <%= '%.0f' % progress_in_objective(objective)  %> </div>  <div class="ui red label">memory test: <%= objective.objective_states.where(:user => current_user).last.status unless objective.objective_states.where(:user => current_user).count == 0 %></div>
 		    			<%= link_to "update status", new_objective_objective_state_path(objective) %>
 		    			
 		    		</li>
