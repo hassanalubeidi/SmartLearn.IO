@@ -1,4 +1,4 @@
 class Line < ActiveRecord::Base
-  belongs_to :question
-  belongs_to :objective
+  belongs_to :question, :dependent => :destroy
+  belongs_to :objective, :dependent => :destroy
 end
