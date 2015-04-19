@@ -72,7 +72,7 @@
 		    	<% get_ok_objectives(topic).each do |objective| %>
 		    		<li>
 		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div><%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right ui button" %>
 
 		    		</li>
 		    	<% end %>
@@ -84,7 +84,7 @@
 		    		<li>
 		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
 		    			<%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right ui button" %>
 		    		</li>
 		    	<% end %>
 		    	</ul>
@@ -95,7 +95,7 @@
 		    		<li>
 		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
 		    			<%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
+		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right ui button" %>
 		    		</li>
 		    	<% end %>
 		    	</ul>

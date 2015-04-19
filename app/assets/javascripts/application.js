@@ -23,6 +23,9 @@ $(document)
     $('.filter.menu .item')
       .tab()
     ;
+    $('.popup-add')
+      .popup()
+    ;
 
     $('.ui.rating')
       .rating({
