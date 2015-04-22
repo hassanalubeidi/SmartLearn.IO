@@ -53,55 +53,58 @@
 		      Topic report
 		    </div>
 		    <div class="content">
-		    	<div class="ui segment"><ul>
-		    	<h3>The good</h3>
-		    	<ul>
+		    	<div class="ui segment">
+		    	<h3 style="margin-top:0">The good</h3>
+		    	<ul class="ui list" style="list-style-type: none;">
 		    		
 		    	<% get_good_objectives(topic).each do |objective| %>
-		    		<li>
-		    			<%= objective.name %><div class="ui circular <%= objective_traffic_light(objective) %> label"><%= '%.0f' % progress_in_objective(objective)  %> </div> 
-		    			<%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
-		    			
-		    		</li>
+		    		<div>
+		    			<%= render partial: "objective", locals: { objective: objective} %>
+		    			<% unless get_good_objectives(topic).count == 1 %>
+		    			<div class="ui divider"></div>
+		    			<% end %>
+		    		</div>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>The bad</h3>
-		    	<ul>
+		    	<ul class="ui list" style="list-style-type: none;">
 		    	<% get_ok_objectives(topic).each do |objective| %>
-		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div><%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
-
-		    		</li>
+		    		<div>
+		    			<%= render partial: "objective", locals: { objective: objective} %>
+		    			<% unless get_ok_objectives(topic).count == 1 %>
+		    			<div class="ui divider"></div>
+		    			<% end %>
+		    		</div>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>The ugly</h3>
-		    	<ul>
+		    	<ul class="ui list" style="list-style-type: none;">
 		    	<% get_bad_objectives(topic).each do |objective| %>
-		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
-		    			<%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
-		    		</li>
+		    		<div>
+		    			<%= render partial: "objective", locals: { objective: objective} %>
+		    			<% unless get_bad_objectives(topic).count == 1 %>
+		    			<div class="ui divider"></div>
+		    			<% end %>
+		    		</div>
 		    	<% end %>
 		    	</ul>
 		    	<div class="ui divider"></div>
 		    	<h3>Unassigned</h3>
-		    	<ul>
+		    	<ul class="ui list" style="list-style-type: none;">
 			    <% get_NaN_objectives(topic).each do |objective| %>
-		    		<li>
-		    			<%= objective.name %><div class="ui <%= objective_traffic_light(objective) %> circular label"><%= '%.0f' % progress_in_objective(objective)  %></div>
-		    			<%= get_objective_state(objective) %>
-		    			<%= link_to "update status", new_objective_objective_state_path(objective), class: "float right" %>
-		    		</li>
+		    		<div class="item">
+		    			<%= render partial: "objective", locals: { objective: objective} %>
+		    			<% unless get_NaN_objectives(topic).count == 1 %>
+		    			<div class="ui divider"></div>
+		    			<% end %>
+		    		</div>
 		    	<% end %>
 		    	</ul>
 
 			    
-		    	</ul></div>
+		    	</div>
 		    </div>
 		   
 		  </div>

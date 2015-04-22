@@ -109,13 +109,15 @@ module SubjectsHelper
 	def get_objective_state(objective)
 		objective_status = objective.objective_states.where(:user => current_user).last.status unless objective.objective_states.where(:user => current_user).count == 0
 		if objective_status == "full" then
-			return "<i class='ui green checkmark icon popup-add' data-content='This objective is fully in memory' data-variation='inverted' data-position='right center'></i>".html_safe
+			return "<i class='ui large green checkmark link icon popup-add open-objective#{objective.id} inlineblock' data-content='This objective is fully in memory' data-variation='inverted' data-position='right center'></i>".html_safe
 		elsif objective_status == "not fluent" then
-			return "<strong class='letter icon popup-add' data-content='Main points of objective in memory, but not fluent' data-variation='inverted' data-position='right center'>F</strong>".html_safe
+			return "<strong class='letter link icon popup-add open-objective#{objective.id} inlineblock' data-content='Main points of objective in memory, but not fluent' data-variation='inverted' data-position='right center'>F</strong>".html_safe
 		elsif objective_status == "partial" then
-			return "<strong class='letter icon popup-add' data-content='Some parts are weakly learnt, some not learnt at all' data-variation='inverted' data-position='right center'>P</strong>".html_safe
+			return "<strong class='letter link icon popup-add open-objective#{objective.id} inlineblock' data-content='Some parts are weakly learnt, some not learnt at all' data-variation='inverted' data-position='right center'>P</strong>".html_safe
 		elsif objective_status == "none" then
-			return "<i class='ui red remove icon popup-add' data-content='Welp, get to work I guess..' data-variation='inverted' data-position='right center'></i>".html_safe
+			return "<i class='ui large red link remove icon popup-add open-objective#{objective.id} inlineblock' data-content='Welp, get to work I guess..' data-variation='inverted' data-position='right center'></i>".html_safe
+		else 
+			return "<i class='ui large help link icon popup-add open-objective#{objective.id} inlineblock' data-content='Get off your ass and add a status' data-variation='inverted' data-position='right center'></i>".html_safe
 		end
 	end
 

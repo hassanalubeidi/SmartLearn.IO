@@ -1,0 +1,15 @@
+<%= get_objective_state(objective) %>
+<%= objective.name %>
+
+	<div class="ui <%= objective_traffic_light(objective) %> circular label">
+		<%= '%.0f' % progress_in_objective(objective)  %>
+	</div>
+
+
+<%= render partial: "new_objective_state", locals: { objective: objective} %>
+<script>
+$('.objective-modal<%= objective.id %>')
+  .modal('attach events', '.open-objective<%= objective.id %>')
+;
+</script>
+
