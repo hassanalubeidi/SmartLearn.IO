@@ -3,15 +3,19 @@ module SubjectsHelper
 		return "#{question.answers.where(:user => current_user).last.marks_integer}/#{question.total_marks}"
 	end 
 	def progress_in_topic(topic)
-		marks = 0
-		total_marks = 0
-		get_questions_of_topic(topic).each do |question|
-			unless question.answers.where(:user => current_user).blank?
-				marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
-				total_marks += question.total_marks
+		unless get_questions_of_topic(topic).count == 0 then
+			marks = 0
+			total_marks = 0
+			get_questions_of_topic(topic).each do |question|
+				unless question.answers.where(:user => current_user).blank?
+					marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
+					total_marks += question.total_marks
+				end
 			end
+			return (marks.to_f / total_marks.to_f) * 100
+		else
+			return 0
 		end
-		return (marks.to_f / total_marks.to_f) * 100
 	end
 
 	def progress_in_objective(objective)
@@ -48,7 +52,7 @@ module SubjectsHelper
 	def get_questions_of_topic(topic)
 		questionss = []
 
-		topic.objectives.first.questions.count
+		
 		topic.objectives.each do |objective|
 			objective.questions.each do |question|
 				questionss.push(question)

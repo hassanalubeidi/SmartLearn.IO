@@ -11,7 +11,7 @@ class ObjectiveStatesController < ApplicationController
 	    @objective_state.objective = @objective
 	    @objective_state.user = current_user
 	    @objective_state.save
-	    if @objective_state.save then redirect_to session[:prev_url] end
+	    if @objective_state.save then redirect_to subject_path(@objective_state.objective.topic.subject) end
 	end
 
 	private
