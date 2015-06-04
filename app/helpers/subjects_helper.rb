@@ -3,7 +3,7 @@ module SubjectsHelper
 		return "#{question.answers.where(:user => current_user).last.marks_integer}/#{question.total_marks}"
 	end 
 	def progress_in_topic(topic)
-		unless get_questions_of_topic(topic).count == 0 then
+		unless get_questions_of_topic(topic).count == 0 then #fix for topics that dont have questions returning nil rather than 0.00
 			marks = 0
 			total_marks = 0
 			get_questions_of_topic(topic).each do |question|
@@ -22,7 +22,7 @@ module SubjectsHelper
 		marks = 0
 		total_marks = 0
 		objective.questions.each do |question|
-			unless question.answers.where(:user => current_user).count == 0 then
+			unless question.answers.where(:user => current_user).count == 0 then 
 				marks += question.answers.where(:user => current_user).last.marks_integer.to_i * time_degredation(question)
 				total_marks += question.total_marks
 			end

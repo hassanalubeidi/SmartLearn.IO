@@ -30,7 +30,7 @@
     </div>
     <div class="extra content">
           <%= link_to "Delete <i class='delete icon'></i>".html_safe, question_path(question), method: "delete", data: {confirm: "Are you sure?"} %> <%= link_to "Edit <i class='pencil icon'></i>".html_safe, edit_question_path(question) %>
-          <%= link_to "answer", new_question_answer_path(question), class: "ui green basic fluid button" unless question.answers.count > 0 %>
+          <%= link_to "answer", new_question_answer_path(question), class: "ui green basic fluid button" unless question.answers.where(user: current_user).count > 0 %>
         </div>
   </div>
 <!-- Modal -->
