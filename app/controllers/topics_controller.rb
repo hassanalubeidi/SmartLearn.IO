@@ -62,6 +62,6 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :subject_id, objectives_attributes: [:id, :name])
+      params.require(:topic).permit(:name, :subject_id, objectives_attributes: [:id, :name, :harder_difficulty, :easier_difficulty])
     end
 end

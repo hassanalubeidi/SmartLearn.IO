@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20150607200905) do
     t.integer  "topic_id"
     t.integer  "easier_diffuclty"
     t.integer  "harder_diffuclty"
+    t.integer  "easier_difficulty"
+    t.integer  "harder_difficulty"
   end
 
   create_table "questions", force: true do |t|
