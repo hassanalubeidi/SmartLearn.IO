@@ -9,4 +9,28 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :lines
   has_many :objectives, through: :lines
 
+  def similar_questions
+	    quess = []
+		@question.objectives.each do |obj|
+			obj.questions.each do |ques|
+				quess.push(ques)
+			end
+		end
+		return quess
+	end
+	def answer(user)
+		unless @question.answers.count == 0 then
+			return @question.answers.where(user: user).last
+		else return nil
+		end
+	end
+	def difficulty(user)
+		diffs = 0
+		count = 0
+		@question.objectives.each do |obj|
+			diffs += obj.difficulty(user).to_f
+			count += 1
+		end
+		return diffs / count #mean of the diffuculties
+	end
 end

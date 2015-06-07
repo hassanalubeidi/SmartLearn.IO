@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :lessons
+
   resources :test_papers
 
   resources :objectives do 

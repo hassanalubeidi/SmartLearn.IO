@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418134152) do
+ActiveRecord::Schema.define(version: 20150607200905) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20150418134152) do
   end
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
+
+  create_table "lessons", force: true do |t|
+    t.date     "date"
+    t.integer  "subject_id"
+    t.string   "title"
+    t.text     "powerpoint"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lessons", ["subject_id"], name: "index_lessons_on_subject_id"
 
   create_table "lines", force: true do |t|
     t.integer  "question_id"
@@ -82,6 +93,8 @@ ActiveRecord::Schema.define(version: 20150418134152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "topic_id"
+    t.integer  "easier_diffuclty"
+    t.integer  "harder_diffuclty"
   end
 
   create_table "questions", force: true do |t|
@@ -170,6 +183,7 @@ ActiveRecord::Schema.define(version: 20150418134152) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "power"
+    t.string   "grade"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
