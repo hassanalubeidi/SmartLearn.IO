@@ -14,7 +14,7 @@ class Objective < ActiveRecord::Base
 				total_marks += question.total_marks
 			end
 		end
-		return (marks.to_f / total_marks.to_f) * 100
+		return (marks.to_f / total_marks.to_f) * 100 #might give an error if an objective has no question?
 	end
 	def difficulty(user)
 		if user.grade == "A*" or user.grade == "A" then
