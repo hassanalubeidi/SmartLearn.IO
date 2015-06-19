@@ -14,12 +14,11 @@
 <% if current_user != nil %>
 <%= render 'layouts/menubar' %>
 <% end %>
-<div class="ui page grid" style="margin-top:0">
+
   
-  <div class="sixteen wide column">
+
     <%= render 'layouts/messages' %>
     <%= yield %>
-  </div>
 </div>
 </body>
 <% if current_user != nil %>

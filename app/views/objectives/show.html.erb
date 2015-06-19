@@ -1,20 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="ui text container">
+	<div class="ui raised segment">
+		<div class="ui basic segment">
+		<span class="ui small breadcrumb" style="float: right; margin-top: -10px">
+			      	<a href="<%= subject_path @objective.topic.subject %>" class="section"><%= @objective.topic.subject.name %></a>
+					  <div class="divider"> / </div>
+					  <a href="<%= topic_path @objective.topic %>"><%= @objective.topic.name %></a>
+					  <div class="divider"> / </div>
+					  <div class="active section">T-Shirt</div>
+			      </span>
+			<h2 class="ui header" style="margin-top:5px;"><%= @objective.name %> <i class="green checkmark icon"></i>
+			</h2>
+			<p class="ui sub ">OBJECTIVE.LONG - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor iaculis purus commodo facilisis. Duis varius varius velit at porttitor. Phasellus dictum ultrices quam eu lobortis. In dapibus erat eu diam vulputate, at condimentum sapien imperdiet. Vestibulum nec orci vel nunc tristique hendrerit id ac lorem.</p>
+			<div class="ui divider"></div>
+			<div class="ui blue sub header">Questions containing this objective:</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @objective.name %>
-</p>
-
-<p>
-  <strong>Module pack info:</strong>
-  <%= @objective.module_pack_info %>
-</p>
-
-<p>
-  <strong>Total marks:</strong>
-  <%= @objective.total_marks %>
-</p>
-
-
-<%= link_to 'Edit', edit_objective_path(@objective) %> |
-<%= link_to 'Back', objectives_path %>
+			<div class="ui items">
+			<% @objective.questions.each do |question| %>
+			  <div class="item">
+			    <div class="content">
+			      <a class="blue header" href="<%= question_path(question) %>"><%= question.text %></a>
+			      
+			      <div class="description">
+			        <p></p>
+			        <p></p>
+			      </div>
+			      <div class="extra">
+			        
+			        <%= question.answer(current_user).marks_integer %>/<%= question.total_marks %>
+			        <i class="green check icon"></i><%= time_ago_in_words(question.answer(current_user).created_at) %> ago
+			      </div>
+			    </div>
+			  </div>
+			  <% end %>
+			</div>
+		</div>
+	</div>
+</div>

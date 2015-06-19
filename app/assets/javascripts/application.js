@@ -12,13 +12,22 @@
 //
 
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require_tree .
 //= require cocoon
 
+//= require turbolinks
+
 
 $(document)
   .ready(function() {
+    $('.overlay')
+      .visibility({
+        type   : 'fixed',
+        offset : 15 // give some space from top of screen
+      })
+    ;
 
     $('.filter.menu .item')
       .tab()

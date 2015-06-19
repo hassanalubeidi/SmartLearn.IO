@@ -1,11 +1,8 @@
-<div class="ui tiered menu">
-    <div class="menu">
-    <a class=" item" id="sidebar-open">
-        <i class="content icon"></i>
-      </a>
-      <div class="right menu">
-        <% if user_signed_in? %>
-        <div class="ui dropdown item">
+<div class="ui large pointing inverted borderless middle main menu">
+  <div class="ui container">
+    <a href="<%= root_path %>" class="item">Home</a>
+    <% if user_signed_in? %>
+        <div class="ui right floated dropdown item">
           <%= current_user.username %><i class="icon dropdown"></i>
           <div class="menu">
             <a class="item"><i class="edit icon"></i> Edit Profile</a>
@@ -15,6 +12,5 @@
           </div>
         </div>
         <% end %>
-      </div>
-    </div>
   </div>
+</div>

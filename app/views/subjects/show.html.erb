@@ -1,113 +1,55 @@
-<h1 >
-<%= @subject.name %>
-</h1>
-<div class="ui blue message">
-  <div class="header">
-    How scoring works
+<%= render "subject_header" %>
+<%= render partial: "subjects/this_week/index" %>
+
+
+
+
+<%= render partial: "subjects/organisation/index"%>
+
+
+
+<%= render partial: "subjects/analysis/index"%>
+
+</div>
+
+<div class="ui small profile modal">
+  <i class="close icon"></i>
+  <div class="header" style="text-align:center">
+    <h2 class="ui center aligned header">
+    <div >
+      <img class="ui small circular image" src="http://media.cirrusmedia.com.au/LW_Media_Library/LW-603-p28-partner-profile.jpg" style="margin:auto">
+    </div>
+    Mr Jennings
+
+    </h2>
+    <div class="ui left labeled button" style="margin: auto"><i class="mail icon"></i>Message</div>
   </div>
-  <p>The amount of marks per topic is added together, then multiplied multiplied by the time degredation function</p>
-  <p>This takes into account how long ago the question was done, and the time of year it was done it (revision or new content?)
-  (Remove this on release)
+  <div class="content ui text container" style="text-align:center">
+    <h2 class="ui sub header">
+      Teaches:
+    </h2>
+    Chemistry, sets 12A, 12B and 13A
+    <h2 class="ui sub header">
+      Bio:
+    </h2>
+    Cats are great
+    
+  </div>
+  
 </div>
-<div class="ui piled segment">
-	
-	<ul>
-		<div class="ui selection list">
-		<% @subject.test_papers.each do |test_paper| %>
-		  <div class="item">
-		    <%= link_to "<i class='remove icon'></i>".html_safe, test_paper_path(test_paper), method: :delete, data: {confirm: "are you sure???"}, class: "right floated compact ui button" %>
-		    <div class="content">
-		      <div class="header"><%= link_to "#{test_paper.name}, #{test_paper.date}", test_paper_path(test_paper), class: "item" %></div>
-		    </div>
-		  </div>
-		<% end %>
-		<%= link_to "Add testpaper", new_test_paper_path, class: "ui fluid positive button" %>
-		</div>
-	</ul>
-</div>
-<% if Topic.count == 0 then %>
-	<div class="ui message">
-	  <div class="header">
-	    No topics!
-	  </div>
-	  <p>It looks like you don't have any topics for this subject. <%= link_to "Create some?", new_topic_path %></p>
-	</div>
+</body>
+<script>
+$(document)
+  .ready(function() {
+      // add popup to show name
+      $('.item')
+        .tab()
+      ;
+      $('.profile.modal')
+        .modal('attach events', '.open-profile', 'show')
+      ;
+  })
+;
 
-	<% end %>
-	<%= link_to "Add a question?", new_question_path, class: "ui fluid top attached button" %>
-	<%= link_to "Hell, maybe you want to add an improvement..", new_improvement_path, class: "ui fluid bottom attached button" %>
-	<% @subject.topics.each do |topic| %>
-	<div>
-		<h3><%= link_to topic.name, topic_path(topic) %></h3>
-		<strong>Score: </strong><%= '%.2f' % progress_in_topic(topic) %>
-		<div class="ui cards">
-		<% get_questions_of_topic(topic).each do |question| %>
-			<%= render "card", question: question %>
-		<% end %>
-		</div>
-
-		<div class="ui accordion">
-			
-		    <div class="title">
-		      <i class="dropdown icon"></i>
-		      Topic report
-		    </div>
-		    <div class="content">
-		    	<div class="ui segment">
-		    	<h3 style="margin-top:0">The good</h3>
-		    	<ul class="ui list" style="list-style-type: none;">
-		    		
-		    	<% get_good_objectives(topic).each do |objective| %>
-		    		<div>
-		    			<%= render partial: "objective", locals: { objective: objective} %>
-		    			<% unless get_good_objectives(topic).count == 1 %>
-		    			<div class="ui divider"></div>
-		    			<% end %>
-		    		</div>
-		    	<% end %>
-		    	</ul>
-		    	<div class="ui divider"></div>
-		    	<h3>The bad</h3>
-		    	<ul class="ui list" style="list-style-type: none;">
-		    	<% get_ok_objectives(topic).each do |objective| %>
-		    		<div>
-		    			<%= render partial: "objective", locals: { objective: objective} %>
-		    			<% unless get_ok_objectives(topic).count == 1 %>
-		    			<div class="ui divider"></div>
-		    			<% end %>
-		    		</div>
-		    	<% end %>
-		    	</ul>
-		    	<div class="ui divider"></div>
-		    	<h3>The ugly</h3>
-		    	<ul class="ui list" style="list-style-type: none;">
-		    	<% get_bad_objectives(topic).each do |objective| %>
-		    		<div>
-		    			<%= render partial: "objective", locals: { objective: objective} %>
-		    			<% unless get_bad_objectives(topic).count == 1 %>
-		    			<div class="ui divider"></div>
-		    			<% end %>
-		    		</div>
-		    	<% end %>
-		    	</ul>
-		    	<div class="ui divider"></div>
-		    	<h3>Unassigned</h3>
-		    	<ul class="ui list" style="list-style-type: none;">
-			    <% get_NaN_objectives(topic).each do |objective| %>
-		    		<div class="item">
-		    			<%= render partial: "objective", locals: { objective: objective} %>
-		    			<% unless get_NaN_objectives(topic).count == 1 %>
-		    			<div class="ui divider"></div>
-		    			<% end %>
-		    		</div>
-		    	<% end %>
-		    	</ul>
-
-			    
-		    	</div>
-		    </div>
-		   
-		  </div>
-	</div>
-<% end %>
-<iframe src="https://docs.google.com/a/isaacnewtonsixthform.co.uk/file/d/0B64rKJfXDVVMZ2tmU3NhdXd2NXM/preview" width="100%" height="480"></iframe>
+</script>
+</html>
