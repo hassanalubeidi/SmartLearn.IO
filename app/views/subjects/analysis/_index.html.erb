@@ -77,7 +77,7 @@
                                                 <td><%= obj.name.truncate(50) unless obj == nil %>
                                                 </td>
                                                 <td>
-                                                    <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user).to_f.round unless obj == nil %>
+                                                    <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
                                                     </div>
                                                 </td>
                                             </tr>
