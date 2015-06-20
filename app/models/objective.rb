@@ -30,6 +30,8 @@ class Objective < ActiveRecord::Base
 			return "yellow"
 		elsif self.progress(user) > 81
 			return "green"
+		else 
+			return ""
 		end
 	end
 	private
