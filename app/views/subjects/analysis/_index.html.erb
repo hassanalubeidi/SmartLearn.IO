@@ -74,10 +74,10 @@
                                         <% topic.objectives.each do |obj| %>
                                             <tr>
                                                 <td><%= link_to "test", objective_path(obj) %> </td>
-                                                <td><%= obj.name.truncate(50) unless obj == null %>
+                                                <td><%= obj.name.truncate(50) unless obj == nil %>
                                                 </td>
                                                 <td>
-                                                    <div class="ui <%= obj.colour(current_user) unless obj == null %> circular label"><%=  obj.progress(current_user).to_f.round unless obj == null %>
+                                                    <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user).to_f.round unless obj == nil %>
                                                     </div>
                                                 </td>
                                             </tr>
