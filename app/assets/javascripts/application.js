@@ -28,6 +28,9 @@ $(document)
         offset : 15 // give some space from top of screen
       })
     ;
+    $('.question-input')
+      .modal('attach events', '.question-button', 'show')
+    ;
 
     $('.filter.menu .item')
       .tab()
