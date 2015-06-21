@@ -17,6 +17,18 @@ class Question < ActiveRecord::Base
 		end
 		return quess
 	end
+	def expected(user)
+		total = []
+		mean = 0
+		self.objectives.each do |obj|
+			total.push(obj.progress(user))
+		end
+		total.each do |x|
+			mean += x
+		end
+		mean = mean / total.count
+		return mean
+	end
 	def answer(user)
 		unless self.answers.count == 0 then
 			return self.answers.where(user: user).last
