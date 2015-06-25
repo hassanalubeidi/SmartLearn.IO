@@ -6,7 +6,7 @@
     <p>Add the relevant objectives for your question using the dropdown search provided.</p>
     <div id='tasks' class="ui segment">
         <%= Line.count %>
-    <% Line.all.each.with_index do |line,ab| %>
+    <% @question.lines.each.with_index do |line,ab| %>
 
       <%= f.simple_fields_for :lines do |line| %>
       
