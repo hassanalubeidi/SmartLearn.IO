@@ -14,12 +14,14 @@ var test;
 
 test = 0;
 var woohoo;
-$('.add_fields').click(function() {
-  test += 1;
-  if (test > 0) {
-    woohoo = $(".nested-fields .select .optional").last().attr('id');
-    $("#" + woohoo).dropdown()
-    debugger;
-  }
+$("window").on('load', function() {
+	$('.add_fields').click(function() {
+  	test += 1;
+  	if (test > 0) {
+    	woohoo = $(".nested-fields .select .optional").last().attr('id');
+    	$("#" + woohoo).dropdown()
+    	debugger;
+  	}
+	});
 });
 </script>
