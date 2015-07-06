@@ -1,31 +1,80 @@
-<h1>Listing lessons</h1>
+<style>
+  .red {
+    color: #D0251F;
+  }
+  .as {
+    width: 120px;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
+</style>
+<div class="ui container" style="  padding-right: 30px;
+  margin-top: 14px;">
+  <span>Testing: 
+    <div class="ui large inline dropdown">
+      <div class="text">
+        Jenny Hess
+      </div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item">
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Subject</th>
-      <th>Title</th>
-      <th>Powerpoint</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          Jenny Hess
+        </div>
+        <div class="item">
+          Elliot Fu
+        </div>
+        <div class="item">
+          Stevie Feliciano
+        </div>
+        <div class="item">
+          Christian
+        </div>
+        <div class="item">       Matt
+        </div>
+        <div class="item">
+          Justen Kitsune
+        </div>
+      </div>
+    </div>
+  </span>
+  <div class="ui large card sed">
+    <div class="ui inverted dimmer">
+      <div class="ui text loader">Loading</div>
+    </div>
+    <div class="content">
+      <div class="header">Definition of a salt</div>
+      <div class="meta">
+        <span>Last done 12 days ago</span>
+      </div>
+      <div class="description">
+        This is the back test. It can have keypoints: such as <a class="red">thing important thing</a> or <a class="red">this thing</a>
+      </div>
+    </div>
 
-  <tbody>
-    <% @lessons.each do |lesson| %>
-      <tr>
-        <td><%= lesson.date %></td>
-        <td><%= lesson.subject %></td>
-        <td><%= lesson.title %></td>
-        <td><%= lesson.powerpoint %></td>
-        <td><%= link_to 'Show', lesson %></td>
-        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="ui bottom blue attached buttons">
+      <button class="ui  button">F</button> 
+      <button class="ui  button ">Fl</button>
+      <button class="ui button ">P</button>
+      
+      <button class="ui active button ">N</button>
+    </div>
+  </div>
+  <button class="ui right white labeled icon button load-dimmer" style="float:right">
+    <i class="right arrow icon"></i>
+    Next
+  </button>
 
-<br>
 
-<%= link_to 'New Lesson', new_lesson_path %>
+
+  
+</div>
+<script>
+$( ".load-dimmer" ).click(function() {
+  $('.sed').dimmer('show');
+  setTimeout(function() {
+      $('.sed').dimmer('hide');
+       $('.sed').flipUp();
+}, 5000);
+});
+</script>

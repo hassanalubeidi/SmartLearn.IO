@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607200905) do
+ActiveRecord::Schema.define(version: 20150704211540) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20150607200905) do
   create_table "arcticles", force: true do |t|
     t.string   "title"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "flashcards", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,8 +98,6 @@ ActiveRecord::Schema.define(version: 20150607200905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "topic_id"
-    t.integer  "easier_diffuclty"
-    t.integer  "harder_diffuclty"
     t.integer  "easier_difficulty"
     t.integer  "harder_difficulty"
   end
