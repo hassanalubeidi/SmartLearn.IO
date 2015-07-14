@@ -23,6 +23,14 @@
     <%= f.label :total_marks %><br>
     <%= f.number_field :total_marks %>
   </div>
+  <div id="tasks">
+    <%= f.fields_for :flashcards do |flashcard| %>
+      <%= render 'flashcard_fields', :f => flashcard %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add task', f, :flashcards %>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

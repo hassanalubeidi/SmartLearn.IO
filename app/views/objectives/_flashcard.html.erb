@@ -8,59 +8,29 @@
 	  <% flashcard.keypoints.each do |keypoint| %>
 	    <tr>
 	      <td>
-	        <img class="ui image" style="width:100%" src="http://www.essentialchemicalindustry.org/images/stories/290_ethanol/03-29-EtOH_02_(2).jpg"></td>
+	        <%= keypoint.text %>
+	      </td>
 	      <td>
-	      <%= form_for(keypoint.attempts.last) do |f| %>
+	      <%= form_for(Attempt.new, remote: true, :format => :js) do |f| %>
 	        <div class="ui very large checkbox toggle" style="float: right;">
 			  <%= f.check_box :correct %>
-			  <script>
-				$("input[name='<%= f.tag_name %>']").on("change", function(e) { 
-					$.ajax({
-						url: "/test/<%= keypoint.attempts.last.id %>/correct",
-						done: function(data, err) {
-							console.log(data, err);
-						}
-
-
-
-					})
-
+			  <%= f.hidden_field :user_id %>
+			</div>
+			<script>
+				var test = $(".item.active.selected").data("value");
+				
+				$("input[name='<%= dom_input_name(f, :correct) %>']").on("change", function(e) { 
+					$("input[name='attempt[user_id]']").val(test);
+					$(this.form).trigger('submit.rails');
 
 				});
 				</script>
-			</div>
 		  <% end %>
 	      </td>
 	      
 	    </tr>
 	   <% end %>
-	    <tr>
-	      <td>
-	        For the production of industrail ethanol</td>
-	      <td>
-	        <div class="ui very large checkbox toggle" style="float: right;">
-				  <input type="checkbox" name="example">
-				</div>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td>
-	       A phosphoric acid catalyst is used</td>
-	      <td>
-	        <div class="ui very large checkbox toggle" style="float: right;">
-				  <input type="checkbox" name="example">
-				</div>
-	      </td>
-	    </tr>
 	  </tbody>
 	</table>
 	<div class="ui teal fluid button">All correct </div>
 </div>
-
-<script>
-function jeff() {
-   alert("poo");
-
-
-}
-</script>

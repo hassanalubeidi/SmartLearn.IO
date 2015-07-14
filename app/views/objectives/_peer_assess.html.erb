@@ -1,87 +1,10 @@
 <div class="peer-assessed ui tab" data-tab="peer">
-	<div class="ui fluid search selection dropdown">
-	  <input type="hidden" name="user">
-	  <i class="dropdown icon"></i>
-	  <div class="default text">Select Student to test</div>
-	  <div class="menu">
-	    <% User.where.not(username: current_user.username ).each do |user| %>
-	    <div class="item" data-value="<%= user.id %>">
-	      <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
-	      <%= user.username %>
-	    </div>
-	    <% end %>
-	    
-	  </div>
-	</div>
-    <div class="ui basic segment" >
-	    <img class="ui image" src="http://www.greenandpractical.com/bioethanol%20formula.jpg">
-	    <div class="ui list">
-	    	<div class="item">Exothermic
-	    	<div class="ui very large checkbox toggle" style="float: right;">
-			  <input type="checkbox" name="example">
-			</div>
-	    	</div>
-	    	<div class="item">Requires enzymes in yeast for the reaction
-		    	<div class="ui very large checkbox toggle" style="float: right;">
-				  <input type="checkbox" name="example">
-				</div>
-	    	</div>
-	    	<div class="item">Carried out without air to prevent the oxidation of the ethanol
-		    	<div class="ui very large checkbox toggle" style="float: right;">
-			    	<form name="timothy_father">
-					  <input type="checkbox" name="timothy">
-					</form>
-					
-				</div>
-	    	</div>
-	    	<div class="item">Alcohol % can get to about 15%. After that the yeast will die so the reaction stops
-		    	<div class="ui very large checkbox toggle" style="float: right;">
-				  <input type="checkbox" name="example">
-				</div>
-	    	</div>
-	    	<div class="ui teal fluid button">All correct </div>
-	    </div>
-    </div>
+	<select name="skills" class="ui fluid search dropdown">
+		<% User.all.where.not(id: current_user.id).each do |user| %>
+		<option value="<%= user.id %>"><%= user.username %></option>
+		<% end %>
+	  </select>
     <% @objective.flashcards.each do |flashcard| %>
     	<%= render partial: "flashcard", :locals => {:flashcard => flashcard } %>
     <% end %>
-    <div class="ui basic segment">
-	    
-	    <table class="ui very basic celled table">
-		  <thead>
-		    <tr><th class="fourteen wide">Keypoint</th>
-		    <th class="two wide">Correct?</th>
-		  </tr></thead>
-		  <tbody>
-		    <tr>
-		      <td>
-		        <img class="ui image" style="width:100%" src="http://www.essentialchemicalindustry.org/images/stories/290_ethanol/03-29-EtOH_02_(2).jpg"></td>
-		      <td>
-		        <div class="ui very large checkbox toggle" style="float: right;">
-				  <input type="checkbox" name="example">
-				</div>
-		      </td>
-		    </tr>
-		    <tr>
-		      <td>
-		        For the production of industrail ethanol</td>
-		      <td>
-		        <div class="ui very large checkbox toggle" style="float: right;">
-					  <input type="checkbox" name="example">
-					</div>
-		      </td>
-		    </tr>
-		    <tr>
-		      <td>
-		       A phosphoric acid catalyst is used</td>
-		      <td>
-		        <div class="ui very large checkbox toggle" style="float: right;">
-					  <input type="checkbox" name="example">
-					</div>
-		      </td>
-		    </tr>
-		  </tbody>
-		</table>
-		<div class="ui teal fluid button">All correct </div>
-	</div>
 </div>

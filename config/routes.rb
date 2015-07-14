@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-
+  resources :attempts
   resources :lessons
 
   resources :test_papers
