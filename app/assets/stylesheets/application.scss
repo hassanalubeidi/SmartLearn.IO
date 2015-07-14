@@ -83,3 +83,10 @@ body {
 .ui.large.pointing.inverted.borderless.middle.main.menu {
   border-radius: 0;
 }
+@media only screen and (max-width: 780px) {
+  .ui.container {
+  margin-left: 1em !important;
+  margin-right: 1em !important;
+  width: 92%;
+}
+}

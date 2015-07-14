@@ -4,7 +4,7 @@
 	  <i class="dropdown icon"></i>
 	  <div class="default text">Select Student to test</div>
 	  <div class="menu">
-	    <% User.all.each do |user| %>
+	    <% User.where.not(username: current_user.username ).each do |user| %>
 	    <div class="item" data-value="<%= user.id %>">
 	      <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
 	      <%= user.username %>
