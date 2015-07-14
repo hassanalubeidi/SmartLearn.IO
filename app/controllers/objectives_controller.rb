@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :destroy]
+  before_action :set_objective, only: [:show, :edit, :update, :destroy, :test]
 
   def index
     @objectives = Objective.all
@@ -26,6 +26,9 @@ class ObjectivesController < ApplicationController
 
   def destroy
     @objective.destroy
+  end
+
+  def test
   end
 
   private

@@ -53,11 +53,11 @@
     </div>
 
     <div class="ui bottom blue attached buttons">
-      <button class="ui  button">F</button> 
-      <button class="ui  button ">Fl</button>
-      <button class="ui button ">P</button>
+      <div class="ui  button" data-content="Full" data-variation="inverted" data-position="bottom center">F</div> 
+      <div class="ui  button "  data-content="Not fluent" data-variation="inverted" data-position="bottom center" >Fl</div>
+      <div class="ui button " data-content="Partial knowledge" data-variation="inverted" data-position="bottom center" >P</div>
       
-      <button class="ui active button ">N</button>
+      <div class="ui selected button " data-content="No knowledge" data-variation="inverted" data-position="bottom center">N</div>
     </div>
   </div>
   <button class="ui right white labeled icon button load-dimmer" style="float:right">
@@ -75,6 +75,11 @@ $( ".load-dimmer" ).click(function() {
   setTimeout(function() {
       $('.sed').dimmer('hide');
        $('.sed').flipUp();
-}, 5000);
+}, 1000);
 });
+$('.button')
+  .popup({
+    inline: true
+  })
+;
 </script>

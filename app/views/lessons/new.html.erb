@@ -1,5 +1,6 @@
 <h1>New lesson</h1>
 
 <%= render 'form' %>
-
+<%= csrf_meta_tags %>
+<%= form_authenticity_token %>
 <%= link_to 'Back', lessons_path %>
