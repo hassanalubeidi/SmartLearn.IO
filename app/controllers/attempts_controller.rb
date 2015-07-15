@@ -24,6 +24,6 @@ class AttemptsController < ApplicationController
 	end
 	private
 	def attempt_params
-      params[:attempt].permit(:id, :correct, :user_id)
+      params[:attempt].permit(:id, :correct, :user_id, :keypoint_id)
     end
 end

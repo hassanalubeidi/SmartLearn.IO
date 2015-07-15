@@ -15,12 +15,17 @@
 	        <div class="ui very large checkbox toggle" style="float: right;">
 			  <%= f.check_box :correct %>
 			  <%= f.hidden_field :user_id %>
+			  <%= f.hidden_field :keypoint_id, :value => keypoint.id %>
 			</div>
 			<script>
-				var test = $(".item.active.selected").data("value");
+				
 				
 				$("input[name='<%= dom_input_name(f, :correct) %>']").on("change", function(e) { 
-					$("input[name='attempt[user_id]']").val(test);
+					test = $(".item.active.selected").data("value");
+					console.log(test)
+					$("input[name='attempt[user_id]']").each(function() {
+					  $( this ).val(test);
+					});
 					$(this.form).trigger('submit.rails');
 
 				});
