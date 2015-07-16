@@ -13,7 +13,7 @@
 	      </td>
 	      <td>
 	      <%= form_for(Attempt.new, remote: true, :format => :js) do |f| %>
-	        <div class="ui very large checkbox toggle" style="float: right;">
+	        <div class="ui very large checkbox toggle checkbox<%= flashcard.id %>" style="float: right;">
 			  <%= f.check_box :correct %>
 			  <%= f.hidden_field :user_id %>
 			  <%= f.hidden_field :keypoint_id, :value => keypoint.id %>
@@ -38,6 +38,9 @@
 	   <% end %>
 	  </tbody>
 	</table>
-	<div class="ui teal fluid button">All correct </div>
+	<div class="ui teal fluid toggle<%= flashcard.id %> button">All correct </div>
 </div>
 <div class="ui divider"></div>
+<script>
+$('.checkbox<%= flashcard.id %> ').checkbox('attach events', '.toggle<%= flashcard.id %>.button');
+</script>
