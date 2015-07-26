@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.4'
 
 # Use sqlite3 as the database for Active Record
+gem 'sqlite3'
 group :development do
   gem 'sqlite3'
 end
@@ -60,3 +61,4 @@ gem 'seed_dump'
 gem "cocoon"
 gem 'simple_form'
 gem "paperclip", "~> 4.2"
+gem 'best_in_place', '~> 3.0.1'

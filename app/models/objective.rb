@@ -36,7 +36,44 @@ class Objective < ActiveRecord::Base
 			return ""
 		end
 	end
+
+	
+
+	def knowledge_score(user)
+		# b = Attempt.uniq(:keypoint).last.correct
+		# return [b].join(" ")
+
+		rights = []
+		wronges = []
+
+		self.flashcards.each do |f|
+			f.keypoints.each do |k|
+				a = k.attempts.uniq.last.correct
+				if a == true then
+					rights.push a
+				else
+					wronges.push a
+				end
+			end
+		end
+
+		
+		return (rights.count.to_f / (rights.count.to_f + wronges.count.to_f)) * 100
+	end
+
+	def keypoints
+		keypoints = []
+		self.flashcards.each do |f|
+			f.keypoints.each do |k|
+				keypoints.push k
+			end
+		end
+		return keypoints
+	end
+
 	private
+
+
 
 	def time_degredation(question, user)
 		a = (Time.now -  question.answers.where(:user => user).last.created_at).to_i / 86400

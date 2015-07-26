@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require best_in_place
 //= require_tree .
 //= require cocoon
 
@@ -22,6 +22,7 @@
 
 $(document)
   .ready(function() {
+    $(".best_in_place").best_in_place();
     $('.overlay')
       .visibility({
         type   : 'fixed',
