@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714224226) do
+ActiveRecord::Schema.define(version: 20150825175538) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -124,6 +124,14 @@ ActiveRecord::Schema.define(version: 20150714224226) do
     t.integer  "harder_difficulty"
   end
 
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.integer  "topic_id"
     t.text     "text"
@@ -135,6 +143,12 @@ ActiveRecord::Schema.define(version: 20150714224226) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.string   "html"
+    t.string   "mark_scheme_html"
+    t.string   "exam_notes_html"
+    t.string   "source"
+    t.string   "description"
+    t.string   "type"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"

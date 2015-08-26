@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 group :development do
@@ -47,7 +48,12 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bundler'
-
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -62,3 +68,7 @@ gem "cocoon"
 gem 'simple_form'
 gem "paperclip", "~> 4.2"
 gem 'best_in_place', '~> 3.0.1'
+gem 'ParsePapers', '~> 1.3.2', :git => 'git://github.com/hassanalubeidi/ParsePapers.git'
+gem "nokogiri"
+gem 'rest-client'
+gem 'json'

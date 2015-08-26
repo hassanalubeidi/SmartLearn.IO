@@ -1,0 +1,40 @@
+<div class="ui container segment" style="max-width: 735px !important;">
+<% @questions.each do |q| %>
+
+<div class="ui accordion">
+  <div class="active title">
+    <i class="dropdown icon"></i>
+    Question
+  </div>
+  <div class="active content">
+    <%= q.html.html_safe %>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    Mark Scheme
+  </div>
+  <div class="content">
+    <%= q.mark_scheme_html.html_safe unless q.mark_scheme_html == nil %>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    Exam report
+  </div>
+  <div class="content">
+    <%= q.exam_notes_html.html_safe unless q.exam_notes_html == nil %>
+  </div>
+  <div class="title">
+    <i class="dropdown icon"></i>
+    Meta
+  </div>
+  <div class="content">
+    <ul>
+    	<li>Source: <%= q.source %></li>
+    	<li>Description: <%= q.description %></li>
+    </ul>
+  </div>
+</div>
+<div class="ui divider"></div>
+<% end %>
+
+</div>
