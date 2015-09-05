@@ -124,14 +124,6 @@ ActiveRecord::Schema.define(version: 20150825175538) do
     t.integer  "harder_difficulty"
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "published"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "questions", force: true do |t|
     t.integer  "topic_id"
     t.text     "text"

@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    @subject = Subject.find params[:subject_id]
   end
 
   def edit
@@ -21,6 +22,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.subject = Subject.find params[:subject_id]
     @topic.save
     respond_to do |format|
       if @topic.save

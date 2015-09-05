@@ -1,4 +1,4 @@
-<%= form_for(@subject) do |f| %>
+<%= form_for(@subject, html: {class: "ui form"}) do |f| %>
   <% if @subject.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name %><br>
+  <div class="ui divider"></div>
+  <div class="inline field">
+    <label>Subject name:</label>
+    <br>
     <%= f.text_field :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "ui red button" %>
   </div>
 <% end %>

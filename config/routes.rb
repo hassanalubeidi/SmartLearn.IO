@@ -21,10 +21,11 @@ Rails.application.routes.draw do
 
   resources :set_groups
 
-  resources :topics
 
   resources :arcticles
-  resources :subjects
+  resources :subjects do 
+    resources :topics
+  end
 
   root 'subjects#index'
   resources :improvements

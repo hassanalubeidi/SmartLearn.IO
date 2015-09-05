@@ -1,8 +1,32 @@
 <div class="nested-fields">
   <div class="field">
     <%= f.text_area :name, placeholder: "Enter your objective here" %>
-    <%= f.text_field :harder_difficulty, placeholder: "harder_difficulty" %>
-    <%= f.text_field :easier_difficulty, placeholder: "easier_difficulty" %>
+    <%= f.hidden_field :harder_difficulty, placeholder: "harder_difficulty" %>
+    <%= f.hidden_field :easier_difficulty, placeholder: "easier_difficulty" %>
+    <div id="slider"></div>
+	<script>
+	  var slider = document.getElementById('slider');
+
+	noUiSlider.create(slider, {
+	  start: [20, 80],
+	  connect: true,
+	  step: 1,
+	  
+	  range: {
+	    'min': 0,
+	    'max': 100
+	  }
+	});
+	var skipValues = [
+		$("input[name='<%= dom_input_name(f, :harder_difficulty) %>'"),
+		$("input[name='<%= dom_input_name(f, :easier_difficulty) %>'")
+	];
+
+	slider.noUiSlider.on('update', function( values, handle ) {
+		skipValues[handle].val(values[handle]);
+	});
+	</script>
+	<br>
     <%= link_to_remove_association "remove objective", f, class: "ui bottom attached red fluid button" %>
     <div class="ui divider"></div>
   </div>

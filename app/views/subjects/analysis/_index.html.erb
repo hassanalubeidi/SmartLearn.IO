@@ -65,17 +65,15 @@
                                     <table class="ui very basic table" style="padding-left:30px">
                                         <thead>
                                             <tr>
-                                                <th>Short</th>
-                                                <th>Long</th>
+                                                <th>Name</th>
                                                 <th>Score</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <% topic.objectives.each do |obj| %>
                                             <tr>
-                                                <td><%= link_to "test", objective_path(obj) %> </td>
-                                                <td><%= obj.name.truncate(50) unless obj == nil %>
-                                                </td>
+                                                <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+                                                <a href="http://google.com">google</a> </td>
                                                 <td>
                                                     <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
                                                     </div>

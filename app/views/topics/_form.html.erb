@@ -1,7 +1,7 @@
 
 
 
-<%= form_for(@topic, :html => {:class => 'ui form'}) do |f| %>
+<%= form_for([@subject, @topic], :html => {:class => 'ui form'}) do |f| %>
 <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
@@ -18,8 +18,7 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :subject_id %><br>
-    <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
+    <%= f.hidden_field :subject_id, value: @subject.id %>
   </div>
   <div class=" ui segment">
   <h3 class="ui header">Objectives</h3>

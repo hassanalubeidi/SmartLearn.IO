@@ -23,11 +23,11 @@ class TestPapersController < ApplicationController
                        description: q.description,
                        total_marks: q.marks)
      end
-    redirect_to test_papers_upload_show_path
+    redirect_to test_papers_upload_show_path({:questions_number => t}) 
     
   end
   def show_uploaded
-    @questions = Question.last(3)
+    @questions = Question.last(params[:questions_number])
   end
   def show
   end
