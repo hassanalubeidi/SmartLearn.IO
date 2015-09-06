@@ -6,7 +6,7 @@
 	  	<span class="ui small breadcrumb" style="float: right; margin-top: -10px">
 	      	<a href="<%= subject_path @objective.topic.subject %>" class="section"><%= @objective.topic.subject.name %></a>
 			  <div class="divider"> / </div>
-			  <a href="<%= topic_path @objective.topic %>"><%= @objective.topic.name %></a>
+			  <%= link_to @objective.topic.name, subject_topic_path(@objective.topic.subject, @objective.topic) %>
 			  <div class="divider"> / </div>
 			  <div class="active section">Obj</div>
 	    </span>
