@@ -5,4 +5,7 @@ class Subject < ActiveRecord::Base
 	has_many :test_papers
 
 	validates :name, presence: true
+	def lol
+		return "Hello World"
+	end
 end

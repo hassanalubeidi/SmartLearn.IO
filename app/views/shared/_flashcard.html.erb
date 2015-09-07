@@ -1,0 +1,22 @@
+<style>.hidden { display:none;} </style>
+<div class="ui flashcard segments">
+	
+	<%= render partial: "shared/flashcard/finish_menu" %>
+	<div class="ui padded segment">
+		
+		<div class="ui divided stackable grid">
+			<%= render partial: "shared/flashcard/question" %>
+			<div class="ui six wide column">
+				<%= render partial: "shared/flashcard/hint" %>
+				<%= render partial: "shared/flashcard/marking" %>
+				<%= render partial: "shared/flashcard/meta" %>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+	<div class="ui secondary segment">
+		<p>Last attempted 17 days ago</p>
+	</div>
+</div>

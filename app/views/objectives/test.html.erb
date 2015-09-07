@@ -1,4 +1,4 @@
-<div class="ui text container">
+<div class="ui container">
 	
 	<div class="ui raised segments">
 	  <div class="ui segment">
@@ -6,7 +6,7 @@
 	  	<span class="ui small breadcrumb" style="float: right; margin-top: -10px">
 	      	<a href="<%= subject_path @objective.topic.subject %>" class="section"><%= @objective.topic.subject.name %></a>
 			  <div class="divider"> / </div>
-			  <a href="<%= topic_path @objective.topic %>"><%= @objective.topic.name %></a>
+			  <%= link_to @objective.topic.name, subject_topic_path(@objective.topic.subject, @objective.topic) %>
 			  <div class="divider"> / </div>
 			  <div class="active section">Obj</div>
 	    </span>
@@ -14,10 +14,10 @@
 		</h2>
 		<p class="ui sub ">
 		<div class="ui blue secondary message">Make sure that the keypoints are fluent, don't accept anything that's not almost exactly what we're looking for!</div>
-			<div class="ui top attached fluid test-type button" data-tab="self" >
+			<div class="ui top active blue attached fluid test-type button" data-tab="self" >
 			  Self assess
 			</div>
-			<button class="ui bottom attached fluid test-type button" data-tab="peer">
+			<button class="ui bottom blue attached fluid test-type button" data-tab="peer">
 			  Peer assess
 			</button>
 		</p>
@@ -26,49 +26,11 @@
 
 	    
 	    </div>
-	    <div class="peer-assessed ui tab" data-tab="self">
-	    Self assess stuff here
+	    <div class="peer-assessed ui active tab" data-tab="self">
+	    <%= render partial: "self_assess" %>
 	    </div>
 	    <%= render partial: "peer_assess" %>
-		
 </div>
-
-
-<div class="ui question-input modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Ask question
-    <div class="ui large image purple label" style="float:right;">
-		  <%= @objective.topic.name %>
-		  <div class="detail"><%= @objective.name %></div>
-		</div>
-  </div>
-  <div class="content">
-    <div class="description">
-
-      <div class="ui form">
-      <div class="field">
-		    <label>Title</label>
-		    <input></input>
-		 </div>
-		  <div class="field">
-		    <label>Text</label>
-		    <textarea></textarea>
-		 </div>
-		 
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Cancel
-    </div>
-    <div class="ui positive right labeled icon button">
-      Submit
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>
-
 
 <script>
 $('.test-type')

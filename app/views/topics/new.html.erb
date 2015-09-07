@@ -1,7 +1,29 @@
+
 <div class="ui container">
-<h1>New topic</h1>
+	<h1 class="ui header">Create subject</h1>
+	<div class="ui three top attached steps">
+	  <div class="disabled step">
+	    <i class="wizard icon"></i>
+	    <div class="content">
+	      <div class="title">Subject</div>
+	    </div>
+	  </div>
+	  <div class="active step">
+	    <i class="archive icon"></i>
+	    <div class="content">
+	      <div class="title">Topics</div>
+	    </div>
+	  </div>
+	  <div class="disabled step">
+	    <i class="tasks icon"></i>
+	    <div class="content">
+	      <div class="title">Module packs</div>
+	    </div>
+	  </div>
+	</div>
+	<div class="ui bottom attached segment">
 
-<%= render 'form' %>
+	<%= render 'form' %>
+
+	</div>
 </div>
-
-

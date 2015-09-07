@@ -125,6 +125,9 @@ module SubjectsHelper
 		end
 	end
 
+	def dom_input_name(form, field_name)
+	  "#{form.object_name}[#{field_name.to_s.sub(/\?$/,"")}]"
+	end
 	private
 	def time_degredation(question)
 		a = (Time.now -  question.answers.where(:user => current_user).last.created_at).to_i / 86400

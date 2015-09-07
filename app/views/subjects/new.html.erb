@@ -1,5 +1,30 @@
-<h1>New subject</h1>
 
-<%= render 'form' %>
+<div class="ui container">
+	Create subject
+	<div class="ui three top attached steps">
+	  <div class="active step">
+	    <i class="wizard icon"></i>
+	    <div class="content">
+	      <div class="title">Subject</div>
+	    </div>
+	  </div>
+	  <div class="disabled step">
+	    <i class="archive icon"></i>
+	    <div class="content">
+	      <div class="title">Topics</div>
+	    </div>
+	  </div>
+	  <div class="disabled step">
+	    <i class="tasks icon"></i>
+	    <div class="content">
+	      <div class="title">Module packs</div>
+	    </div>
+	  </div>
+	</div>
+	<div class="ui attached segment">
+	  <h1>New subject</h1>
 
-<%= link_to 'Back', subjects_path %>
+	<%= render 'form' %>
+
+	</div>
+</div>
