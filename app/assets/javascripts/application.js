@@ -53,7 +53,7 @@ $(document)
     $('.ui.dropdown')
       .dropdown()
     ;
-    
+    $(".ui .accordion").accordion();
     $('.ui.checkbox')
 	  .checkbox()
 	;

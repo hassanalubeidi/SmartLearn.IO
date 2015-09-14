@@ -25,13 +25,14 @@ Rails.application.routes.draw do
   resources :arcticles
   resources :subjects do 
     resources :topics
+    resources :module_pack
   end
 
   root 'subjects#index'
   resources :improvements
   resources :reviews
   resources :dashboard
-
+  get "subject/:subject_id/module_pack/edit", to: "module_pack#edit"
   get 'improvements/:id/add_review' => 'improvements#add_review', as: :add_review
   get ':id/set_user_as_teacher' => 'improvements#set_user_as_teacher', as: :set_user_as_teacher
   get ':id/set_user_as_student' => 'improvements#set_user_as_student', as: :set_user_as_student

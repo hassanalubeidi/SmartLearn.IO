@@ -84,7 +84,7 @@ class TestPapersController < ApplicationController
         a = table.css("b").to_a
         objects = []
         a.each do |x|
-          if /#{parse_type(type)}[1-9]/.match(x.content) != nil then 
+          if /#{parse_type(type)}[1-9]\./.match(x.content) != nil then 
             objects.push(x)
           end
         end

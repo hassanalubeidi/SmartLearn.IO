@@ -3,9 +3,10 @@
     <%= f.text_area :name, placeholder: "Enter your objective here" %>
     <%= f.hidden_field :harder_difficulty, placeholder: "harder_difficulty" %>
     <%= f.hidden_field :easier_difficulty, placeholder: "easier_difficulty" %>
-    <div id="slider"></div>
+    <div class="slider"></div>
 	<script>
-	  var slider = document.getElementById('slider');
+	  var sliders = $(".slider");
+	  var slider = sliders[sliders.length-1]
 
 	noUiSlider.create(slider, {
 	  start: [20, 80],

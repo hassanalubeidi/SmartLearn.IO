@@ -1,5 +1,9 @@
-<%= form_tag do %>
-        <%= text_field_tag :test_paper_url, params[:url] %>
-        <%= submit_tag "Upload" %>
-<% end %>
-<p>sssss</p>
+<div class="ui form container">
+	<div class="ui segment">
+	<%= form_tag do %>
+			<label>URL:</label>
+	        <%= text_field_tag :test_paper_url, params[:url] %>
+	        <%= submit_tag "Upload", class: "ui button" %>
+	<% end %>
+	</div>
+</div>

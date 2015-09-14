@@ -2,11 +2,11 @@
 <% @questions.each do |q| %>
 
 <div class="ui accordion">
-  <div class="active title">
+  <div class="title">
     <i class="dropdown icon"></i>
     Question
   </div>
-  <div class="active content">
+  <div class="content">
     <%= q.html.html_safe %>
   </div>
   <div class="title">
@@ -31,6 +31,7 @@
     <ul>
     	<li>Source: <%= q.source %></li>
     	<li>Description: <%= q.description %></li>
+      <li>Topic: <%= q.topic.name %></li>
     </ul>
   </div>
 </div>

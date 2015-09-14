@@ -1,5 +1,5 @@
 <style>.hidden { display:none;} </style>
-<div class="ui flashcard segments">
+<div class="ui flashcard segments " id="flashcard-<%= flashcard.id %>">
 	
 	<%= render partial: "shared/flashcard/finish_menu" %>
 	<div class="ui padded segment">
@@ -20,3 +20,4 @@
 		<p>Last attempted 17 days ago</p>
 	</div>
 </div>
+<%= render partial: "shared/flashcard/js", :locals => {:flashcard => flashcard} %>
