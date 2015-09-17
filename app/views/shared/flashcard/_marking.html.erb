@@ -5,12 +5,29 @@
 	<h2 class="ui header">How did you do?</h2>
 	<div class="ui divider"></div>
 	<h3 class="ui header">I made sure to mention: </h3>
-	<div class="ui toggle checkbox">
-		<label>the keyword <strong>"Covalent"</strong></label>
-	  <input type="checkbox" name="public">
-	  
-	</div>
+	<% flashcard.keypoints.each do |keypoint| %>
+	
+		<label><%= keypoint.text %></label>
+		<%= form_for(Attempt.new,
+					 remote: true,
+				     :html => {:class => "keypoint_form#{flashcard.id}"}) do |f| %>
+			<div class="ui toggle checkbox">
+				<%= f.hidden_field(:keypoint_id, value: keypoint.id) %>
+				<%= f.hidden_field(:user_id, value: current_user.id) %>
+		    	<%= f.check_box(:correct,  :class => "ui toggle checkbox")  %>
+		    </div>
+		<% end %>
+	
+	<% end %>
 	<div class="ui divider"></div>
 	
 </div>
-<div class="ui hidden right floated red submit button" style="display:none">Submit</div>
+<div class="ui hidden right floated red submit-button<%= flashcard.id %> submit button" style="display:none">Submit</div>
+<script>
+$(".submit-button<%= flashcard.id %>").on('click', function() {
+	var arr = $(".keypoint_form<%= flashcard.id %>");
+	$.each(arr, function() {
+		arr.trigger('submit.rails');
+	});
+});
+</script>
