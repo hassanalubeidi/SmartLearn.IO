@@ -1,3 +1,12 @@
-<%  %>
- %>
-<div class="ui container segment"><%= @ques.html_safe %> <%= @ans.html_safe %> <%= @src %></div>
+<div class="ui segments text container">
+	<h2 class="ui inverted blue segment">
+		<%= @objective.name %>
+		<%= link_to "Test this objective", test_objective_path(@objective), class: "ui inverted blue float right button" %>
+</h2>
+	<% @objective.flashcards.each do |flashcard| %>
+	<div class="ui segment">
+		<strong><%= flashcard.top %></strong>
+		<div><%= flashcard.bottom %></div>
+	</div>
+	<% end %>
+</div>

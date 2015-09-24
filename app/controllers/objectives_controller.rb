@@ -42,6 +42,6 @@ class ObjectivesController < ApplicationController
     end
 
     def objective_params
-      params.require(:objective).permit(:name, :module_pack_info, :total_marks, :belongs_to,:_destroy,  flashcards_attributes: [:id, :text, keypoints_attributes: [:id, :text, :image, :_destroy ]])
+      params.require(:objective).permit(:name,  :module_pack_info, :total_marks, :belongs_to,:_destroy,  flashcards_attributes: [:id, :text, :top, :bottom, keypoints_attributes: [:id, :text, :image, :_destroy ]])
     end
 end

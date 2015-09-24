@@ -2,7 +2,16 @@
   <div class="field">
     Keypoint:
     <br/>
-    <%= f.text_field :text %>
+    <div class="ui grid">
+          <div class="ui fifteen wide column">
+            <%= f.text_field :text %>
+          </div>
+          <div class="ui one wide column">
+          <%= link_to_remove_association "<i class='ui remove icon'></i>".html_safe, f, class: "ui red icon button" %>
+          </div>
+        </div>
+    
+
   </div>
-  <%= link_to_remove_association "remove task", f %>
+  
 </div>

@@ -94,15 +94,6 @@ ActiveRecord::Schema.define(version: 20150905234510) do
   add_index "lines", ["objective_id"], name: "index_lines_on_objective_id"
   add_index "lines", ["question_id"], name: "index_lines_on_question_id"
 
-  create_table "module_packs", force: true do |t|
-    t.string   "name"
-    t.integer  "unit_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "module_packs", ["unit_id"], name: "index_module_packs_on_unit_id"
-
   create_table "objective_states", force: true do |t|
     t.string   "status"
     t.integer  "user_id"

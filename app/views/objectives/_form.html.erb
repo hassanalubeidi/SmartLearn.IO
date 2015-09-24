@@ -1,37 +1,21 @@
-<%= form_for(@objective) do |f| %>
-  <% if @objective.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@objective.errors.count, "error") %> prohibited this objective from being saved:</h2>
 
-      <ul>
-      <% @objective.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="ui container">
+  <h2 class="ui centered header">Objective edit/new </h2>
+  <%= form_for(@objective, html: { :class => "ui form  " }) do |f| %>
+    <div class="ui field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_area :name %>
-  </div>
-  <div class="field">
-    <%= f.label :module_pack_info %><br>
-    <%= f.text_area :module_pack_info %>
-  </div>
-  <div class="field">
-    <%= f.label :total_marks %><br>
-    <%= f.number_field :total_marks %>
-  </div>
-  <div id="tasks">
+    <div id="tasks">
     <%= f.fields_for :flashcards do |flashcard| %>
       <%= render 'flashcard_fields', :f => flashcard %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'add task', f, :flashcards %>
+      <%= link_to_add_association 'Add Flashcard', f, :flashcards, :class => "ui button" %>
     </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "ui green right float button" %>
   </div>
-<% end %>
+  <% end %>
+</div>

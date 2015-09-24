@@ -1,11 +1,13 @@
 <div class="nested-fields ui segment">
   <div class="field">
-    Sub Objective:
-    <%= f.text_area :text, placeholder: "Enter your question here" %>
-    <%= link_to_remove_association "remove objective", f, class: "ui bottom attached red fluid button" %>
+    Flashcard front:
+    <%= f.text_area :top, placeholder: "Eg: Define relative molecular mass" %>
+    Flashcard back:
+    <%= f.text_area :bottom, placeholder: "Eg: Mass of a molecule relative to 1/2 the mass of a 12C atom" %>
+    
     <div class="ui divider"></div>
   </div>
-  Objectives:
+  Keypoints:
   <div id='tasks' class="ui raised segment">
     <% Line.all.each.with_index do |line,ab| %>
 
@@ -16,7 +18,9 @@
     <% end %>
 
       <div class='links'>
-        <%= link_to_add_association 'add objective', f, :keypoints, class: "ui button" %>
+        <%= link_to_add_association 'Add a keypoint', f, :keypoints, class: "ui button" %>
       </div>
     </div>
+    <%= link_to_remove_association "Remove flashcard", f, class: "ui red fluid button" %>
 </div>
+
