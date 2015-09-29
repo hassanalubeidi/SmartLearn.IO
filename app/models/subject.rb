@@ -5,7 +5,12 @@ class Subject < ActiveRecord::Base
 	has_many :test_papers
 
 	validates :name, presence: true
-	def lol
-		return "Hello World"
+	def progress(user)
+		tot = 0
+		self.topics.each do |t|
+			tot = 0
+			tot += t.progress(user).to_f
+		end
+			return tot / self.topics.count
 	end
 end

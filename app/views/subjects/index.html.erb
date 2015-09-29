@@ -1,3 +1,4 @@
+<div class="ui container">
 <h1 class="ui green header">Experiment v0.1.0</h1>
 <div class="ui selection list">
   <% @subjects.each do |subject| %>
@@ -18,6 +19,51 @@
 <% if Subject.count == 0 then %>
 <%= render 'subjects/no_subjects' %>
 <% end %>
-
+<%= link_to "New subject", new_subject_path, class: "ui fluid button" %>
 
 roadmap: v0.4 fully student compatible, v0.9 fully teacher student compatible, v1.9 api compatible
+<!-- 
+<div class="ui segment">
+<div id="wysihtml5-toolbar" style="display: none;">
+  <a class="ui togglable icon button " data-wysihtml5-command="bold"><i class="ui bold icon"></i></a>
+  <a class="ui togglable icon button " data-wysihtml5-command="italic"><i class="ui italic icon"></i></a>
+
+
+  <a class="ui togglable button " data-wysihtml5-command="createLink">insert link</a>
+  <span data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      Link:
+      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a class="" data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </span>
+  <a data-wysihtml5-command="insertImage">insert image</a>
+  <span data-wysihtml5-dialog="insertImage" style="display: none;">
+    <label>
+      Image:
+      <input data-wysihtml5-dialog-field="src" value="http://">
+    </label>
+    <label>
+      Align:
+      <select data-wysihtml5-dialog-field="className">
+        <option value="">default</option>
+        <option value="wysiwyg-float-left">left</option>
+        <option value="wysiwyg-float-right">right</option>
+      </select>
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </span>
+</div>
+<form class="ui form"><textarea id="wysihtml5-textarea" placeholder="Enter your text ..." autofocus></textarea></form>
+</div>
+<script>
+var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+  toolbar:      "wysihtml5-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+});
+$(".togglable").on("click", function() {
+  $(this).toggleClass("active");
+});
+</script>
+</div>
+-->

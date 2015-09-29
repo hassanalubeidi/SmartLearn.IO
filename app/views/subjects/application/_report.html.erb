@@ -1,37 +1,63 @@
+
+    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2> <a class="ui icon button" href="../test_papers/new"><i class="ui plus icon "></i></a>
+    <div class="ui centered cards">
+<% TestPaper.where(subject: @subject).each do |testpaper| %>
+  <div class="ui card">
+  <div class="ui top indicating attached progress" data-percent="<%= testpaper.tots(current_user) %>">
+    <div class="bar" style="transition-duration: 300ms; width: <%= testpaper.tots(current_user) %>%;"></div>
+  </div>
+    <div class="content">
+      <div class="header">
+        <%= testpaper.date.strftime('%b %Y') %>
+      </div>
+      <div class="meta">
+        3 days ago
+      </div>
+      <div class="description">
+        "Struggled on atom definitions"
+      </div>
+    </div>
+        <%= link_to "Details", test_paper_path(testpaper), class: "ui bottom attached button" %>
+  </div>
+  <% end %>
+</div>
+<div class="ui divider"></div>
 <h2 class="ui header">A breakdown of your learning so far</h2>
-                    <div class="ui basic segment">
-                        <div class="ui bottom attached segment">
-                            <div class="ui top attached label">F321: Atoms, bonds and groups</div><% @subject.topics.each do |topic| %>
-                            <h3><%= topic.name %>
-                            </h3>
-                            <div class="ui accordion">
-                                <div class="active title">
-                                    <i class="dropdown icon"></i>
-                                  Objectives
-                
+<div class="ui basic segment">
+    
+    <% @subject.topics.each do |topic| %>
+    <div class="ui bottom attached segment">
+        <div class="ui top attached label"><%= topic.name %></div>
+        <div class="ui accordion">
+            <div class="active title">
+                <i class="dropdown icon"></i>
+              <%= topic.objectives.count %> objective<%= if topic.objectives.count > 1 then "s" end %>
+
+            </div>
+            <div class="content">
+                <table class="ui very basic table" style="padding-left:30px">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% topic.objectives.each do |obj| %>
+                        <tr>
+                            <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+                            </td>
+                            <td>
+                                <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
                                 </div>
-                                <div class="content">
-                                    <table class="ui very basic table" style="padding-left:30px">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Score</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <% topic.objectives.each do |obj| %>
-                                            <tr>
-                                                <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
-                                                </td>
-                                                <td>
-                                                    <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <% end %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><% end %>
-                        </div>
-                    </div>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <% end %>
+    
+</div>

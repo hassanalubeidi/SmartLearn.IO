@@ -1,9 +1,10 @@
-<h1 class="ui inverted red header"><%= @test_paper.date %> <%= link_to "Edit", edit_test_paper_path(@test_paper), class: "ui basic button float right" %></h1>
-<%= total_marks(@test_paper) %>
+<div class="ui container">
+<h1 class="ui inverted red header"><%= @test_paper.date.strftime('%b %Y') %> </h1>
 <% @test_paper.questions.each do |question| %>
-<div class="ui segment"><%= question.text %>
+<div class="ui segment">
+	<div class="ui segment"><%= question.html.html_safe %></div>
 	<div class="labels">
-	<% question.objectives.each do |objective| %>
+	<% question.objectives.uniq.each do |objective| %>
 		<div class="ui label"><strong><%= objective.name %></strong></div>
 	<% end %>
 	<% if question.answers.where(question: question, user: current_user).count != 0 %>
@@ -14,3 +15,4 @@
 	</div>
 </div>
 <% end %>
+</div>

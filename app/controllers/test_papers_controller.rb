@@ -7,7 +7,7 @@ class TestPapersController < ApplicationController
   end
 
   def upload
-    
+    @testpaprs = TestPaper.all
   end
   def parse
     url = params[:test_paper_url]
@@ -19,9 +19,11 @@ class TestPapersController < ApplicationController
                        mark_scheme_html: q.answer_html,
                        exam_notes_html: q.exam_notes_html,
                        source: q.source,
-                       topic: Topic.find_or_create_by(name: q.topic),
+                       topic: Topic.find_or_create_by(name: q.topic, subject: TestPaper.find(params[:testpaper_id]).subject),
                        description: q.description,
-                       total_marks: q.marks)
+                       total_marks: q.marks,
+                       test_paper_id: params[:testpaper_id]
+                       )
      end
     redirect_to test_papers_upload_show_path({:questions_number => t}) 
     
@@ -43,7 +45,7 @@ class TestPapersController < ApplicationController
   def create
     @test_paper = TestPaper.new(test_paper_params)
     @test_paper.save
-    redirect_to :back
+    redirect_to test_papers_upload_path
   end
 
   def update
@@ -62,7 +64,7 @@ class TestPapersController < ApplicationController
     end
 
     def test_paper_params
-      params.require(:test_paper).permit(:subject_id,:name , :test_paper_url, :html, :mark_scheme_html, :source, :exam_notes_html, :description,  :questions, :date, :calc_allowed, :url, questions_attributes: [:text, :attachment, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
+      params.require(:test_paper).permit(:subject_id,:name, :testpaper_id , :test_paper_url, :html, :mark_scheme_html, :source, :exam_notes_html, :description,  :questions, :date, :calc_allowed, :url, questions_attributes: [:text, :attachment, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
     end
 
     def number_of_questions(url)
