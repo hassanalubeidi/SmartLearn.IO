@@ -3,8 +3,8 @@
     <div class="ui centered cards">
 <% TestPaper.where(subject: @subject).each do |testpaper| %>
   <div class="ui card">
-  <div class="ui top indicating attached progress" data-percent="<%= testpaper.tots(current_user) %>">
-    <div class="bar" style="transition-duration: 300ms; width: <%= testpaper.tots(current_user) %>%;"></div>
+  <div class="ui top indicating attached progress" data-percent="<%=  testpaper.tots(current_user)  %>">
+    <div class="bar" style="transition-duration: 300ms; width: <%=  testpaper.tots(current_user) %>%;"></div>
   </div>
     <div class="content">
       <div class="header">

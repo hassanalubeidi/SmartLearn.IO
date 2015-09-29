@@ -12,7 +12,9 @@ class TestPaper < ActiveRecord::Base
   	marks = 0
   	tot_marks = 0
   	self.questions.each do |question|
-  		marks += question.answer(user).marks_integer.to_i
+      if question.answer(user) != nil then
+        marks += question.answer(user).marks_integer.to_i 
+        end
   	end
   	self.questions.each do |question|
   		tot_marks += question.total_marks.to_i

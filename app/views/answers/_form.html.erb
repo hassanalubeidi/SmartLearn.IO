@@ -10,17 +10,20 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="ui segment">
+  <h3 class="">Mark Scheme</h3>
+  <%= @question.mark_scheme_html.html_safe %>
+  </div>
   <div class="field">
-    <%= f.label :text %><br>
+    <%= f.label "What went wrong?" %><br>
     <%= f.text_area :text %>
   </div>
   <div class="inline field">
-    <%= f.label :marks_integer %><br>
+    <%= f.label :marks %><br>
     <%= f.number_field :marks_integer %> / <%= @question.total_marks %>
   </div>
   <%= f.hidden_field :prev_url, :value => @prev_url %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "ui red button" %>
   </div>
 <% end %>
