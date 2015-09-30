@@ -1,0 +1,21 @@
+<table class="ui celled striped table">
+  <thead>
+    <tr><th class="ten wide">Name</th>
+    <th class="">Status</th>
+    <th class="two wide">Last attempted</th>
+  </tr></thead>
+  <tbody>
+  <% @subject.topics.each do |topic| %>
+    <% topic.objectives.each do |objective| %>
+    <tr>
+      
+      <td class="twelve wide"><%= objective.name %></td>
+      <td class="">
+        <%= link_to "<i class='folder icon'></i> Flashcards".html_safe, test_objective_path(objective) %> <i class="ui green large checkmark icon"></i> <i class="ui red large remove icon"></i> <i class="ui  orange half large star icon"></i> <i class="ui  purple doctor large icon"></i>
+      </td>
+      <td class="right aligned "><%= time_ago_in_words(objective.created_at) %> ago</td>
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
