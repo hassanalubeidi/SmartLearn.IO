@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001102219) do
+ActiveRecord::Schema.define(version: 20151001103311) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -128,12 +128,12 @@ ActiveRecord::Schema.define(version: 20151001102219) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.text     "html",                    limit: 255
-    t.text     "mark_scheme_html",        limit: 255
-    t.string   "exam_notes_html"
-    t.text     "source",                  limit: 255
-    t.text     "description",             limit: 255
-    t.text     "type",                    limit: 255
+    t.text     "html"
+    t.text     "mark_scheme_html"
+    t.text     "exam_notes_html"
+    t.text     "source"
+    t.text     "description"
+    t.text     "type"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
