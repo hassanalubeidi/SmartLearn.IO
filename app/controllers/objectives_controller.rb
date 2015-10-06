@@ -27,6 +27,7 @@ class ObjectivesController < ApplicationController
 
   def update
     @objective.update(objective_params)
+    redirect_to test_objective_path(@objective)
   end
 
   def destroy

@@ -6,11 +6,24 @@ class Subject < ActiveRecord::Base
 
 	validates :name, presence: true
 	def progress(user)
-		tot = 0
-		self.topics.each do |t|
+		if self.topics.count != 0 then
 			tot = 0
-			tot += t.progress(user).to_f
-		end
+			self.topics.each do |t|
+				tot = 0
+				tot += t.progress(user).to_f
+			end
 			return tot / self.topics.count
+		else
+			return nil
+		end
+	end
+	def all_objectives
+		objectives = []
+		self.topics.each do |t|
+			t.objectives.each do |o|
+				objectives.push(o)
+			end
+		end
+		return objectives
 	end
 end

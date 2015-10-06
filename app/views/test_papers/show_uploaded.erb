@@ -21,7 +21,7 @@
 
 </div>
 
-<strong>Set an objective for this question: </strong>
+<strong>Question total marks: </strong>
 <%= form_for(q, remote: true) do |f| %>
   <%= f.number_field :total_marks %>
   <div id='tasks' class="ui raised segment">
@@ -47,5 +47,5 @@
 
 <div class="ui divider"></div>
 <% end %>
-
+<%= link_to "Return to #{@questions.last.test_paper.subject.name}", subject_path(@questions.last.test_paper.subject) %>
 </div>

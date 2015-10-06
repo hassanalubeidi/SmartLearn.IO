@@ -3,6 +3,12 @@
 
         <div class="ui basic segment">
           <%= render partial: "subjects/knowledge/objectives" %>
+          <% if @subject.all_objectives.count == 0 then %>
+			<h2 class="ui header">No objectives for this subject at all!</h2>]
+			<%= link_to "Add objectives", new_subject_topic_path(@subject) %>
+			<% end %>
       </div>
   </div>
 </div>
+
+

@@ -1,8 +1,11 @@
+
 <div class="ui form container">
+	<h1>Automatically input testpaper from Exampro</h1>
 	<div class="ui segment">
 	<%= form_tag do %>
-			<label>URL:</label>
+			<label>Paper:</label>
 			<%=  select_tag "testpaper_id", options_from_collection_for_select(TestPaper.all, "id", "date_name") %>
+			<label>Exampro URL:</label>
 	        <%= text_field_tag :test_paper_url, params[:url] %>
 	        <%= submit_tag "Upload", class: "ui button" %>
 	<% end %>

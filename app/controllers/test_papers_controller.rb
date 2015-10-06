@@ -15,7 +15,7 @@ class TestPapersController < ApplicationController
     t = number_of_questions(url)
     (1..t).each do |q_num|
        q = ParsePapers::Question.new(q_num, url)
-       Question.create(html: q.question_html,
+       new_q = Question.new(html: q.question_html,
                        mark_scheme_html: q.answer_html,
                        exam_notes_html: q.exam_notes_html,
                        source: q.source,
@@ -24,6 +24,7 @@ class TestPapersController < ApplicationController
                        total_marks: q.marks,
                        test_paper_id: params[:testpaper_id]
                        )
+       new_q.save
      end
     redirect_to test_papers_upload_show_path({:questions_number => t}) 
     

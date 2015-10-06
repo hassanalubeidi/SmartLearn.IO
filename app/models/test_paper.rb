@@ -3,6 +3,7 @@ class TestPaper < ActiveRecord::Base
   has_many :questions, :dependent => :destroy
 
   validates :date, presence: true
+  validates :subject, presence: true
 
   accepts_nested_attributes_for :questions, :reject_if => :all_blank, :allow_destroy => true
   def date_name 
