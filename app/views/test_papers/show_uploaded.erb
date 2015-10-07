@@ -22,8 +22,11 @@
 </div>
 
 <strong>Question total marks: </strong>
-<%= form_for(q, remote: true) do |f| %>
+<%= form_for(q, remote: true, :html => {:class => "ui form"}) do |f| %>
+  <div class="inline field">
   <%= f.number_field :total_marks %>
+  </div>
+  <strong>Add objectives to this question:</strong>
   <div id='tasks' class="ui raised segment">
 
     <% Line.where(question: q).uniq.each.with_index do |line,ab| %>
@@ -37,6 +40,10 @@
       <div class='links'>
         <%= link_to_add_association 'add objective', f, :lines, class: "ui button" %>
       </div>
+    </div>
+    <div class="field">
+    <strong>Add an intervention if this question is answered poorly</strong>
+    <%= f.text_area :intervention %>
     </div>
      <%= f.submit class: "ui blue button" %>
     </div>

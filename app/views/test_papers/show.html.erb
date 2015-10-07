@@ -15,4 +15,14 @@
 	</div>
 </div>
 <% end %>
+<% if @test_paper.questions.count == 0 then %>
+	<div class="ui basic segment">
+		<h2 class="ui centered header">This paper has no questions.</h2>
+		<h3 class="ui centered header"><%= link_to "Manually add some", edit_test_paper_path(@test_paper) %></h3>
+		<div class="ui  horizontal divider">
+	   		Or
+	  	</div>
+		<h3 class="ui centered header"><%= link_to "Add through Exampro", test_papers_upload_path %></h3>
+	</div>
+<% end %>
 </div>

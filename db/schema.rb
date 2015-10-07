@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001103311) do
+ActiveRecord::Schema.define(version: 20151007104129) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20151001103311) do
     t.text     "source"
     t.text     "description"
     t.text     "type"
+    t.text     "intervention"
   end
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"

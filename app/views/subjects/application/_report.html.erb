@@ -1,5 +1,5 @@
 
-    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2> <a class="ui icon button" href="../test_papers/new"><i class="ui plus icon "></i></a>
+    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2> <a class="ui icon button" href="../test_papers/new">Add testpaper</a>
     <div class="ui centered cards">
 <% TestPaper.where(subject: @subject).each do |testpaper| %>
   <div class="ui card">
@@ -7,6 +7,7 @@
     <div class="bar" style="transition-duration: 300ms; width: <%=  testpaper.tots(current_user) %>%;"></div>
   </div>
     <div class="content">
+      <a href="#"><i class="right floated red remove icon"></i></a>
       <div class="header">
         <%= testpaper.date.strftime('%b %Y') %>
       </div>
