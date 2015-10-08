@@ -49,6 +49,7 @@ $(document)
     $('.ui.sidebar')
       .sidebar('attach events', '.launch.button')
     ;
+    $(".popupable").popup();
 
     $('.ui.dropdown')
       .dropdown()

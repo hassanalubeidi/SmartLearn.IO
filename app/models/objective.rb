@@ -37,6 +37,16 @@ class Objective < ActiveRecord::Base
 		end
 	end
 
+	def last_attempted_module_pack_test(user)
+		last_attempteds = []
+		unless self.flashcards.count == 0 then
+			self.flashcards.each do |flashcard|
+				last_attempteds.push(flashcard.last_attempted(user))
+			end
+		end
+		last_attempteds.delete(nil)
+		return last_attempteds
+	end
 	
 
 	def knowledge_score(user)

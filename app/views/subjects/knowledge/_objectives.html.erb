@@ -11,9 +11,23 @@
       
       <td class="twelve wide"><%= objective.name %></td>
       <td>
-        <%= link_to "<i class='folder icon'></i> Flashcards".html_safe, test_objective_path(objective) %> <i class="ui green large checkmark icon"></i> <i class="ui red large remove icon"></i> <i class="ui  orange half large star icon"></i> <i class="ui  purple doctor large icon"></i>
+        <%= link_to "<i class='folder icon'></i> Flashcards".html_safe, test_objective_path(objective) %>
+        <% objective.flashcards.each do |flashcard| %>
+        <% if flashcard.state(current_user) == "not fluent" %>
+        <a href="<%= test_objective_path(flashcard.objective) %>#flashcard<%= flashcard.id %>"><i class="ui  purple doctor large icon popupable" data-title="<%= flashcard.state(current_user)%>" data-content="<%= flashcard.top %>"></i></a>
+        <% elsif flashcard.state(current_user) == "partial" %>
+        <a href="<%= test_objective_path(flashcard.objective) %>#flashcard<%= flashcard.id %>"><i class="ui  orange half large star icon popupable" data-title="<%= flashcard.state(current_user)%>" data-content="<%= flashcard.top %>"></i></a>
+        <% elsif flashcard.state(current_user) == "none" %>
+        <a href="<%= test_objective_path(flashcard.objective) %>#flashcard<%= flashcard.id %>"><i class="ui red large remove icon popupable" data-title="<%= flashcard.state(current_user)%>" data-content="<%= flashcard.top %>"></i></a> 
+        <% end %>
+        <% end %>
       </td>
-      <td class="right aligned "><%= time_ago_in_words(objective.created_at) %> ago</td>
+      <td class="right aligned ">
+      <% if objective.last_attempted_module_pack_test(current_user) != [] then %>
+      Last attempted <%= time_ago_in_words(objective.last_attempted_module_pack_test(current_user).max) %> ago
+      <% else %>
+      No attempted flashcards
+      <% end %></td>
     </tr>
     <% end %>
   <% end %>

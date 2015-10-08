@@ -14,7 +14,7 @@
 </div>
 
 <div class="ui stackable grid">
-  <% @topics.each do |topic| %>
+  <% Topic.all.each do |topic| %>
     <div class="eight wide column">
       <div class="ui red tertiary top attached segment">
         <strong><%= topic.area_to_learn.title %></strong>

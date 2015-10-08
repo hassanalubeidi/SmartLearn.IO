@@ -20,4 +20,11 @@ class User < ActiveRecord::Base
 
 
   devise authentication_keys: [:login]
+  def is_admin?
+    if self.id == 1 then
+      true
+    else
+      false 
+    end
+  end
 end

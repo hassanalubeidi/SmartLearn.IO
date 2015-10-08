@@ -7,7 +7,7 @@
     <div class="bar" style="transition-duration: 300ms; width: <%=  testpaper.tots(current_user) %>%;"></div>
   </div>
     <div class="content">
-      <a href="#"><i class="right floated red remove icon"></i></a>
+      <%= link_to "<i class='right floated red remove icon'></i>".html_safe, testpaper , method: :delete, data: { confirm: 'Are you sure?' } %>
       <div class="header">
         <%= testpaper.date.strftime('%b %Y') %>
       </div>
