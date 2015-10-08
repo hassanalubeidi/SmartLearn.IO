@@ -2,7 +2,7 @@
 <h1 class="ui inverted red header"><%= @test_paper.date.strftime('%b %Y') %> </h1>
 <% @test_paper.questions.each do |question| %>
 <div class="ui segment">
-	<div class="ui segment"><%= question.html.html_safe %></div>
+	<div class="ui segment"><div style="width:705px; margin: auto;"><%= question.html.html_safe %></div></div>
 	<div class="labels">
 	<% question.objectives.uniq.each do |objective| %>
 		<div class="ui label"><strong><%= objective.name %></strong></div>

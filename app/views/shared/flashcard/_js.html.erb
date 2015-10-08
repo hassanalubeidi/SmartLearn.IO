@@ -1,7 +1,8 @@
 <script>
 $("#flashcard-<%= flashcard.id %> .tab").tab();
   $( "#flashcard-<%= flashcard.id %> .answer-button" ).on( "click", function() {
-    $("#flashcard-<%= flashcard.id %> .question").dimmer("show");
+
+    // $("#flashcard-<%= flashcard.id %> .question").dimmer("show");
     $("#flashcard-<%= flashcard.id %> .hidden.answer").removeClass("hidden");
     $("#flashcard-<%= flashcard.id %> .hidden.submit").css("display", "block");
     $("#flashcard-<%= flashcard.id %> .tab").tab('change tab', '2');
@@ -11,12 +12,13 @@ $("#flashcard-<%= flashcard.id %> .tab").tab();
     setTimeout(function(){
   	  $("#flashcard-<%= flashcard.id %> .tab").tab('change tab', '3');
   	}, 1000);
-    $("#flashcard-<%= flashcard.id %> .answer-tab").dimmer('show')
+     $("#flashcard-<%= flashcard.id %> .answer-tab").dimmer('show')
     
-    this.remove();
+    // this.remove();
   });
   $( "#flashcard-<%= flashcard.id %> .hint-button" ).on( "click", function() {
     $("#flashcard-<%= flashcard.id %> .hidden.hint").removeClass("hidden");
+    $("#flashcard-<%= flashcard.id %> .hidden.submit").css("display", "block");
     this.remove();
   });
   $("#flashcard-<%= flashcard.id %> .done-button").on( "click" , function() {

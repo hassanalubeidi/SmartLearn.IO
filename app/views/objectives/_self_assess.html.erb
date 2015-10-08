@@ -1,3 +1,4 @@
+
 <% @objective.flashcards.each do |flashcard| %>
 <a id="flashcard<%= flashcard.id %>"></a>
 <%= render partial: "shared/flashcard", :locals => {:flashcard => flashcard} %>

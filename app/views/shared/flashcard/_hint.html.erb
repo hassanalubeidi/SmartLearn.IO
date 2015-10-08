@@ -1,7 +1,8 @@
 <div class="ui active tab basic segment" style="margin-top: -5px" data-tab="1">
-	<h3 class="ui header">Stuck on this objective?</h3>
-	<div class="ui basic circular fluid button hint-button">Hint</div>
-	<div class="hidden hint"><p>A ----- of --------- ------ compounds</p>
-		<div class="ui blue message">As you used a hint, you can only achieve partial knowledge in this test</div>
+	<h3 class="ui header">Mark this objective:</h3>
+	<div class="ui basic circular fluid button hint-button">Keypoints:</div>
+	<div class="hidden hint">
+		<%= render partial: "shared/flashcard/marking", :locals => {:flashcard => flashcard} %>
 	</div>
+
 </div>
