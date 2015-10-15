@@ -1,5 +1,5 @@
 <div class="ui container">
-<h1 class="ui inverted red header"><%= @test_paper.date.strftime('%b %Y') %> </h1>
+<h1 class="ui inverted red header"><%= @test_paper.date_name %> </h1>
 <% @test_paper.questions.each do |question| %>
 <div class="ui segment">
 	<div class="ui segment"><div style="width:705px; margin: auto;"><%= question.html.html_safe %></div></div>
@@ -22,7 +22,7 @@
 		<div class="ui  horizontal divider">
 	   		Or
 	  	</div>
-		<h3 class="ui centered header"><%= link_to "Add through Exampro", test_papers_upload_path %></h3>
+		<h3 class="ui centered header"><%= link_to "Add through Exampro", "#{test_papers_upload_path}/#{@test_paper.id}" %></h3>
 	</div>
 <% end %>
 </div>

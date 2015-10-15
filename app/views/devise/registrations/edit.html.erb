@@ -1,3 +1,7 @@
+<div class="ui container form">
+<% if current_user.power == "admin" then %>
+<div class="ui red message"><strong>We would highly recommend changing your intitial password for your application's security</strong></div>
+<% end %>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -11,7 +15,7 @@
   </div>
   <div class="field">
     <%= f.label :power %> <br/>
-    <%= f.text_field :power %>
+    <strong><%= current_user.power %></strong>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -43,3 +47,4 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>

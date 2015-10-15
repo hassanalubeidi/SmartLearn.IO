@@ -7,45 +7,6 @@
 <%= render partial: "subjects/knowledge/index"%>
 
 </div>
-
-<div class="ui small profile modal">
-  <i class="close icon"></i>
-  <div class="header" style="text-align:center">
-    <h2 class="ui center aligned header">
-    <div >
-      <img class="ui small circular image" src="http://freelanceme.net/Images/default%20profile%20picture.png" style="margin:auto">
-    </div>
-    Mr Jennings
-
-    </h2>
-    <div class="ui left labeled button" style="margin: auto"><i class="mail icon"></i>Message</div>
-  </div>
-  <div class="content ui text container" style="text-align:center">
-    <h2 class="ui sub header">
-      Teaches:
-    </h2>
-    Chemistry, sets 12A, 12B and 13A
-    <h2 class="ui sub header">
-      Bio:
-    </h2>
-    Cats are great
-    
-  </div>
-  
-</div>
 </body>
-<script>
-$(document)
-  .ready(function() {
-      // add popup to show name
-      $('.item')
-        .tab()
-      ;
-      $('.profile.modal')
-        .modal('attach events', '.open-profile', 'show')
-      ;
-  })
-;
 
-</script>
 </html>

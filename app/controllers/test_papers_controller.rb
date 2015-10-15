@@ -19,14 +19,14 @@ class TestPapersController < ApplicationController
                        mark_scheme_html: q.answer_html,
                        exam_notes_html: q.exam_notes_html,
                        source: q.source,
-                       topic: Topic.find_or_create_by(name: q.topic, subject: TestPaper.find(params[:testpaper_id]).subject),
+                       topic: Topic.find_or_create_by(name: q.topic, subject: TestPaper.find(params[:id]).subject),
                        description: q.description,
                        total_marks: q.marks,
-                       test_paper_id: params[:testpaper_id]
+                       test_paper_id: params[:id]
                        )
        new_q.save
      end
-    redirect_to test_papers_upload_show_path({:questions_number => t}) 
+    redirect_to test_papers_upload_show_path({:questions_number => t, :test_paper_id => params[:id]}) 
     
   end
   def show_uploaded
@@ -46,7 +46,7 @@ class TestPapersController < ApplicationController
   def create
     @test_paper = TestPaper.new(test_paper_params)
     @test_paper.save
-    redirect_to test_papers_upload_path
+    redirect_to test_paper_path(@test_paper)
   end
 
   def update

@@ -3,7 +3,7 @@
     <a href="<%= root_path %>" class="item">Home</a>
     <% if user_signed_in? %>
         <div class="ui right floated dropdown item">
-          <%= current_user.username %><i class="icon dropdown"></i>
+          <%= current_user.username.capitalize %> (<%= current_user.power %>)<i class="icon dropdown"></i>
           <div class="menu">
             <a class="item"><i class="edit icon"></i> Edit Profile</a>
             <a class="item"><i class="globe icon"></i> Choose Language</a>

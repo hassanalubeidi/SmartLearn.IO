@@ -7,7 +7,11 @@ class TestPaper < ActiveRecord::Base
 
   accepts_nested_attributes_for :questions, :reject_if => :all_blank, :allow_destroy => true
   def date_name 
-  	return "#{self.subject.name} #{self.date}"
+    if self.subject != nil then
+  	 return "#{self.subject.name} #{self.date.strftime('%B %Y')}"
+    else
+      return "No Subject - #{self.date.strftime('%B %Y')}"
+    end
   end
   def tots(user)
   	marks = 0

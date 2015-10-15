@@ -21,7 +21,7 @@ class Flashcard < ActiveRecord::Base
 	def state(user)
 		correct_keypoints = []
 		self.keypoints.each do |keypoint|
-			unless keypoint.attempts.count == 0 then
+			unless keypoint.attempts.where(user: user).count == 0 then
 				if keypoint.attempts.where(user: user).last.correct == true then
 					correct_keypoints.push(keypoint)
 				end

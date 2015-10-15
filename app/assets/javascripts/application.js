@@ -22,6 +22,12 @@
 
 $(document)
   .ready(function() {
+    $('.item')
+        .tab()
+      ;
+      $('.profile.modal')
+        .modal('attach events', '.open-profile', 'show')
+      ;
     $(".best_in_place").best_in_place();
     $('.overlay')
       .visibility({

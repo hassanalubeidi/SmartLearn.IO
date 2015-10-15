@@ -4,9 +4,12 @@
         <div class="ui basic segment">
           <%= render partial: "subjects/knowledge/objectives" %>
           <% if @subject.all_objectives.count == 0 then %>
-			<h2 class="ui header">No objectives for this subject at all!</h2>]
-			<%= link_to "Add objectives", new_subject_topic_path(@subject) %>
-			<% end %>
+			<h2 class="ui message">No objectives for this subject</h2>
+			
+		  <% end %>
+		  <%= show_if_teacher(current_user) do %>
+			<%= link_to "Add a topic", new_subject_topic_path(@subject) %>
+		<% end %>
       </div>
   </div>
 </div>

@@ -1,13 +1,20 @@
 
-    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2> <a class="ui icon button" href="../test_papers/new">Add testpaper</a>
+    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2>
+    <%= show_if_teacher(current_user) do %>
+     <%= link_to "Add testpaper", new_test_paper_path, class: "ui icon button", style: "
+    margin-bottom: 20px;" %>
+    <% end %>
     <div class="ui centered cards">
+
 <% TestPaper.where(subject: @subject).each do |testpaper| %>
   <div class="ui card">
   <div class="ui top indicating attached progress" data-percent="<%=  testpaper.tots(current_user)  %>">
     <div class="bar" style="transition-duration: 300ms; width: <%=  testpaper.tots(current_user) %>%;"></div>
   </div>
     <div class="content">
-      <%= link_to "<i class='right floated red remove icon'></i>".html_safe, testpaper , method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= show_if_teacher(current_user) do %>
+        <%= link_to "<i class='right floated red remove icon'></i>".html_safe, testpaper , method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
       <div class="header">
         <%= testpaper.date.strftime('%b %Y') %>
       </div>

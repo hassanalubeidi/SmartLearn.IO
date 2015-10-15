@@ -3,8 +3,10 @@
 <div class="ui selection list">
   <% @subjects.each do |subject| %>
   <div class="item" onclick="location.href='<%=  subject_path(subject) %>';" style="cursor: pointer;" >
+    <%= show_if_teacher(current_user) do %>
       <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "right floated compact ui button" %>
       <%= link_to 'Edit', edit_subject_path(subject), class: "ui right floated compact ui button" %>
+    <% end %>
     <div class="content">
       <h2 class="header"><%= subject.name %>
       </h2>
@@ -19,7 +21,10 @@
 <% if Subject.count == 0 then %>
 <%= render 'subjects/no_subjects' %>
 <% end %>
-<%= link_to "New subject", new_subject_path, class: "ui fluid button" %>
+<%= show_if_teacher(current_user) do %>
+  <%= link_to "New subject", new_subject_path, class: "ui fluid button" %>
+<% end %>
+
 
 roadmap: v0.4 fully student compatible, v0.9 fully teacher student compatible, v1.9 api compatible
 <!-- 
