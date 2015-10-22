@@ -1,5 +1,4 @@
 class Question < ActiveRecord::Base
-  before_save :default_values
   
   belongs_to :topic
   belongs_to :main_question
@@ -48,7 +47,7 @@ class Question < ActiveRecord::Base
 		end
 		return diffs / count #mean of the diffuculties
 	end
-	def default_values
-	    self.objectives ||= self.main_question.objectives
+	def objectives
+	    self.main_question.objectives
 	end
 end

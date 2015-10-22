@@ -310,7 +310,7 @@ EOXML
       end
       
     end
-    redirect_to test_papers_path(testpaper)
+    redirect_to test_paper_path(testpaper)
   end
   def show_uploaded
     @questions = Question.last(params[:questions_number])

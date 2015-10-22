@@ -7,7 +7,17 @@ class Objective < ActiveRecord::Base
   belongs_to :topic
   belongs_to :objective
 
-
+  def questions 
+  	qs = []
+  	MainQuestion.all.each do |mq|
+  		if mq.objectives.include? self then
+  			mq.questions.each do |q|
+  				qs.push q
+  			end
+  		end
+  	end
+  	return qs
+  end
   def progress(user) #usually user = current_user
 		marks = 0
 		total_marks = 0
