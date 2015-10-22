@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   belongs_to :topic
+  belongs_to :main_question
   has_many :answers, :dependent => :destroy
   belongs_to :test_paper
   has_attached_file :attachment, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

@@ -1,26 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Topic:</strong>
-  <%= @question.topic %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @question.text %>
-</p>
-<%= image_tag @question.attachment.url %>
-<p>
-  <strong>Total marks:</strong>
-  <%= @question.total_marks %>
-</p>
-	<% if @question.answers.where(:user => current_user).count == 0 then %>
-		<%= link_to "you need to answer this", new_question_answer_path(@question) %>
-	<% else %>
-		you got <%= @marks %> out of <%= @question.total_marks %> ,  
-		<%= (Time.now -  @question.answers.where(:user => current_user).last.created_at).to_i / 86400 %> TIME DEGREDATION
+<% MainQuestion.all.each do |mq %>
+	<% mq.questions.each do |q| %>
+	<%= q.html.html_safe %>
+	-------
 	<% end %>
-<div>
-<%= link_to 'Edit', edit_question_path(@question), class: "ui primary button" %>
-<%= link_to 'Back', subject_path(@question.objectives.last.topic.subject), class: "ui button" %>
-</div>
+<% end %>

@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   resources :attempts
   resources :lessons
-  get 'test_papers/upload/:id', to: 'test_papers#upload'
-  post 'test_papers/upload/:id', to: 'test_papers#parse'
+  get 'test_papers/upload', to: 'test_papers#upload'
+  post 'test_papers/upload/', to: 'test_papers#parse'
   get 'test_papers/upload/show/', to: 'test_papers#show_uploaded'
   resources :test_papers
 
