@@ -67,7 +67,7 @@ gem "cocoon"
 gem 'simple_form'
 gem "paperclip", "~> 4.2"
 gem 'best_in_place', '~> 3.0.1'
-gem 'ParsePapers', '~> 2.1.1', :git => 'git://github.com/hassanalubeidi/ParsePapers.git'
+gem 'ParsePapers', '~> 2.1.2', :git => 'git://github.com/hassanalubeidi/ParsePapers.git'
 gem "nokogiri"
 gem 'rest-client'
 gem 'json'

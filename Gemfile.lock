@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/hassanalubeidi/ParsePapers.git
-  revision: 882731b284c411dace6caf3b9ffc1f657810b463
+  revision: a4d8130593f658a9c3fdb4e064a2aa5f2b6eb1b0
   specs:
-    ParsePapers (2.1.1)
+    ParsePapers (2.1.2)
 
 GIT
   remote: git://github.com/plataformatec/devise.git
@@ -255,7 +255,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ParsePapers (~> 2.1.1)!
+  ParsePapers (~> 2.1.2)!
   best_in_place (~> 3.0.1)
   bundler
   capybara
@@ -290,3 +290,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   validates_formatting_of
+
+BUNDLED WITH
+   1.10.6
