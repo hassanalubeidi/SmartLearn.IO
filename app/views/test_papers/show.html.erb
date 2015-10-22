@@ -1,3 +1,6 @@
+<head>
+<link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
+</head>
 <div class="ui container">
 <h1 class="ui inverted red header"><%= @test_paper.date_name rescue nil %> </h1>
 <% @test_paper.questions.each do |question| %>
@@ -5,14 +8,20 @@
 <% end %>
 <% @test_paper.main_questions.each do |mq| %>
 <div class="ui segment">
-  <% mq.questions.each do |question| %>
+  <% mq.questions.each_with_index do |question, index| %>
 
 	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %></div>
 	<div class="labels">
+	<% if (index + 1) == mq.questions.count then %>
+		<% top = -3.5 %>
+	<% else %>
+		<% top = -1.25 %>
+	<% end %>
 	<% if question.answers.where(question: question, user: current_user).count != 0 %>
-       <%= link_to marks(question), new_question_answer_path(question) %>
+
+       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><%= link_to marks(question), new_question_answer_path(question), style: "position:relative; top: #{top}em; background-color: white;" %></div>
        <% else %>
-       <%= link_to "answer", new_question_answer_path(question), class: "ui red right tiny floated button" unless question.answers.count > 0 %>
+       <div style="width:705px; margin: auto; top: 30px"><%= link_to "answer", new_question_answer_path(question),style: "float:right; background-color: white ;position: relative; top: #{top}em;", class: "ui right floated" unless question.answers.count > 0 %></div>
        <% end %>
 	</div>
 
@@ -24,7 +33,7 @@
   </div>
 </div>
 <% end %>
-<% if @test_paper.questions.count == 0 then %>
+<% if @test_paper.main_questions.count == 0 then %>
 	<div class="ui basic segment">
 		<h2 class="ui centered header">This paper has no questions.</h2>
 		<h3 class="ui centered header"><%= link_to "Manually add some", edit_test_paper_path(@test_paper) %></h3>
