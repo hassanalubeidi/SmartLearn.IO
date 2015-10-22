@@ -13,7 +13,7 @@
   <div class="ui segment">
   <h3 class="">Mark Scheme</h3>
   <div style="width: 705px; margin: auto;">
-  <%= @question.mark_scheme_html.html_safe %>
+  <%= @question.mark_scheme_html.html_safe rescue nil %>
   </div>
   </div>
   <div class="field">

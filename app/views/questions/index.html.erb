@@ -9,7 +9,9 @@
   -------
   <% end %>
   <div class="ui secondary segment">
-  <%= mq.objectives.last.name rescue nil %>
+  <% mq.objectives.each do |obj|  %>
+    <div class="ui blue label"><%= obj.name rescue nil %></div>
+  <% end %>
   </div>
 </div>
 <% end %>

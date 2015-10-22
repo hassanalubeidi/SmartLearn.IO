@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022000907) do
+ActiveRecord::Schema.define(version: 20151022103209) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20151022000907) do
     t.string   "exampro_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "main_questions"
+    t.integer  "test_paper_id"
   end
 
   create_table "objective_states", force: true do |t|

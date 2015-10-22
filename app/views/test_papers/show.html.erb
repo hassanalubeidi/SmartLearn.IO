@@ -1,8 +1,13 @@
 <div class="ui container">
-<h1 class="ui inverted red header"><%= @test_paper.date_name %> </h1>
+<h1 class="ui inverted red header"><%= @test_paper.date_name rescue nil %> </h1>
 <% @test_paper.questions.each do |question| %>
+
+<% end %>
+<% @test_paper.main_questions.each do |mq| %>
 <div class="ui segment">
-	<div class="ui segment"><div style="width:705px; margin: auto;"><%= question.html.html_safe %></div></div>
+  <% mq.questions.each do |question| %>
+
+	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %></div>
 	<div class="labels">
 	<% question.objectives.uniq.each do |objective| %>
 		<div class="ui label"><strong><%= objective.name %></strong></div>
@@ -13,6 +18,13 @@
        <%= link_to "answer", new_question_answer_path(question), class: "ui green basic fluid button" unless question.answers.count > 0 %>
        <% end %>
 	</div>
+
+  <% end %>
+  <div class="ui secondary segment">
+  <% mq.objectives.each do |obj|  %>
+    <div class="ui blue label"><%= obj.name rescue nil %></div>
+  <% end %>
+  </div>
 </div>
 <% end %>
 <% if @test_paper.questions.count == 0 then %>
@@ -22,7 +34,7 @@
 		<div class="ui  horizontal divider">
 	   		Or
 	  	</div>
-		<h3 class="ui centered header"><%= link_to "Add through Exampro", "#{test_papers_upload_path}/#{@test_paper.id}" %></h3>
+		<h3 class="ui centered header"><%= link_to "Add through Exampro", "#{test_papers_upload_path}" %></h3>
 	</div>
 <% end %>
 </div>

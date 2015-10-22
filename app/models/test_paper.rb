@@ -1,6 +1,7 @@
 class TestPaper < ActiveRecord::Base
   belongs_to :subject
   has_many :questions, :dependent => :destroy
+  has_many :main_questions, :dependent => :destroy
 
   validates :date, presence: true
   validates :subject, presence: true

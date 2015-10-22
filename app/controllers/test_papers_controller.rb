@@ -1,4 +1,3 @@
-
 class TestPapersController < ApplicationController
 
   require 'ParsePapers'
@@ -246,11 +245,12 @@ objectives = Nokogiri::Slop <<-EOXML
 EOXML
 
 
-
+    testpaper = TestPaper.find(params[:testpaper_id])
     url = params[:test_paper_url]
     
     params =  CGI::parse(url)
     questions =  params["doclist"].join.split("|").compact
+    questions.sort_by!{ |m| m.downcase }
     questions.each_with_index do |question, index|
       unless question_meta_data.root.q.at_css("[qid='#{question}']") == nil then
         template_url = "http://content.doublestruck.eu/?lk=b8a021269b01657fa73ed3cdcda2f530&subject=AA_MACO_D&headerdate=&headercomment=&returntype=1&headertitle=&headermarks=5&dl=false&headersubtitle=&headerauthor=&type=Q&doclist"
@@ -258,8 +258,11 @@ EOXML
         question_html = Nokogiri::HTML(open(q_url))
 
         mainquestion = MainQuestion.create(
-            exampro_id: question
+            exampro_id: question,
+            test_paper_id: testpaper.id
             )
+        testpaper.main_questions << mainquestion
+        testpaper.save
         marks = question_html.content.scan(/\(\d\)/)
     
         question_html.css("table").each_with_index do |table, index|
@@ -267,42 +270,47 @@ EOXML
           if ques_id.scan(/\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).size > 1 then # validation
              next
           else
-            if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...
-              $last_good = ques_id.scan(/\([a-h]\)/).join
+            begin
+              if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...
+                $last_good = ques_id.scan(/\([a-h]\)/).join
+                ques = Question.new(
+                  main_question_id: mainquestion.id,
+                  total_marks: marks[index].scan(/[0-50]/).join.to_i,
+                  html: table.to_html,
+                  position: ques_id,
+                  )
+                ques.save
 
-              ques = Question.new(
-                main_question_id: mainquestion.id,
-                total_marks: marks[index].scan(/[1-50]/).join.to_i,
-                html: table.to_html,
-                position: ques_id,
-                )
-              ques.save
-            else
-              Question.create(
-                main_question_id: mainquestion.id,
-                total_marks: marks[index].scan(/[1-50]/).join.to_i,
-                html: table.to_html,
-                position: "#{$last_good}#{ques_id}"
-                )
+              else
+                Question.create(
+                  main_question_id: mainquestion.id,
+                  total_marks: marks[index].scan(/[0-50]/).join.to_i,
+                  html: table.to_html,
+                  position: "#{$last_good}#{ques_id}"
+                  )
+              end
+              rescue NoMethodError # you can also add this
+                
             end
+            
           end
         end
         question_objectives_ids = question_meta_data.root.q.at_css("[qid='#{question}']").attribute("index7").to_s.split("| ") # find objective ids
         question_objectives_ids.each do |o_id| 
           unless objectives.root.level1.css("[id='#{o_id.sub(/[a-z]/, "")}']") == nil then
-            topic = Topic.find_or_create_by( name: objectives.root.level1.at_css("[id='#{o_id.strip.sub(/[a-z]/, "")}']").attribute("data").to_html, subject: Subject.first )
+            topic = Topic.find_or_create_by( name: objectives.root.level1.at_css("[id='#{o_id.strip.sub(/[a-z]/, "")}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""), subject: testpaper.subject )
           end
           objective = Objective.find_or_create_by(
-                name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html,
+                name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""),
                 topic: topic,
                 )
           mainquestion.objectives << objective
           mainquestion.save
         end
       end
-
+      
     end
-    
+    redirect_to test_papers_path(testpaper)
   end
   def show_uploaded
     @questions = Question.last(params[:questions_number])
@@ -336,8 +344,7 @@ EOXML
 
   private
     def set_test_paper
-
-
+      @test_paper = TestPaper.find(params[:id])
     end
 
     def test_paper_params

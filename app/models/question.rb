@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+  before_save :default_values
+  
   belongs_to :topic
   belongs_to :main_question
   has_many :answers, :dependent => :destroy
@@ -9,6 +11,7 @@ class Question < ActiveRecord::Base
   has_many :lines
   accepts_nested_attributes_for :lines
   has_many :objectives, through: :lines
+
   def similar_questions
 	    quess = []
 		self.objectives.each do |obj|
@@ -45,7 +48,7 @@ class Question < ActiveRecord::Base
 		end
 		return diffs / count #mean of the diffuculties
 	end
-	def foo
-		"bar"
+	def default_values
+	    self.objectives ||= self.main_question.objectives
 	end
 end
