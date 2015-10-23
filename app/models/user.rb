@@ -27,4 +27,25 @@ class User < ActiveRecord::Base
       false 
     end
   end
+
+  def answered_objectives
+    questions = Question.all.select{ |question| question.answer(self) != nil }
+    answered_objectives = []
+    questions.each do |question|
+      question.main_question.objectives.each do |obj|
+        answered_objectives.push obj
+      end
+    end
+    return answered_objectives.uniq
+  end
+  def answered_topics
+    questions = Question.all.select{ |question| question.answer(self) != nil }
+    answered_objectives = []
+    questions.each do |question|
+      question.main_question.objectives.each do |obj|
+        answered_objectives.push obj.topic
+      end
+    end
+    return answered_objectives.uniq
+  end
 end

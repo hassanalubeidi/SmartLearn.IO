@@ -1318,10 +1318,13 @@ EOXML
         template_url = url.scan(/.*?(?=doclist)doclist/).join
         q_url = "#{template_url}=%7C#{urlify(question)}"
         question_html = Nokogiri::HTML(open(q_url))
+        m_url = q_url.gsub(/type.?\=[A-Z]/, "type=M")
+        mark_scheme_html = Nokogiri::HTML(open(m_url))
 
         mainquestion = MainQuestion.create(
             exampro_id: question,
-            test_paper_id: testpaper.id
+            test_paper_id: testpaper.id,
+            answer_html: mark_scheme_html.to_html
             )
         testpaper.main_questions << mainquestion
         testpaper.save

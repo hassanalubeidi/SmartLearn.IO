@@ -25,6 +25,9 @@ class Topic < ActiveRecord::Base
 		end
 	end
 	
+	def answered_by?(user)
+		user.answered_topics.include? self
+	end
 
 	def unique_questions
 		questionss = []

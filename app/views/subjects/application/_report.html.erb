@@ -34,38 +34,42 @@
 <div class="ui basic segment">
     
     <% @subject.topics.each do |topic| %>
-    <div class="ui bottom attached segment">
-        <div class="ui top attached label"><%= topic.name %></div>
-        <div class="ui accordion">
-            <div class="active title">
-                <i class="dropdown icon"></i>
-              <%= topic.objectives.count %> objective<%= if topic.objectives.count > 1 then "s" end %>
+      <% if topic.answered_by?(current_user) then %>
+      <div class="ui bottom attached segment">
+          <div class="ui top attached label"><%= topic.name %> </div>
+          <div class="ui accordion">
+              <div class="active title">
+                  <i class="dropdown icon"></i>
+                <%= topic.objectives.count %> objective<%= if topic.objectives.count > 1 then "s" end %>
 
-            </div>
-            <div class="content">
-                <table class="ui very basic table" style="padding-left:30px">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <% topic.objectives.each do |obj| %>
-                        <tr>
-                            <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
-                            </td>
-                            <td>
-                                <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
-                                </div>
-                            </td>
-                        </tr>
-                    <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+              </div>
+              <div class="content">
+                  <table class="ui very basic table" style="padding-left:30px">
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Score</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <% topic.objectives.each do |obj| %>
+                        <% if obj.answered_by?(current_user) %>
+                          <tr>
+                              <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+                              </td>
+                              <td>
+                                  <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
+                                  </div>
+                              </td>
+                          </tr>
+                        <% end %>
+                      <% end %>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <% end %>
     <% end %>
     
 </div>

@@ -18,6 +18,9 @@ class Objective < ActiveRecord::Base
   	end
   	return qs
   end
+  def answered_by?(user)
+		user.answered_objectives.include? self
+	end
   def progress(user) #usually user = current_user
 		marks = 0
 		total_marks = 0
