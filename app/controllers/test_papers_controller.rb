@@ -1316,7 +1316,7 @@ EOXML
     questions.each_with_index do |question, index|
       unless question_meta_data.root.q.at_css("[qid='#{question}']") == nil then
         template_url = url.scan(/.*?(?=doclist)doclist/).join
-        q_url = "#{template_url}=%7C#{urlify(question)}"
+        q_url = url.gsub(/doclist\s*(((?!doclist|&).)+)/, "doclist=#{urlify(question)}")
         question_html = Nokogiri::HTML(open(q_url))
         m_url = q_url.gsub(/type.?\=[A-Z]/, "type=M")
         mark_scheme_html = Nokogiri::HTML(open(m_url))
@@ -1324,7 +1324,8 @@ EOXML
         mainquestion = MainQuestion.create(
             exampro_id: question,
             test_paper_id: testpaper.id,
-            answer_html: mark_scheme_html.to_html
+            answer_html: mark_scheme_html.to_html,
+            html: question_html.to_html
             )
         testpaper.main_questions << mainquestion
         testpaper.save
@@ -1369,8 +1370,12 @@ EOXML
                 name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""),
                 topic: topic,
                 )
+          
           mainquestion.objectives << objective
           mainquestion.save
+          objective.main_questions << mainquestion
+          objective.save
+
         end
       end
       

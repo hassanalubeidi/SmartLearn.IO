@@ -5,7 +5,7 @@ class Objective < ActiveRecord::Base
   has_many :flashcards
   accepts_nested_attributes_for :flashcards, :reject_if => :all_blank, :allow_destroy => true
   belongs_to :topic
-  belongs_to :objective
+  has_and_belongs_to_many :main_questions
 
   def questions 
   	qs = []

@@ -9,7 +9,6 @@
 <% @test_paper.main_questions.each do |mq| %>
 <div class="ui segment">
   <% mq.questions.each_with_index do |question, index| %>
-
 	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %></div>
 	<div class="labels">
 	<% if (index + 1) == mq.questions.count then %>
@@ -23,13 +22,18 @@
        <% else %>
        <div style="width:705px; margin: auto; top: 30px"><%= link_to "answer", new_question_answer_path(question),style: "float:right; background-color: white ;position: relative; top: #{top}em;", class: "ui right floated" unless question.answers.count > 0 %></div>
        <% end %>
+       <%= question.id %>
 	</div>
 
+  <% end %>
+  <% if mq.questions.count == 0 then %>
+  <div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= mq.html.html_safe %></div>
   <% end %>
   <div class="ui secondary segment">
   <% mq.objectives.each do |obj|  %>
     <div class="ui blue label"><%= obj.name rescue nil %></div>
   <% end %>
+  <%= mq.id %><%= mq.exampro_id %>
   </div>
 </div>
 <% end %>

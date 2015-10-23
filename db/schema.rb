@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022103209) do
+ActiveRecord::Schema.define(version: 20151023230841) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -101,7 +101,17 @@ ActiveRecord::Schema.define(version: 20151022103209) do
     t.datetime "updated_at"
     t.string   "main_questions"
     t.integer  "test_paper_id"
+    t.text     "html"
   end
+
+  create_table "main_questions_objectives", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "objective_id"
+    t.integer "main_question_id"
+  end
+
+  add_index "main_questions_objectives", ["objective_id"], name: "index_main_questions_objectives_on_objective_id"
+  add_index "main_questions_objectives", ["question_id"], name: "index_main_questions_objectives_on_question_id"
 
   create_table "objective_states", force: true do |t|
     t.string   "status"
