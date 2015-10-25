@@ -1314,7 +1314,7 @@ EOXML
     questions =  params["doclist"].join.split("|").compact
     questions.sort_by!{ |m| m.downcase }
     questions.each_with_index do |question, index|
-      unless question_meta_data.root.q.at_css("[qid='#{question}']") == nil then
+      if question_meta_data.root.q.at_css("[qid='#{question}']") != nil then
         template_url = url.scan(/.*?(?=doclist)doclist/).join
         q_url = url.gsub(/doclist\s*(((?!doclist|&).)+)/, "doclist=#{urlify(question)}")
         question_html = Nokogiri::HTML(open(q_url))
@@ -1331,10 +1331,10 @@ EOXML
         testpaper.save
         marks = question_html.content.scan(/\(\d\)/)
     
+        if question_html.css("table")
         question_html.css("table").each_with_index do |table, index|
           ques_id = table.content.scan(/\([a-h]\)|\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).join()
           if ques_id.scan(/\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).size > 1 then # validation
-             next
           else
             begin
               if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...
@@ -1355,11 +1355,12 @@ EOXML
                   position: "#{$last_good}#{ques_id}"
                   )
               end
-              rescue NoMethodError # you can also add this
-                
+            rescue NoMethodError
+
             end
-            
+            end
           end
+
         end
         question_objectives_ids = question_meta_data.root.q.at_css("[qid='#{question}']").attribute("index7").to_s.split("| ") # find objective ids
         question_objectives_ids.each do |o_id| 
@@ -1386,6 +1387,18 @@ EOXML
     @questions = Question.last(params[:questions_number])
   end
   def show
+    @main_questions = @test_paper.main_questions
+    @main_questions.each do |mainquestion|
+      if mainquestion.questions.count == 0 then
+
+                Question.create(
+                    main_question_id: mainquestion.id,
+                    total_marks: mainquestion.html.scan(/Total ./).join.sub("Total ", ""),
+                    html: mainquestion.html,
+                    position: "#{mainquestion.html.scan(/Q\d\./)}"
+                    )
+      end
+    end
   end
 
   def new
