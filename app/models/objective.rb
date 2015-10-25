@@ -9,11 +9,9 @@ class Objective < ActiveRecord::Base
 
   def questions 
   	qs = []
-  	MainQuestion.all.each do |mq|
-  		if mq.objectives.include? self then
-  			mq.questions.each do |q|
-  				qs.push q
-  			end
+  	self.main_questions.each do |mq|
+  		mq.questions.each do |q|
+  			qs.push q
   		end
   	end
   	return qs
