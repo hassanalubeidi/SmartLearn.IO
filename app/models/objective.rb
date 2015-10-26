@@ -38,11 +38,12 @@ class Objective < ActiveRecord::Base
 		end
 	end
 	def colour(user)
-		if self.progress(user) < 50 then
+		progress = self.progress(user)
+		if progress < 50 then
 			return "red"
-		elsif self.progress(user) < 81
+		elsif progress < 81
 			return "yellow"
-		elsif self.progress(user) > 81
+		elsif progress > 81
 			return "green"
 		else 
 			return ""

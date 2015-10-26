@@ -34,13 +34,13 @@
 <div class="ui basic segment">
     
     <% @subject.topics.each do |topic| %>
-      <% if topic.answered_by?(current_user) then %>
+    <% objective_count = topic.objectives.count %>
       <div class="ui bottom attached segment">
           <div class="ui top attached label"><%= topic.name %> </div>
           <div class="ui accordion">
               <div class="active title">
                   <i class="dropdown icon"></i>
-                <%= topic.objectives.count %> objective<%= if topic.objectives.count > 1 then "s" end %>
+                <%= objective_count %> objective<%= if objective_count > 1 then "s" end %>
 
               </div>
               <div class="content">
@@ -53,7 +53,7 @@
                       </thead>
                       <tbody>
                       <% topic.objectives.each do |obj| %>
-                        <% if obj.answered_by?(current_user) %>
+  
                           <tr>
                               <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
                               </td>
@@ -62,14 +62,14 @@
                                   </div>
                               </td>
                           </tr>
-                        <% end %>
+           
                       <% end %>
                       </tbody>
                   </table>
               </div>
           </div>
       </div>
-      <% end %>
+
     <% end %>
     
 </div>
