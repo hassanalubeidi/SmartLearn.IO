@@ -34,8 +34,9 @@
 <div class="ui basic segment">
     
     <% @subject.topics.each do |topic| %>
+
     <% objective_count = topic.objectives.count %>
-      <div class="ui bottom attached segment">
+      <div class="ui bottom attached segment" style="display:none" id="topic<%= topic.id %>">
           <div class="ui top attached label"><%= topic.name %> </div>
           <div class="ui accordion">
               <div class="active title">
@@ -52,17 +53,22 @@
                           </tr>
                       </thead>
                       <tbody>
-                      <% topic.objectives.each do |obj| %>
-  
-                          <tr>
-                              <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
-                              </td>
-                              <td>
-                                  <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  obj.progress(current_user) unless obj == nil %>
-                                  </div>
-                              </td>
-                          </tr>
-           
+                        <% topic.objectives.each do |obj| %>
+                        <% score = obj.progress(current_user) %>
+                        <% unless score.nan? then %> 
+                              <tr>
+                                  <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+                                  </td>
+                                  <td>
+                                      <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  score unless obj == nil %>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <script>
+                                $("#topic<%= topic.id %>").css("display", "block")
+                              </script>
+                              <!-- hacky way to only display topics that have objectives in the -->
+                        <% end %>
                       <% end %>
                       </tbody>
                   </table>
