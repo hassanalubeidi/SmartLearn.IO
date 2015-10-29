@@ -6,7 +6,7 @@
 <% @test_paper.questions.each do |question| %>
 
 <% end %>
-<% @test_paper.main_questions.each do |mq| %>
+<% @test_paper.main_questions.order(':exampro_id').each do |mq| %>
 <div class="ui segment">
   <% mq.questions.each_with_index do |question, index| %>
 	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %></div>
@@ -32,8 +32,7 @@
   <div class="ui secondary segment">
   <% mq.objectives.each do |obj|  %>
     <div class="ui blue label"><%= obj.name rescue nil %></div>
-  <% end %>
-  <%= mq.id %><%= mq.exampro_id %>
+  <% end %><%= mq.exampro_id %>
   </div>
 </div>
 <% end %>

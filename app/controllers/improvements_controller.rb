@@ -12,7 +12,7 @@ class ImprovementsController < ApplicationController
   end
   def add_review
     Review.create :user => current_user, :improvement => @improvement
-    redirect_to root_path, notice: 'Improvement was successfully created.'
+    redirect_to improvements_path, notice: 'Improvement was successfully created.'
   end
   def set_user_as_teacher
     @user = User.find(params[:id])
