@@ -47,6 +47,9 @@ class Question < ActiveRecord::Base
 		end
 		return diffs / count #mean of the diffuculties
 	end
+	def get_marks_percentage(user)
+		self.answers.where(:user => user).last.marks_integer.to_f / self.total_marks.to_f
+	end
 	def objectives
 	    self.main_question.objectives
 	end

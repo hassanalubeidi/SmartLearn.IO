@@ -1,12 +1,22 @@
-<div class="ui segments text container">
+<div class="ui segments container">
 	<h2 class="ui inverted blue segment">
 		<%= @objective.name %>
 		<%= link_to "Test this objective", test_objective_path(@objective), class: "ui inverted blue float right button" %>
 </h2>
-	<% @objective.flashcards.each do |flashcard| %>
-	<div class="ui segment">
-		<strong><%= flashcard.top %></strong>
-		<div><%= flashcard.bottom %></div>
-	</div>
+	<h3>What's been going wrong?</h3>
+	<% @objective.questions.uniq.each do |question| %>
+		<% if question.answer(current_user) != nil  %>
+			<% if question.get_marks_percentage(current_user) != 1 then %>
+			<div class="ui segment">
+				<div>Source: <%= question.main_question.exampro_id %>, <%= question.position %></div>
+				------
+				<div><%= question.answer(current_user).text %></div>
+				<strong>Associated objectives:</strong>
+				<% (question.objectives.uniq).each do |objective| %>
+				<span class="ui inline label"><%= objective.name %></span>
+				<% end %>
+			</div>
+			<% end %>
+		<% end %>
 	<% end %>
 </div>
