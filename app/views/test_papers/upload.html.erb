@@ -2,11 +2,12 @@
 	<h1>Automatically input testpaper from Exampro</h1>
 	<div class="ui segment">
 	<%= form_tag do %>
-			<label>Paper:</label>
-			<%=  select_tag "testpaper_id", options_from_collection_for_select(TestPaper.all, "id", "date_name") %>
+			<label>Paper: <%= @test_paper.date_name %></label>
 			<label>Exampro URL:</label>
+			<%= hidden_field nil, :testpaper_id, :value => @test_paper.id %>
 	        <%= text_field_tag :test_paper_url, params[:url] %>
 	        <%= submit_tag "Upload", class: "ui button" %>
 	<% end %>
 	</div>
+	<%= link_to "Back", test_paper_path(@test_paper) %>
 </div>

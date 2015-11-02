@@ -18,19 +18,71 @@
 	<% end %>
 	<% if question.answers.where(question: question, user: current_user).count != 0 %>
 
-       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><%= link_to marks(question), new_question_answer_path(question), style: "position:relative; top: #{top}em; background-color: white;" %></div>
+       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: white ;position: relative; top: <%= top %>em;"><%= marks(question) %></a></div>
+
        <% else %>
-       <div style="width:705px; margin: auto; top: 30px"><%= link_to "answer", new_question_answer_path(question),style: "float:right; background-color: white ;position: relative; top: #{top}em;", class: "ui right floated" unless question.answers.count > 0 %></div>
+       <div style="width:705px; margin: auto; top: 30px"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: white ;position: relative; top: <%= top %>em;">answer</a>
+
+       </div>
        <% end %>
        <%= question.id %>
 	</div>
+
+
+	<div class="ui modal answer-modal-<%= question.id %>">
+		<i class="close icon"></i>
+  <div class="header">
+    Answer
+  </div>
+  <div class="image content">
+ 
+    <div class="description">
+      <div class="ui header">
+      <%= form_for [question, Answer.new], :html => {:class => 'ui form'}, remote: true do |f| %>
+		  
+		  <div class="ui segment">
+		  <h3 class="">Mark Scheme</h3>
+		  <div style="width: 705px; margin: auto;">
+		  <%= question.main_question.answer_html.html_safe rescue nil %>
+		  </div>
+		  </div>
+		  <div class="field">
+		    <%= f.label "What went wrong?" %><br>
+		    <%= f.text_area :text %>
+		  </div>
+		  <div class="inline field">
+		    <%= f.label :marks %><br>
+		    <%= f.number_field :marks_integer, id: "marks-input-#{question.id}" %> / <%= question.total_marks %>
+		  </div>
+		  <%= f.hidden_field :prev_url, :value => @prev_url %>
+		  <div class="actions">
+		    <%= f.submit class: "ui red button", :id=> "submit-#{question.id}" %>
+		  </div>
+		<% end %>
+
+      </div>
+      
+    </div>
+  </div>
+
+	</div>
+
+<script>
+$('.answer-modal-<%= question.id %>')
+  .modal('attach events', '.answer-<%=question.id %>-button')
+;
+$("#submit-<%= question.id %>").on("click", function() {
+	$(".answer-<%=question.id%>-button").html(($( "#marks-input-<%= question.id %>").val()).concat("/<%= question.total_marks %>"));
+})
+</script>
+
 
   <% end %>
   <% if mq.questions.count == 0 then %>
   <div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= mq.html.html_safe %></div>
   <% end %>
   <div class="ui secondary segment">
-  <% mq.objectives.each do |obj|  %>
+  <% mq.objectives.uniq.each do |obj|  %>
     <div class="ui blue label"><%= obj.name rescue nil %></div>
   <% end %>
   <%= mq.id %><%= mq.exampro_id %>
@@ -44,7 +96,9 @@
 		<div class="ui  horizontal divider">
 	   		Or
 	  	</div>
-		<h3 class="ui centered header"><%= link_to "Add through Exampro", "#{test_papers_upload_path}" %></h3>
+		<h3 class="ui centered header"><%= link_to "Add through Exampro", test_papers_upload_path(:test_paper_id => @test_paper.id)  %></h3>
 	</div>
 <% end %>
 </div>
+
+

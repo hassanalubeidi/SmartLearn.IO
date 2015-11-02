@@ -10,6 +10,7 @@ class TestPapersController < ApplicationController
 
   def upload
     @testpaprs = TestPaper.all
+    @test_paper = TestPaper.find(params[:test_paper_id])
   end
   def parse
     question_meta_data = Nokogiri::Slop <<-EOXML

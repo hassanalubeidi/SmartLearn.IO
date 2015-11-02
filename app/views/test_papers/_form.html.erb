@@ -1,3 +1,4 @@
+<div class="ui container">
 <%= form_for(@test_paper, html: {:class => "ui form"}) do |f| %>
 <% if @test_paper.errors.any? %>
     <div id="error_explanation">
@@ -52,17 +53,9 @@
     <%= f.label :calc_allowed %><br>
     <%= f.check_box :calc_allowed, class: "ui checkbox" %>
   </div>
-  <!--
-  <h3>Create questions:</h3>
-  <div id="tasks">
-    <%= f.fields_for :questions do |question| %>
-      <%= render 'questions/form', :f => question, @question => question %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'add question', f, :questions, :class => "ui button" %>
-    </div>
-  </div>
-  <div class="ui divider"></div>
-  !-->
+
+  
+
   <%= f.submit class: "ui blue button" %>
 <% end %>
+</div>
