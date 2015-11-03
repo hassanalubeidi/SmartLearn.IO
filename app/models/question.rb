@@ -14,11 +14,11 @@ class Question < ActiveRecord::Base
   def similar_questions
 	    quess = []
 		self.objectives.each do |obj|
-			obj.questions.each do |ques|
-				quess.push(ques)
+			obj.main_questions.each do |mq|
+				quess.push(*mq.questions.all)
 			end
 		end
-		return quess
+		return quess.uniq
 	end
 	def expected(user)
 		total = []

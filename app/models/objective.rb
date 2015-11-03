@@ -32,9 +32,18 @@ class Objective < ActiveRecord::Base
 	end
 	def difficulty(user)
 		if user.grade == "A*" or user.grade == "A" then
-			self.easier_difficulty
+			if self.easier_difficulty != nil then
+				return self.easier_difficulty
+			else
+				return 25 # default difficulty
+			end
 		else 
-			self.harder_difficulty
+			
+			if self.harder_difficulty != nil then
+				return self.harder_difficulty
+			else
+				return 35 # default difficulty
+			end
 		end
 	end
 	def colour(user)
@@ -99,7 +108,7 @@ class Objective < ActiveRecord::Base
 
 
 	def time_degredation(question, user)
-		a = (Time.now -  question.answers.where(:user => user).last.created_at).to_i / 86400
+		a = ((Time.now) -  question.answers.where(:user => user).last.created_at).to_i / 86400
 		return half_life(user, question) ** -(a) # exponentail graph
 	end
 	def half_life(user, question) # a much more dynamic half life. NOT FINISHED NEEDS TO GET QUESTION.OBJECTIVES.QUESTIONS.COUNT

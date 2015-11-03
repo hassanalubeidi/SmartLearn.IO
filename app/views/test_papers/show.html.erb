@@ -9,7 +9,12 @@
 <% @test_paper.main_questions.each do |mq| %>
 <div class="ui segment">
   <% mq.questions.each_with_index do |question, index| %>
-	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %></div>
+	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %> </div>
+		<div class="ui yellow label">
+			<% question.similar_questions.each do |x| %>
+			 <%= x.id %>
+			<% end %>
+		</div>
 	<div class="labels">
 	<% if (index + 1) == mq.questions.count then %>
 		<% top = -3.5 %>
