@@ -20,6 +20,18 @@ class Question < ActiveRecord::Base
 		end
 		return quess.uniq
 	end
+	def source
+		mq = self.main_question
+		exampro_id = mq.exampro_id
+		year = exampro_id.split(".")[0].match(/[1-9][1-9]/)
+		month = exampro_id.split(".")[0][3]
+		if month = "W" then
+			month =  "January"
+		elsif month = "S" then
+			month = "June"
+		end
+		return "#{month} 20#{year}, Question #{exampro_id.split(".")[0][2]}#{self.position}"
+	end
 	def expected(user)
 		total = []
 		mean = 0

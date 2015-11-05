@@ -8,12 +8,21 @@
 		<% if question.answer(current_user) != nil  %>
 			<% if question.get_marks_percentage(current_user) != 1 then %>
 			<div class="ui segment">
-				<div>Source: <%= question.main_question.exampro_id %>, <%= question.position %></div>
+				<div class="ui accordion">
+				  <div class="active title">
+				    <i class="dropdown icon"></i>
+				    Source: <%= question.source %>
+				  </div>
+				  <div class="content">
+				    <%= question.main_question.html.gsub(/Q1\./, "").html_safe %>
+				  </div>
+				</div>
 				------
 				<div><%= question.answer(current_user).text %></div>
 				<strong>Associated objectives:</strong>
 				<% (question.objectives.uniq).each do |objective| %>
 				<span class="ui inline label"><%= objective.name %></span>
+
 				<% end %>
 			</div>
 			<% end %>
