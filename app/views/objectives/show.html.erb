@@ -1,9 +1,10 @@
 <div class="ui segments container">
-	<h2 class="ui inverted blue segment">
-		<%= @objective.name %>
-		<%= link_to "Test this objective", test_objective_path(@objective), class: "ui inverted blue float right button" %>
-</h2>
+	<div class="ui inverted blue segment">
+		<h3><%= @objective.name %></h3>
+		<%= link_to "Test this objective", test_objective_path(@objective), class: "ui inverted blue button" %>
+</div>
 	<h3>What's been going wrong?</h3>
+	<link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
 	<% @objective.questions.uniq.each do |question| %>
 		<% if question.answer(current_user) != nil  %>
 			<% if question.get_marks_percentage(current_user) != 1 then %>
@@ -11,10 +12,14 @@
 				<div class="ui accordion">
 				  <div class="active title">
 				    <i class="dropdown icon"></i>
-				    Source: <%= question.source %>
+				    <strong>Source: <%= question.source %></strong>
 				  </div>
 				  <div class="content">
-				    <%= question.main_question.html.gsub(/Q1\./, "").html_safe %>
+				    <% question.main_question.questions.each do |q| %>
+				    	<div style="<%= if q.id == question.id then 'background-color: #FFCECE' end %>">
+				    	<%= q.html.gsub(/Q1\./, "").html_safe %>
+				    	</div>
+				    <% end %>
 				  </div>
 				</div>
 				------
