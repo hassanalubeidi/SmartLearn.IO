@@ -22,8 +22,7 @@
 				    <% end %>
 				  </div>
 				</div>
-				------
-				<div><%= question.answer(current_user).text %></div>
+				<div class="ui red message"><%= question.answer(current_user).text %></div>
 				<strong>Associated objectives:</strong>
 				<% (question.objectives.uniq).each do |objective| %>
 				<span class="ui inline label"><%= objective.name %></span>
