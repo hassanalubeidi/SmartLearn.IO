@@ -1,4 +1,7 @@
-
+<script>
+    var topics_names = []
+    var topics_scores = []
+    </script>
     <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2>
     <%= show_if_teacher(current_user) do %>
      <%= link_to "Add testpaper", new_test_paper_path, class: "ui icon button", style: "
@@ -32,8 +35,15 @@
 <div class="ui divider"></div>
 <h2 class="ui header">A breakdown of your learning so far</h2>
 <div class="ui basic segment">
+    <div style="width:30%">
+      <canvas id="canvas" height="450" width="450"></canvas>
+    </div>
+
+
+
     
     <% @subject.topics.each do |topic| %>
+
 
     <% objective_count = topic.objectives.count %>
       <div class="ui bottom attached segment" style="display:none" id="topic<%= topic.id %>">
@@ -55,17 +65,22 @@
                       <tbody>
                         <% topic.objectives.each do |obj| %>
                         <% score = obj.progress(current_user) %>
+
                         <% unless score.nan? then %> 
                               <tr>
                                   <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+
                                   </td>
-                                  <td>
+                                  <td>]
+
                                       <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  score unless obj == nil %>
                                       </div>
                                   </td>
                               </tr>
                               <script>
                                 $("#topic<%= topic.id %>").css("display", "block")
+                                topics_names.push("<%= topic.name %>")
+                                topics_scores.push(<%= score %>)
                               </script>
                               <!-- hacky way to only display topics that have objectives in the -->
                         <% end %>
@@ -79,3 +94,27 @@
     <% end %>
     
 </div>
+<script>
+    var radarChartData = {
+      labels: topics_names,
+      datasets: [
+        {
+          label: "My First dataset",
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: topics_scores
+        }
+      ]
+    };
+
+    window.onload = function(){
+      window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+        responsive: true
+      });
+    }
+
+    </script>
