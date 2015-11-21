@@ -1,0 +1,12 @@
+<% score = obj.progress(current_user) %>
+<% unless score.nan? then %> 
+      <tr>
+          <td><%= link_to "#{ obj.name.truncate(50) unless obj == nil }", objective_path(obj) %>
+
+          </td>
+          <td>
+              <div class="ui <%= obj.colour(current_user) unless obj == nil %> circular label"><%=  score unless obj == nil %>
+              </div>
+          </td>
+      </tr>
+<% end %>
