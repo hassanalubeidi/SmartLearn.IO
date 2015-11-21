@@ -2,7 +2,7 @@
 <link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
 </head>
 <div class="ui container">
-<h1 class="ui inverted red header"><%= @test_paper.date_name rescue nil %> </h1>
+<h1 class="ui inverted red header"><%= @test_paper.name || @test_paper.date.strftime('%b %Y') %> </h1>
 <% @test_paper.questions.each do |question| %>
 
 <% end %>

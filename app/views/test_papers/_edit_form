@@ -14,45 +14,7 @@
   <div class="field">
     
   </div>
-  <div class="field">
-    <%= f.label :subject_id %><br>
-    <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.select(:date, [['June 2014', Date.new(2014,6,1)], 
-            ['Jan 2014', Date.new(2014,1,1)],
-            ['June 2013', Date.new(2013,6,1)],
-            ['Jan 2013', Date.new(2013,1,1)],
-            ['June 2012', Date.new(2012,6,1)],
-            ['Jan 2012', Date.new(2012,1,1)],
-            ['June 2011', Date.new(2011,6,1)],
-            ['Jan 2011', Date.new(2011,1,1)],
-            ['June 2010', Date.new(2010,6,1)],
-            ['Jan 2010', Date.new(2010,1,1)],
-            ['June 2009', Date.new(2009,6,1)],
-            ['Jan 2009', Date.new(2009,1,1)],
-            ['June 2008', Date.new(2008,6,1)],
-            ['Jan 2008', Date.new(2008,6,1)],
-            ['June 2007', Date.new(2007,6,1)],
-            ['Jan 2007', Date.new(2007,6,1)],
-            ['June 2006', Date.new(2006,6,1)],
-            ['Jan 2006', Date.new(2006,6,1)],
-            ['June 2005', Date.new(2005,6,1)],
-            ['Jan 2005', Date.new(2005,6,1)],
-            ['June 2004', Date.new(2004,6,1)],
-            ['Jan 2004', Date.new(2004,6,1)],
-            ['June 2003', Date.new(2003,6,1)],
-            ['Jan 2003', Date.new(2003,6,1)],
-            ['June 2002', Date.new(2002,6,1)],
-            ['Jan 2002', Date.new(2002,6,1)],
-            ], { :class => 'ui dropdown' })
-  %>
-  </div>
-  <div class="field">
-    <%= f.label :calc_allowed %><br>
-    <%= f.check_box :calc_allowed, class: "ui checkbox" %>
-  </div>
+
 
   <h3>Create questions:</h3>
   <div id="tasks">

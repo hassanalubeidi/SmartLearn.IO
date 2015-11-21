@@ -16,7 +16,7 @@
         <%= link_to "<i class='right floated red remove icon'></i>".html_safe, testpaper , method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
       <div class="header">
-        <%= testpaper.date.strftime('%b %Y') %>
+        <%= testpaper.name || testpaper.date.strftime('%b %Y') %>
       </div>
       <div class="meta">
         3 days ago
@@ -41,27 +41,11 @@
       <% progress = topic.progress(current_user) %>
       <% objective_count = topic.objectives.count %>
       <% unless progress.nan? %>
-      <div class="ui  segment" id="topic<%= topic.id %>">
-          <div class="ui top attached label"><%= topic.name %> <div class="ui blue right aligned label"><%= number_with_precision(progress, precision: 1) %>%</div></div>
+      <div class="ui <%= colour(progress) %> segment" id="topic<%= topic.id %>">
+          <div class="ui top basic attached label"><span style="font-size: 1.1em"><%= topic.name %></span> <div class="ui right float circular <%= colour(progress) %> label"><%= number_with_precision(progress, precision: 0) %>%</div></div>
           <div class="ui accordion">
-              <div class="active title">
-                  <i class="dropdown icon"></i>
-                <%= objective_count %> objective<%= if objective_count > 1 then "s" end %>
-
-              </div>
-              <div class="content">
-                  <table class="ui very basic table" style="padding-left:30px">
-                      <thead>
-                          <tr>
-                              <th>Name</th>
-                              <th>Score</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        
-      
-                      </tbody>
-                  </table>
+              <div class="ui accordion">
+                  <%= link_to "Details", subject_topic_path(@subject ,topic), class: "ui button", style: "margin-top: 15px" %>
               </div>
           </div>
       </div>

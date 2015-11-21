@@ -11,4 +11,18 @@ module ApplicationHelper
 			return nil
 		end
 	end
+	def colour(integer)
+		integer = integer.to_i
+		if integer > 90 then
+			return "green"
+		elsif integer > 75 then
+			return "olive"
+		elsif integer > 50 then 
+			return "yellow"
+		elsif integer > 30 then
+			return "orange"
+		else 
+			return "red"
+		end
+	end
 end

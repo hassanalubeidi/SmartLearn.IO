@@ -19,8 +19,13 @@
     <%= f.select(:subject_id, Subject.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :class => 'ui dropdown' }) %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.select(:date, [['June 2014', Date.new(2014,6,1)], 
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "Exam Paper date (if paper is full exam paper)" %><br>
+    <%= f.select(:date, [['Not Applicable', Date.new(1900, 1, 1)],
+            ['June 2014', Date.new(2014,6,1)], 
             ['Jan 2014', Date.new(2014,1,1)],
             ['June 2013', Date.new(2013,6,1)],
             ['Jan 2013', Date.new(2013,1,1)],
