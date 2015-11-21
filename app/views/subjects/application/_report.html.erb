@@ -1,5 +1,5 @@
 
-    <h2 class="ui header">Interim Assessments <%= @subject.progress(current_user) %></h2>
+    <h2 class="ui header">Question papers:</h2>
     <%= show_if_teacher(current_user) do %>
      <%= link_to "Add testpaper", new_test_paper_path, class: "ui icon button", style: "
     margin-bottom: 20px;" %>
@@ -19,7 +19,7 @@
         <%= testpaper.name || testpaper.date.strftime('%b %Y') %>
       </div>
       <div class="meta">
-        3 days ago
+        Created <%= time_ago_in_words(testpaper.created_at) %> ago
       </div>
       <div class="description">
         
@@ -30,7 +30,7 @@
   <% end %>
 </div>
 <div class="ui divider"></div>
-<h2 class="ui header">A breakdown of your learning so far</h2>
+<h2 class="ui header"><%= @subject.name %>'s attempted topics:</h2>
 <div class="ui basic segment">
 
 
