@@ -1,5 +1,5 @@
 class TestPapersController < ApplicationController
-
+  before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy, :index]
   require 'ParsePapers'
   require 'nokogiri'
   before_action :set_test_paper, only: [:show, :edit, :update, :destroy]
