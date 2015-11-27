@@ -5,7 +5,7 @@ module ApplicationHelper
 		# else
 		# 	return nil
 		# end
-		if user.power == "teacher" || "admin" then
+		if user.power == "admin" then
 			return yield
 		else
 			return nil
