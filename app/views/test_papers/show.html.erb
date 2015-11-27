@@ -3,30 +3,33 @@
 </head>
 <div class="ui container">
 <h1 class="ui inverted red header"><%= @test_paper.name || @test_paper.date.strftime('%b %Y') %> </h1>
-<% @test_paper.questions.each do |question| %>
-
-<% end %>
 <% @test_paper.main_questions.each do |mq| %>
 <div class="ui segment">
   <% mq.questions.each_with_index do |question, index| %>
-	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= question.html.html_safe %> </div>
+  	<% 	even = nil
+  		bg = 'white'
+  		if index % 2 == 0 then even = true else even = false end 
+  		if even then bg = '#F3F3F3'
+  		else bg = 'white'
+  		 end
+  	%>
+	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center; <%= if even then 'background-color: #F3F3F3' end %>"><%= question.html.html_safe %> </div>
 		
 	<div class="labels">
 	<% if (index + 1) == mq.questions.count then %>
 		<% top = -3.5 %>
 	<% else %>
-		<% top = -1.25 %>
+		<% top = -1.34 %>
 	<% end %>
 	<% if question.answers.where(question: question, user: current_user).count != 0 %>
 
-       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: white ;position: relative; top: <%= top %>em;"><%= marks(question) %></a></div>
+       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: <%= bg %> ;position: relative; top: <%= top %>em;"><strong><%= marks(question) %></strong></a></div>
 
        <% else %>
-       <div style="width:705px; margin: auto; top: 30px"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: white ;position: relative; top: <%= top %>em;">answer</a>
+       <div style="width:705px; margin: auto; top: 30px"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: <%= bg %> ;position: relative; top: <%= top %>em;"><strong>answer</strong></a>
 
        </div>
        <% end %>
-       <%= question.id %>
 	</div>
 
 
@@ -82,11 +85,13 @@ $("#submit-<%= question.id %>").on("click", function() {
   <% if mq.questions.count == 0 then %>
   <div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= mq.html.html_safe %></div>
   <% end %>
+
   <div class="ui secondary segment">
+  Topics:
   <% mq.objectives.uniq.each do |obj|  %>
     <div class="ui blue label"><%= obj.name rescue nil %></div>
   <% end %>
-  <%= mq.id %><%= mq.exampro_id %>
+  Source:<div class="right floated ui label"><%= mq.source %></div>
   </div>
 </div>
 <% end %>

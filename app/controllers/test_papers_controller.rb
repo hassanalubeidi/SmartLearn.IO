@@ -1336,6 +1336,20 @@ EOXML
         question_html.css("table").each_with_index do |table, index|
           ques_id = table.content.scan(/\([a-h]\)|\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).join()
           if ques_id.scan(/\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).size > 1 then # validation
+            #catches questions where exampro formating messes up
+            fix_marks = table.content.scan(/\(\d\)/)
+            actual_marks = 0
+            fix_marks.each do |m|
+              mm = m.scan(/\d/).join.to_i
+              actual_marks += mm
+            end
+            ques = Question.new(
+                  main_question_id: mainquestion.id,
+                  total_marks: actual_marks,
+                  html: "#{table.to_html} <strong>Warning, the above question contains formatting errors</strong>",
+                  position: "#{ques_id}"
+                  )
+                ques.save
           else
             begin
               if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...

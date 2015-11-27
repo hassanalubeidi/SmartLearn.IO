@@ -1,5 +1,5 @@
 <div class="ui container">
-<h1 class="ui green header">Experiment v0.1.0</h1>
+<h1 class="ui green header">SmartLearn.IO</h1>
 <div class="ui selection list">
   <% @subjects.each do |subject| %>
   <div class="item" onclick="location.href='<%=  subject_path(subject) %>';" style="cursor: pointer;" >
@@ -24,9 +24,6 @@
 <%= show_if_teacher(current_user) do %>
   <%= link_to "New subject", new_subject_path, class: "ui fluid button" %>
 <% end %>
-
-
-roadmap: v0.4 fully student compatible, v0.9 fully teacher student compatible, v1.9 api compatible
 <!-- 
 <div class="ui segment">
 <div id="wysihtml5-toolbar" style="display: none;">
