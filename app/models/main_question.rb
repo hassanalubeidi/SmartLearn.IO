@@ -12,6 +12,6 @@ class MainQuestion < ActiveRecord::Base
 		elsif month = "S" then
 			month = "June"
 		end
-		return "#{exampro_id.split(".")[1]} #{month} 20#{year}, Question #{exampro_id.split(".")[2]} #{exampro_id}"
+		return "#{exampro_id.split(".")[1]} #{month} 20#{year}, Question #{exampro_id.split(".")[2]}"
 	end
 end
