@@ -14,17 +14,31 @@ class TestPaper < ActiveRecord::Base
       return "No Subject - #{self.date.strftime('%B %Y')}"
     end
   end
+  def tots_analysis(user)
+    marks = 0
+    tot_marks = 0
+    self.main_questions.each do |mq|
+      mq.questions.each do |question|
+        if question.answer(user) != nil then
+          marks += question.answer(user).marks_integer.to_i 
+        end
+        tot_marks += question.total_marks.to_i
+      end
+    end
+    return [marks, tot_marks]
+  end
   def tots(user)
   	marks = 0
   	tot_marks = 0
-  	self.questions.each do |question|
-      if question.answer(user) != nil then
-        marks += question.answer(user).marks_integer.to_i 
+  	self.main_questions.each do |mq|
+      mq.questions.each do |question|
+        if question.answer(user) != nil then
+          marks += question.answer(user).marks_integer.to_i 
         end
+        tot_marks += question.total_marks.to_i
+      end
   	end
-  	self.questions.each do |question|
-  		tot_marks += question.total_marks.to_i
-  	end
-  	marks = (marks.to_f / tot_marks.to_f ) * 100
+    marks = (marks.to_f / tot_marks.to_f ) * 100
+    return marks
   end
 end

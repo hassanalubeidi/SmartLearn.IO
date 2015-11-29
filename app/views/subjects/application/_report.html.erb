@@ -22,7 +22,7 @@
         Created <%= time_ago_in_words(testpaper.created_at) %> ago
       </div>
       <div class="description">
-        
+        <div class="ui label"><%= testpaper.tots_analysis(current_user)[0] %>/<%= testpaper.tots_analysis(current_user)[1] %></div>
       </div>
     </div>
         <%= link_to "Details", test_paper_path(testpaper), class: "ui bottom attached button" %>
