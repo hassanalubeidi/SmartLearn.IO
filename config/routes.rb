@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'test_papers/upload', to: 'test_papers#upload'
   post 'test_papers/upload/', to: 'test_papers#parse'
   get 'test_papers/upload/show/', to: 'test_papers#show_uploaded'
-  resources :test_papers
+  resources :test_papers do
+    get "/report", to: "test_paper_report#current_user_report"
+    get "/report/:id", to: "test_paper_report#specific_user_report"
+  end
 
   resources :objectives do 
     resources :objective_states

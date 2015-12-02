@@ -1,8 +1,8 @@
 
     <h2 class="ui header">Question papers:</h2>
     <%= show_if_teacher(current_user) do %>
-     <%= link_to "Add testpaper", new_test_paper_path, class: "ui icon button", style: "
-    margin-bottom: 20px;" %>
+     <%= link_to "Add testpaper", new_test_paper_path(:subject => @subject.id), class: "ui icon button", style: "
+    margin-bottom: 20px;"  %>
     <% end %>
     <div class="ui centered cards">
 
@@ -23,6 +23,7 @@
       </div>
       <div class="description">
         <div class="ui label"><%= testpaper.tots_analysis(current_user)[0] %>/<%= testpaper.tots_analysis(current_user)[1] %></div>
+        <%= link_to "Report", test_paper_report_path(testpaper) %>
       </div>
     </div>
         <%= link_to "Details", test_paper_path(testpaper), class: "ui bottom attached button" %>

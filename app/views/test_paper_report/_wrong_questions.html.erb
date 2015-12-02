@@ -1,0 +1,31 @@
+<div class="ui container">
+	<% @test_paper.main_questions.each do |m| %>
+		<% m.questions.each do |question| %>
+			<% if question.answer(assessed_user) != nil  %>
+				<% if question.get_marks_percentage(assessed_user) != 1 then %>
+				<div class="ui segment">
+					<div class="ui accordion">
+					  <div class="active title">
+					    <i class="dropdown icon"></i>
+					    <strong>Source: <%= question.source %></strong>
+					  </div>
+					  <div class="content">
+					    <% question.main_question.questions.each do |q| %>
+					    	<div style="<%= if q.id == question.id then 'background-color: #FFCECE' end %>">
+					    	<%= q.html.gsub(/Q1\./, "").html_safe %>
+					    	</div>
+					    <% end %>
+					  </div>
+					</div>
+					<div class="ui red message"><%= question.answer(assessed_user).text %></div>
+					<strong>Associated objectives:</strong>
+					<% (question.objectives.uniq).each do |objective| %>
+					<span class="ui inline label"><%= objective.name %></span>
+
+					<% end %>
+				</div>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
