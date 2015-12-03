@@ -3,4 +3,7 @@
 </head>
 
 
-<%= render partial: "wrong_questions", locals: { assessed_user: current_user } %>
+<% User.all.each do |user| %>
+<%= user.username %>
+<%= render partial: "wrong_questions", locals: { assessed_user: user } %>
+<% end %>
