@@ -1,5 +1,6 @@
 <div class="ui container">
 	<%= assessed_user.username %>
+	<div class="ui blue label"><%= @test_paper.tots_analysis(assessed_user)[0] %>/<%= @test_paper.tots_analysis(assessed_user)[1] %></div>
 	<% @test_paper.main_questions.each do |m| %>
 		<% m.questions.each do |question| %>
 			<% if question.answer(assessed_user) != nil  %>
