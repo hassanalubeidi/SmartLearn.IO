@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   
   resources :attempts
   resources :lessons
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
     resources :module_pack
   end
 
-  root 'subjects#index'
+  
   resources :improvements
   resources :reviews
   resources :dashboard
@@ -43,6 +45,10 @@ Rails.application.routes.draw do
 
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
+  authenticated :user do
+    root 'subjects#index', as: :authenticated_root
+  end
+    root 'module_packs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
