@@ -136,15 +136,15 @@
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
     <a class="active item">Home</a>
-    <a class="item">About</a>
-    <a class="item">Blog</a>
-    <a class="item">Contact</a>
+    <a class="item" href="#about">About</a>
+    <a class="item" href="#blog">Blog</a>
+    <a class="item" href="#contact">Contact</a>
     <div class="right menu">
       <div class="item">
-        <a class="ui button">Log in</a>
+        <a class="ui button" href="<%= new_user_session_path %>">Log in</a>
       </div>
       <div class="item">
-        <a class="ui primary button">Sign Up</a>
+        <a class="ui primary button" href="<%= new_user_registration_path %>">Sign Up</a>
       </div>
     </div>
   </div>
@@ -153,11 +153,11 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
   <a class="active item">Home</a>
-    <a class="item">About</a>
-    <a class="item">Blog</a>
-    <a class="item">Contact</a>
-  <a class="item">Login</a>
-  <a class="item">Signup</a>
+    <a class="item" href="#about">About</a>
+    <a class="item" href="#blog">Blog</a>
+    <a class="item" href="#contact">Contact</a>
+  <a class="item" href="<%= new_user_session_path %>">Login</a>
+  <a class="item" href="<%= new_user_registration_path %>">Signup</a>
 </div>
 
 
@@ -171,28 +171,33 @@
           <i class="sidebar icon"></i>
         </a>
         <a class="active item">Home</a>
-        <a class="item">About</a>
-        <a class="item">Blog</a>
-        <a class="item">Contact</a>
+        <a class="item" href="#about">About</a>
+        <a class="item" href="#blog">Blog</a>
+        <a class="item" href="#contact">Contact</a>
         <div class="right item">
-          <a class="ui inverted button">Log in</a>
-          <a class="ui inverted button">Sign Up</a>
+          <a class="ui inverted button" href="<%= new_user_session_path %>">Log in</a>
+          <a class="ui inverted button" href="<%= new_user_registration_path %>">Sign Up</a>
         </div>
       </div>
     </div>
-
+    
     <div class="ui text container">
       <h1 class="ui inverted header">
-        SmartLearn.IO
+        SmartLearn.IO <div class="ui large label">Alpha</div>
       </h1>
       <h2 class="">
-        Open source learning platform
+        Open source learning platform 
+        <div>
+          <a class="ui link label" href="http://github.com/hassanalubeidi/SmartLearn.IO">
+            <i class="ui github icon"></i>Github
+          </a>
+        </div>
       </h2>
-      <div class="ui huge primary button">Sign up now<i class="right arrow icon"></i></div>
+      <a class="ui huge primary button" href="<%= new_user_registration_path %>">Sign up now<i class="right arrow icon"></i></a>
     </div>
 
   </div>
-
+  <a id="about" ></a>
   <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
       <div class="row">
@@ -206,17 +211,21 @@
       </div>
       <div class="row">
         <div class="center aligned column">
-          <a class="ui huge button">Read more</a>
+          <!-- <a class="ui huge button">Read more</a> !-->
         </div>
       </div>
     </div>
   </div>
+
   <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
       <div class="row">
         <div class="eleven wide column">
           <h3 class="ui header">Increase learning efficency.</h3>
-          <p>SmartLearn encourages best learning practices</p></h3>
+          <p>SmartLearn encourages the best learning practices, by keeping a dynamic score of learning. The score is a model of your current learning, and takes into account amount of practice, the spacing</a> of practice, how long ago a topic was last attempted and more.</p>
+          <p>
+          SmartLearn is inspired by Psychology research into learning and forgetting, especially <a href="https://en.wikipedia.org/wiki/Spaced_learning">spaced learning</a> and <a href="https://en.wikipedia.org/wiki/Forgetting_curve">The Forgetting Curve.</a>
+          </p></h3>
         </div>
         <div class="five wide right floated column">
           <img src="https://diogenesii.files.wordpress.com/2012/01/forgettingcurve21.png" class="ui large  image">
@@ -233,46 +242,36 @@
   </div>
 
 
-
+  <a id="blog" ></a>
   <div class="ui vertical stripe segment">
     <div class="ui text container">
       <h3 class="ui header">SmartLearn.io reaches releases alpha</h3>
       <h2 class="ui sub header">
-        15th November 2015
+        2nd December 2015
       </h2>
-      <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention...</p>
+      <p>After almost a year of design and development, SmartLearn has reached Alpha. While it is still very much in development, SmartLearn has now been classroom tested, and has proven to be a very viable asset. </p>
+      <p>Further testing is needed, as well more refinement before reaching beta, hopefully in March 2016, and relase in August 2016</p>
 
       
-      <a class="ui basic button"> Read More </a>
+      <!-- <a class="ui basic button"> Read More </a> -->
     </div>
     
   </div>
 
-
+  <a id="contact" ></a>
   <div class="ui inverted vertical footer segment">
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
         <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
+          <h4 class="ui inverted header">Contact Us</h4>
           <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
+            <a href="emailto:hassanalubeidi1996@gmail.com" class="item">Email</a>
           </div>
         </div>
         <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+          <h4 class="ui inverted header">About</h4>
+          <p>SmartLearn is a web application created by Hassan Al-ubeidi.</p>
+          <p>SmartLearn - Hassan Al-ubeidi 2015 ©</p>
         </div>
       </div>
     </div>
