@@ -31,3 +31,7 @@
 		<% end %>
 	<% end %>
 </div>
+<% progress = Topic.first.progress(current_user) %>
+<% objective_count = Topic.first.objectives.count %>
+
+
