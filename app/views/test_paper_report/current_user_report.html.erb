@@ -5,6 +5,29 @@
 
 <div class="ui stackable divided grid">
 	<div class="row">
+		<div class="ui four wide column">
+				<div class="ui padded container">
+					<div class="ui sticky basic segment">
+						<div class="ui red inverted tertiary segment">
+							<div class="ui top inverted red basic attached label">Problems</div>
+							<div class="ui divided items problems-list">
+							  
+							</div>
+						</div>
+						<div class="ui padded segment">
+							<div class="ui top attached label">Create intervention</div>
+							<div class="ui form">
+								<div class="ui inline field">
+									<label>Define Problem</label>
+									<textarea></textarea>
+								</div>
+							</div>
+							<div class="ui red button">Make intervention</div>
+
+						</div>
+					</div>
+				</div>
+		</div>
 		<div class="ui twelve wide column" id="context">
 			<div class="ui container padded">
 				<% @test_paper.main_questions.each_with_index do |mainquestion, mq_index| %>
@@ -50,13 +73,31 @@
 								<div class="answer-meta" style="margin:auto; max-width:705px;">
 									<% if question.get_marks_percentage(temp_user) != 1 then %>
 										<div class="ui red message">
-											<p><strong><%= temp_user.username %>: </strong><%= question.answer(temp_user).text %></p>
-											<div class="ui checkbox">
-											  <input type="checkbox" name="example">
+											<p><strong><%= temp_user.username %>: </strong><span class="answer-text" data-id="<%= question.answer(temp_user).id %>"><%= question.answer(temp_user).text %></p>
+											<div class="ui checkbox " data-id="<%= question.answer(temp_user).id %>">
+											  <input type="checkbox" name="add-problem-checkbox" >
 											  <label>Add Problem</label>
 											</div>
 
 										</div>
+
+
+										<script>
+											var answer = "\
+											<div class='problem item' style='display:none' data-id='<%= question.answer(temp_user).id %>'> \
+											    <div class='ui profile image'> \
+											      <img src='/images/wireframe/image.png'> \
+											    </div> \
+											    <div class='middle aligned content'> \
+											      <%= mq_index + 1 %>)<%= question.position %> \
+											      <p> \
+											      <strong><%= temp_user.username %>:</strong> \
+											      <%= question.answer(temp_user).text %> \
+											    </div> \
+											  </div> \
+											"
+											$(".problems-list").append(answer)
+										</script>
 									<% end %>
 
 								</div>
@@ -69,59 +110,7 @@
 				<% end %>
 			</div>
 		</div>
-		<div class="ui four wide column">
-				<div class="ui padded container">
-					<div class="ui sticky basic segment">
-						<div class="ui red inverted tertiary segment">
-							<div class="ui top inverted red basic attached label">Problems</div>
-							<div class="ui divided items">
-							  <div class="item">
-							    <div class="ui profile image">
-							      <img src="/images/wireframe/image.png">
-							    </div>
-							    <div class="middle aligned content">
-							      1)a)i)
-							      <p>
-							      Didn't round properly
-							      </p>
-							    </div>
-							  </div>
-							  <div class="item">
-							    <div class="ui profile image">
-							      <img src="/images/wireframe/image.png">
-							    </div>
-							    <div class="middle aligned content">
-							      1)a)i)
-							      <p>
-							      Didn't round properly
-							    </div>
-							  </div>
-							  <div class="item">
-							    <div class="ui profile image">
-							      <img src="/images/wireframe/image.png">
-							    </div>
-							    <div class="middle aligned content">
-							      1)a)i)
-							      <p>
-							      Didn't round properly
-							    </div>
-							  </div>
-							</div>
-						</div>
-						<div class="ui padded segment">
-							<div class="ui top attached label">Create intervention</div>
-							<div class="ui form">
-								<div class="ui inline field">
-									<label>Define Problem</label>
-									<textarea></textarea>
-								</div>
-							</div>
-							<div class="ui red button">Make intervention</div>
-
-						</div>
-					</div>
-				</div>
-		</div>
+		
 	</div>
 </div>
 <script>
@@ -129,4 +118,10 @@ $('.ui.sticky')
   .sticky({
   })
 ;
+$(".checkbox").click(function(){
+    var id = $(this).data("id")
+    console.log(id)
+    console.log($(".problem[data-id=" + id + "]").toggle())
+
+});
 </script>
