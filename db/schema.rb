@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124225311) do
+ActiveRecord::Schema.define(version: 20151206141750) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20151124225311) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+
+  create_table "answers_interventions", id: false, force: true do |t|
+    t.integer "intervention_id"
+    t.integer "answer_id"
+  end
 
   create_table "arcticles", force: true do |t|
     t.string   "title"
@@ -70,6 +75,13 @@ ActiveRecord::Schema.define(version: 20151124225311) do
   end
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
+
+  create_table "interventions", force: true do |t|
+    t.text     "problem"
+    t.text     "fix"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "keypoints", force: true do |t|
     t.datetime "created_at"

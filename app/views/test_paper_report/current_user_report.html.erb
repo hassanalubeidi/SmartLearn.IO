@@ -1,8 +1,7 @@
 <head>
 <link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
 </head>
-
-
+<%= form_for(Intervention.new, html: {:class => "ui"}, remote: true) do |f| %>
 <div class="ui stackable divided grid">
 	<div class="row">
 		<div class="ui four wide column">
@@ -19,10 +18,14 @@
 							<div class="ui form">
 								<div class="ui inline field">
 									<label>Define Problem</label>
-									<textarea></textarea>
+									<%= f.text_area :problem %>
+								</div>
+								<div class="ui inline field">
+									<label>How do students fix this?</label>
+									<%= f.text_area :fix %>
 								</div>
 							</div>
-							<div class="ui red button">Make intervention</div>
+							<%= f.submit class: "ui red button" %>
 
 						</div>
 					</div>
@@ -32,79 +35,86 @@
 			<div class="ui container padded">
 				<% @test_paper.main_questions.each_with_index do |mainquestion, mq_index| %>
 					<div class="ui basic segment">
-
-					<div class="ui segments">
-
-						<% mainquestion.questions.each_with_index do |question, q_index| %>
-
-							<div class="ui segment">
-							<% if q_index == 0 then %>
-							<div class="ui top attached blue label" style="text-align:center;">Question <%= mq_index + 1 %></div>
-							<% end %>
-							<div style="text-align:center;"><%= question.position %></div>
-							<div class="ui accordion">
-							  <div class="title">
-							    <i class="dropdown icon"></i>
-							    
-							  </div>
-							  <div class="content">
-							    <%= question.html.gsub(/width/, "max-width").html_safe %>
-							  </div>
-							</div>
-							
-							</div>
-							<div class="ui secondary segment" >
-								<div class="ui form" style="display:none;">
-
-									<div class="ui inline field">
-										<label>Marks</label>
-										<input type="text">
-									</div>
-									<div class="ui inline field">
-										<label>What went wrong?</label>
-										<textarea type="text"></textarea>
-									</div>
-									<div class="ui field">
-										<div class="ui red button">Submit</div>
-									</div>
+						<div class="ui segments">
+							<% mainquestion.questions.each_with_index do |question, q_index| %>
+								<div class="ui segment">
+								<% if q_index == 0 then %>
+								<div class="ui top attached blue label" style="text-align:center;">Question <%= mq_index + 1 %></div>
+								<% end %>
+								<div style="text-align:center;"><%= question.position %></div>
+								<div class="ui accordion">
+								  <div class="title">
+								    <i class="dropdown icon"></i>
+								  </div>
+								  <div class="content">
+								    <%= question.html.gsub(/width/, "max-width").html_safe %>
+								  </div>
 								</div>
-								<% User.all.each do |temp_user| %>
-								<% if question.answer(temp_user) %>
-								<div class="answer-meta" style="margin:auto; max-width:705px;">
-									<% if question.get_marks_percentage(temp_user) != 1 then %>
-										<div class="ui red message">
-											<p><strong><%= temp_user.username %>: </strong><span class="answer-text" data-id="<%= question.answer(temp_user).id %>"><%= question.answer(temp_user).text %></p>
-											<div class="ui checkbox " data-id="<%= question.answer(temp_user).id %>">
-											  <input type="checkbox" name="add-problem-checkbox" >
-											  <label>Add Problem</label>
-											</div>
-
-										</div>
-
-
-										<script>
-											var answer = "\
-											<div class='problem item' style='display:none' data-id='<%= question.answer(temp_user).id %>'> \
-											    <div class='ui profile image'> \
-											      <img src='/images/wireframe/image.png'> \
-											    </div> \
-											    <div class='middle aligned content'> \
-											      <%= mq_index + 1 %>)<%= question.position %> \
-											      <p> \
-											      <strong><%= temp_user.username %>:</strong> \
-											      <%= question.answer(temp_user).text %> \
-											    </div> \
-											  </div> \
-											"
-											$(".problems-list").append(answer)
-										</script>
+								
+								</div>
+								<div class="ui secondary segment" >
+									<% User.all.each do |temp_user| %>
+										<% if question.answer(temp_user) %>
+											<% if question.answer(temp_user).interventions.count < 1 then %>
+												<div class="answer-meta" style="margin:auto; max-width:705px;">
+													<% if question.get_marks_percentage(temp_user) != 1 then %>
+														<div class="ui red message">
+															<p><strong><%= temp_user.username %>: </strong><span class="answer-text" data-id="<%= question.answer(temp_user).id %>"><%= question.answer(temp_user).text %></p>
+															<div class="ui checkbox " data-id="<%= question.answer(temp_user).id %>">
+															  <%= check_box_tag "intervention[answer_ids][]", question.answer(temp_user).id, false %>
+															  <label>Add Problem</label>
+															</div>
+														</div>
+														<script>
+															var answer = "\
+															<div class='problem item' style='display:none' data-id='<%= question.answer(temp_user).id %>'> \
+															    <div class='ui profile image'> \
+															      <img src='/images/wireframe/image.png'> \
+															    </div> \
+															    <div class='middle aligned content'> \
+															      <%= mq_index + 1 %>)<%= question.position %> \
+															      <p> \
+															      <strong><%= temp_user.username %>:</strong> \
+															      <%= question.answer(temp_user).text %> \
+															    </div> \
+															  </div> \
+															"
+															$(".problems-list").append(answer)
+														</script>
+													<% end %>
+												</div>
+											<% else %>
+												<div class="ui blue message" style="margin:auto; max-width:705px;">
+													Student has already been asigned to an intervention
+													<div>
+													<strong>Problem: </strong><%= question.answer(temp_user).interventions.last.problem %>
+													</div>
+													<div class="ui checkbox " data-id="<%= question.answer(temp_user).id %>">
+													  <%= check_box_tag "intervention[answer_ids][]", question.answer(temp_user).id, false %>
+													  <label>Assign to a new intervention?</label>
+													</div>
+												</div>
+												<script>
+															var answer = "\
+															<div class='problem item' style='display:none' data-id='<%= question.answer(temp_user).id %>'> \
+															    <div class='ui profile image'> \
+															      <img src='/images/wireframe/image.png'> \
+															    </div> \
+															    <div class='middle aligned content'> \
+															      <%= mq_index + 1 %>)<%= question.position %> \
+															      <p> \
+															      <strong><%= temp_user.username %>:</strong> \
+															      <%= question.answer(temp_user).text %> \
+															    </div> \
+															  </div> \
+															"
+															$(".problems-list").append(answer)
+														</script>
+											<% end %>
+										<% end %>
 									<% end %>
-
 								</div>
-								<% end %>
-								<% end %>
-							</div>
-						<% end %>
+							<% end %>
 						</div>
 					</div>
 				<% end %>
@@ -125,3 +135,4 @@ $(".checkbox").click(function(){
 
 });
 </script>
+<% end %>

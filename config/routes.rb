@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
   
+  resources :interventions
+
   resources :attempts
   resources :lessons
   get 'test_papers/upload', to: 'test_papers#upload'
