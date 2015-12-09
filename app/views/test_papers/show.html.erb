@@ -1,100 +1,3 @@
-<head>
-<link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
-</head>
-<div class="ui container">
-<h1 class="ui inverted red header"><%= @test_paper.name || @test_paper.date.strftime('%b %Y') %> </h1>
-<% @test_paper.main_questions.each do |mq| %>
-<div class="ui segment">
-  <% mq.questions.each_with_index do |question, index| %>
-  	<% 	even = nil
-  		bg = 'white'
-  		if index % 2 == 0 then even = true else even = false end 
-  		if even then bg = '#F3F3F3'
-  		else bg = 'white'
-  		 end
-  	%>
-	<div style="width:705px; margin: auto; page-break-inside: avoid; align: center; <%= if even then 'background-color: #F3F3F3' end %>"><%= question.html.html_safe %> </div>
-		
-	<div class="labels">
-	<% if (index + 1) == mq.questions.count then %>
-		<% top = -3.5 %>
-	<% else %>
-		<% top = -1.34 %>
-	<% end %>
-	<% if question.answers.where(question: question, user: current_user).count != 0 %>
-
-       <div style="width:705px; margin: auto;  top: 30px; text-align: right;"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: <%= bg %> ;position: relative; top: <%= top %>em;"><strong><%= marks(question) %></strong></a></div>
-
-       <% else %>
-       <div style="width:705px; margin: auto; top: 30px"><a class="ui right floated answer-<%=question.id%>-button" style="float:right; background-color: <%= bg %> ;position: relative; top: <%= top %>em;"><strong>answer</strong></a>
-
-       </div>
-       <% end %>
-	</div>
-
-
-	<div class="ui modal answer-modal-<%= question.id %>">
-		<i class="close icon"></i>
-  <div class="header">
-    Answer
-  </div>
-  <div class="image content">
- 
-    <div class="description">
-      <div class="ui header">
-      <%= form_for [question, Answer.new], :html => {:class => 'ui form'}, remote: true do |f| %>
-		  
-		  <div class="ui segment">
-		  <h3 class="">Mark Scheme</h3>
-		  <div style="width: 705px; margin: auto;">
-		  <%= question.main_question.answer_html.html_safe rescue nil %>
-		  </div>
-		  </div>
-		  <div class="field">
-		    <%= f.label "What went wrong?" %><br>
-		    <%= f.text_area :text %>
-		  </div>
-		  <div class="inline field">
-		    <%= f.label :marks %><br>
-		    <%= f.number_field :marks_integer, id: "marks-input-#{question.id}" %> / <%= question.total_marks %>
-		  </div>
-		  <%= f.hidden_field :prev_url, :value => @prev_url %>
-		  <div class="actions">
-		    <%= f.submit class: "ui red button", :id=> "submit-#{question.id}" %>
-		  </div>
-		<% end %>
-
-      </div>
-      
-    </div>
-  </div>
-
-	</div>
-
-<script>
-$('.answer-modal-<%= question.id %>')
-  .modal('attach events', '.answer-<%=question.id %>-button')
-;
-$("#submit-<%= question.id %>").on("click", function() {
-	$(".answer-<%=question.id%>-button").html(($( "#marks-input-<%= question.id %>").val()).concat("/<%= question.total_marks %>"));
-})
-</script>
-
-
-  <% end %>
-  <% if mq.questions.count == 0 then %>
-  <div style="width:705px; margin: auto; page-break-inside: avoid; align: center"><%= mq.html.html_safe %></div>
-  <% end %>
-
-  <div class="ui secondary segment">
-  Topics:
-  <% mq.objectives.uniq.each do |obj|  %>
-    <div class="ui blue label"><%= obj.name rescue nil %></div>
-  <% end %>
-  Source:<div class="right floated ui label"><%= mq.source %></div>
-  </div>
-</div>
-<% end %>
 <% if @test_paper.main_questions.count == 0 then %>
 	<div class="ui basic segment">
 		<h2 class="ui centered header">This paper has no questions.</h2>
@@ -105,6 +8,150 @@ $("#submit-<%= question.id %>").on("click", function() {
 		<h3 class="ui centered header"><%= link_to "Add through Exampro", test_papers_upload_path(:test_paper_id => @test_paper.id)  %></h3>
 	</div>
 <% end %>
-</div>
 
 
+<head>
+<link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<div class="ui twelve wide column pushable" id="context">
+			<div class="ui container padded">
+				<% @test_paper.main_questions.each_with_index do |mainquestion, mq_index| %>
+					<div class="ui basic segment">
+						<div class="ui segments">
+							<% mainquestion.questions.each_with_index do |question, q_index| %>
+								<div class="ui segment">
+								<% if q_index == 0 then %>
+								<div class="ui top attached blue label" style="text-align:center;">Question <%= mq_index + 1 %></div>
+								<% end %>
+								<div class="" style="text-align:center;"><%= mq_index + 1 %>)<%= question.position %></div>
+								<div class="ui accordion" style="margin:auto; max-width:705px;">
+								  <div class="ui basic button title">
+								    <i class="dropdown icon"></i>
+								    Show Question
+								  </div>
+								  <div class="content">
+								    <%= question.html.gsub(/width/, "max-width").gsub(/Q1\./, "").html_safe %>
+								  </div>
+								</div>
+								
+								</div>
+								
+							
+								<div class="ui secondary segment" >
+										<%= form_for([question, Answer.new], remote: true) do |f| %>
+											<div class="ui answer-form form" style="margin:auto; max-width:705px" data-id="<%= question.id %>" style="display:none;">
+												<div class="ui accordion">
+												  <div class="ui button title">
+												    <i class="dropdown icon"></i>
+												    Mark Scheme
+												  </div>
+												  <div class="content">
+												    <div style="width: 705px; margin: auto;">
+														<%= question.main_question.answer_html.html_safe rescue nil %>
+													</div>
+												  </div>
+												</div>
+												<h3 class="">Mark Scheme</h3>
+												
+												<div class="ui inline field">
+													<label>Marks</label>
+													<%= f.number_field :marks_integer, id: "marks-input-#{question.id}" %> / <%= question.total_marks %>
+												</div>
+												<div class="ui inline field">
+													<label>What went wrong?</label>
+													<%= f.text_area :text %>
+												</div>
+												<%= f.hidden_field :prev_url, :value => @prev_url %>
+												 <div class="actions">
+												    <%= f.submit class: "ui red answer-button button", :id=> "submit-#{question.id}", 'data-id' => question.id %>
+												 </div>
+											</div>
+										<div class="answer-button-div" data-id="<%= question.id %>" style="text-align:right; max-width:705px; margin: auto;">
+										</div>
+										<% end %>
+										<% if question.answer(current_user) %>
+											<% if question.answer(current_user).interventions.count < 1 then %>
+												<div class="answer-meta" style="margin:auto; max-width:705px;">
+													<% if question.get_marks_percentage(current_user) != 1 then %>
+														<div class="ui red message">
+															<strong>You got this question wrong <%= time_ago_in_words(question.answer(current_user).created_at) %> ago. Here's what went wrong:</strong>
+															<div class="answer-text ui segment" data-id="<%= question.answer(current_user).id %>">
+																<%= question.answer(current_user).text %>
+															</div>
+														</div>
+														
+													<% end %>
+												</div>
+											<% else %>
+												
+												<div class="ui blue message" style="margin:auto; margin-bottom: 10px; max-width:705px;" data-id="<%= question.id %>">
+													You have been assigned an intervention for this question:
+													<p>
+													<strong>Problem: </strong><%= question.answer(current_user).interventions.last.problem %>
+													</p>
+													<p>
+													<strong>Fix: </strong><%= question.answer(current_user).interventions.last.fix %>
+													</p>
+												</div>
+												
+											<% end %>
+											<div style="text-align:right; max-width:705px; margin: auto;">
+												
+													<div class="ui labeled inverted button">
+													  <div class="ui answer-again button" data-id="<%= question.id %>">
+													    Answer again
+													  </div>
+													  <div class="ui basic <%= colour(question.get_marks_percentage(current_user) * 100) %>  label">
+													    <%= question.answer(current_user).marks_integer %> / <%= question.total_marks %>
+													  </div>
+													</div>
+											</div>
+
+											<script>
+											$(".answer-form[data-id=" + <%= question.id %> + "]").toggle()
+
+											console.log(<%= question.id %>)
+											</script>
+
+										<% else %>
+
+										<% end %>
+										
+								</div>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+
+
+<script>
+$(".answer-button").click(function(){
+    id = $(this).data("id")
+    console.log(id)
+    $(".answer-form[data-id=" + id + "]").toggle()
+    $(".answer-again[data-id=" + id + "]").parent().hide()
+    console.log()
+    $(".answer-button-div[data-id=" + id + "]").append("\
+    	<div class='ui labeled inverted button'>\
+		  <div class='ui green answer-again button' data-id='" + id + "'>\
+		    <i class='checkmark icon'></i>\
+		  </div>\
+		  <div class='ui basic label'>\
+		    " + $("#marks-input-" + id).val() + " marks\
+		  </div>\
+		</div>\
+    	"
+    	)
+});
+$(".answer-again").on("click", function() {
+	$(".answer-form[data-id=" + $(this).data("id") + "]").toggle()
+	$(".message[data-id=" + $(this).data("id") + "]").hide()
+	$(this).hide()
+
+})
+
+</script>

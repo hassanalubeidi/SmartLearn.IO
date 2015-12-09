@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :improvements
   has_many :subjects
   has_many :attempts
+  has_many :answers
   
   #->Prelang (user_login:devise/username_login_support)
   def self.find_first_by_auth_conditions(warden_conditions)

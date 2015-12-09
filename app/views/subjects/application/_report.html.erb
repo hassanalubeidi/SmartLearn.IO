@@ -55,3 +55,12 @@
     <% end %>
     
 </div>
+
+
+<div class="ui segment">
+<% current_user.answers.each do |answer| %>
+  <% if answer.interventions.count > 0 then %>
+    <div class="ui blue label"><%= answer.interventions.last.problem %></div>
+  <% end %>
+<% end %>
+</div>

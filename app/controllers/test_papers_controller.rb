@@ -1313,7 +1313,6 @@ EOXML
     
     params =  CGI::parse(url)
     questions =  params["doclist"].join.split("|").compact
-    questions.sort_by!{ |m| m.downcase }
     questions.each_with_index do |question, index|
       if question_meta_data.root.q.at_css("[qid='#{question}']") != nil then
         template_url = url.scan(/.*?(?=doclist)doclist/).join
