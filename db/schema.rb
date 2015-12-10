@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151206141750) do
 
-  create_table "answers", force: true do |t|
+  create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "user_id"
     t.text     "text"
@@ -25,24 +25,24 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
-  create_table "answers_interventions", id: false, force: true do |t|
+  create_table "answers_interventions", id: false, force: :cascade do |t|
     t.integer "intervention_id"
     t.integer "answer_id"
   end
 
-  create_table "arcticles", force: true do |t|
+  create_table "arcticles", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "attempted_questions", force: true do |t|
+  create_table "attempted_questions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "attempts", force: true do |t|
+  create_table "attempts", force: :cascade do |t|
     t.boolean  "correct"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.integer  "user_id"
   end
 
-  create_table "common_errors", force: true do |t|
+  create_table "common_errors", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "flashcards", force: true do |t|
+  create_table "flashcards", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.text     "bottom"
   end
 
-  create_table "improvements", force: true do |t|
+  create_table "improvements", force: :cascade do |t|
     t.text     "area_to_improve"
     t.boolean  "checked"
     t.integer  "user_id"
@@ -76,21 +76,21 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
 
-  create_table "interventions", force: true do |t|
+  create_table "interventions", force: :cascade do |t|
     t.text     "problem"
     t.text     "fix"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "keypoints", force: true do |t|
+  create_table "keypoints", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "flashcard_id"
     t.text     "text"
   end
 
-  create_table "lessons", force: true do |t|
+  create_table "lessons", force: :cascade do |t|
     t.date     "date"
     t.integer  "subject_id"
     t.string   "title"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "lessons", ["subject_id"], name: "index_lessons_on_subject_id"
 
-  create_table "lines", force: true do |t|
+  create_table "lines", force: :cascade do |t|
     t.integer  "question_id"
     t.integer  "objective_id"
     t.datetime "created_at"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   add_index "lines", ["objective_id"], name: "index_lines_on_objective_id"
   add_index "lines", ["question_id"], name: "index_lines_on_question_id"
 
-  create_table "main_questions", force: true do |t|
+  create_table "main_questions", force: :cascade do |t|
     t.text     "answer_html"
     t.string   "exampro_id"
     t.datetime "created_at"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.text     "html"
   end
 
-  create_table "main_questions_objectives", id: false, force: true do |t|
+  create_table "main_questions_objectives", id: false, force: :cascade do |t|
     t.integer "question_id"
     t.integer "objective_id"
     t.integer "main_question_id"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   add_index "main_questions_objectives", ["objective_id"], name: "index_main_questions_objectives_on_objective_id"
   add_index "main_questions_objectives", ["question_id"], name: "index_main_questions_objectives_on_question_id"
 
-  create_table "objective_states", force: true do |t|
+  create_table "objective_states", force: :cascade do |t|
     t.string   "status"
     t.integer  "user_id"
     t.integer  "objective_id"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   add_index "objective_states", ["objective_id"], name: "index_objective_states_on_objective_id"
   add_index "objective_states", ["user_id"], name: "index_objective_states_on_user_id"
 
-  create_table "objectives", force: true do |t|
+  create_table "objectives", force: :cascade do |t|
     t.text     "name"
     t.text     "module_pack_info"
     t.integer  "total_marks"
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.integer  "main_question_id"
   end
 
-  create_table "questions", force: true do |t|
+  create_table "questions", force: :cascade do |t|
     t.integer  "topic_id"
     t.text     "text"
     t.integer  "total_marks"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "questions", ["topic_id"], name: "index_questions_on_topic_id"
 
-  create_table "reviews", force: true do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "improvement_id"
     t.datetime "created_at"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   add_index "reviews", ["improvement_id"], name: "index_reviews_on_improvement_id"
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
-  create_table "set_groups", force: true do |t|
+  create_table "set_groups", force: :cascade do |t|
     t.string   "name"
     t.integer  "year"
     t.integer  "subject_id"
@@ -198,14 +198,14 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "set_groups", ["subject_id"], name: "index_set_groups_on_subject_id"
 
-  create_table "subjects", force: true do |t|
+  create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
-  create_table "test_papers", force: true do |t|
+  create_table "test_papers", force: :cascade do |t|
     t.integer  "subject_id"
     t.date     "date"
     t.boolean  "calc_allowed"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "test_papers", ["subject_id"], name: "index_test_papers_on_subject_id"
 
-  create_table "topics", force: true do |t|
+  create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.integer  "subject_id"
     t.datetime "created_at"
@@ -227,7 +227,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "topics", ["subject_id"], name: "index_topics_on_subject_id"
 
-  create_table "units", force: true do |t|
+  create_table "units", force: :cascade do |t|
     t.string   "name"
     t.integer  "subject_id"
     t.datetime "created_at"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "units", ["subject_id"], name: "index_units_on_subject_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
