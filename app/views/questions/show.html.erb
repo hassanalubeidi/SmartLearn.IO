@@ -1,6 +1,114 @@
-<% MainQuestion.all.each do |mq %>
-	<% mq.questions.each do |q| %>
-	<%= q.html.html_safe %>
-	-------
-	<% end %>
-<% end %>
+<div class="ui container">
+<% @question.objectives.uniq.each do |obj|  %>
+    <div class="ui blue label"><%= obj.name rescue nil %></div>
+  <% end %>
+
+
+<% mq = @question.sim_ques(current_user).uniq.first  %>
+<div class="ui blue message">
+We have recommended <%= mq[0].source %> because it shares <%= mq[1] %>/<%= @question.objectives.uniq.count %> objectives with the question you have referenced</div>
+</div>
+<div class="ui basic segment">
+	<div class="ui segments">
+		<% mq[0].questions.each_with_index do |question, q_index| %>
+			<div class="ui segment">
+				<% if q_index == 0 then %>
+					<div class="ui top attached blue label" style="text-align:center;">Question </div>
+				<% end %>
+				<div class="" style="text-align:center;"><%= question.position %></div>
+				<div class="ui accordion" style="margin:auto; max-width:705px;">
+				  <div class="active content">
+				    <%= question.html.gsub(/width/, "max-width").gsub(/Q1\./, "").html_safe %>
+				  </div>
+				</div>
+			</div>
+			<div class="ui secondary segment" >
+					<%= form_for([question, Answer.new], remote: true) do |f| %>
+						<div class="ui answer-form form" style="margin:auto; max-width:705px" data-id="<%= question.id %>" style="display:none;">
+							<div class="ui accordion">
+							  <div class="ui button title">
+							    <i class="dropdown icon"></i>
+							    Mark Scheme
+							  </div>
+							  <div class="content">
+							    <div style="width: 705px; margin: auto;">
+									<%= question.main_question.answer_html.html_safe rescue nil %>
+								</div>
+							  </div>
+							</div>
+							
+							<div class="ui inline field">
+								<label>Marks</label>
+								<%= f.number_field :marks_integer, id: "marks-input-#{question.id}" %> / <%= question.total_marks %>
+							</div>
+							<div class="ui inline field" style="display:none">
+								<label>What went wrong?</label>
+								<%= f.text_area :text %>
+								Struggling for words? <a href="#">Upload or take a picture</a> of what went wrong! <div class="ui green label">New!</div>
+							</div>
+							
+							<%= f.hidden_field :prev_url, :value => @prev_url %>
+							 <div class="actions">
+							    <%= f.submit class: "ui red answer-button button", :id=> "submit-#{question.id}", 'data-id' => question.id %>
+							 </div>
+						</div>
+					<div class="answer-button-div" data-id="<%= question.id %>" style="text-align:right; max-width:705px; margin: auto;">
+					</div>
+					<% end %>
+					<% if question.answer(current_user) %>
+						<% if question.answer(current_user).interventions.count < 1 then %>
+							<div class="answer-meta" style="margin:auto; max-width:705px;">
+								<% if question.get_marks_percentage(current_user) != 1 then %>
+									<div class="ui red message">
+										<strong>You got this question wrong <%= time_ago_in_words(question.answer(current_user).created_at) %> ago. Here's what went wrong:</strong>
+										<div class="answer-text ui segment" data-id="<%= question.answer(current_user).id %>">
+											<%= question.answer(current_user).text %>
+										</div>
+									</div>
+									
+								<% end %>
+							</div>
+						<% else %>
+							
+							<div class="ui blue message" style="margin:auto; margin-bottom: 10px; max-width:705px;" data-id="<%= question.id %>">
+								You have been assigned an intervention for this question:
+								<p>
+								<strong>Problem: </strong><%= question.answer(current_user).interventions.last.problem %>
+								</p>
+								<p>
+								<strong>Fix: </strong><%= question.answer(current_user).interventions.last.fix %>
+								</p>
+							</div>
+							
+						<% end %>
+						<div class="ui field" style="margin:auto; margin-bottom: 10px; max-width:705px;">
+						Want a similar question? <a href="<%= question_path(question) %>">See our recommended questions</a> now! <div class="ui green label">New!</div>
+						</div>
+						<div style="text-align:right; max-width:705px; margin: auto;">
+							
+								<div class="ui labeled inverted button">
+								  <div class="ui answer-again button" data-id="<%= question.id %>">
+								    Answer again
+								  </div>
+								  <div class="ui basic <%= colour(question.get_marks_percentage(current_user) * 100) %>  label">
+								    <%= question.answer(current_user).marks_integer %> / <%= question.total_marks %>
+								  </div>
+								</div>
+						</div>
+
+						<script>
+						$(".answer-form[data-id=" + <%= question.id %> + "]").toggle()
+
+						console.log(<%= question.id %>)
+						</script>
+
+					<% else %>
+					
+					<% end %>	
+			</div>
+		<% end %>
+	</div>
+</div>
+
+
+</div>

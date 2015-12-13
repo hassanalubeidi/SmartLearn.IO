@@ -1329,7 +1329,7 @@ EOXML
             )
         testpaper.main_questions << mainquestion
         testpaper.save
-        marks = question_html.content.scan(/\(\d\)/)
+        marks = question_html.content.scan(/\([1-9]*\)/)
     
         if question_html.css("table")
         question_html.css("table").each_with_index do |table, index|

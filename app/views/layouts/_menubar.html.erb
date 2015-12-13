@@ -5,9 +5,7 @@
         <div class="ui right floated dropdown item">
           <%= current_user.username.capitalize %> (<%= current_user.power %>)<i class="icon dropdown"></i>
           <div class="menu">
-            <a class="item"><i class="edit icon"></i> Edit Profile</a>
-            <a class="item"><i class="globe icon"></i> Choose Language</a>
-            
+            <a class="item" href="<%= edit_user_registration_path %>"><i class="edit icon"></i> Edit Profile</a>
             <%= link_to('<i class="sign out icon"></i> Sign out</a>'.html_safe, destroy_user_session_path, :method => :delete, class: "item") %>
           </div>
         </div>

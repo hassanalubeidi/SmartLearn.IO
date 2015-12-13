@@ -1,6 +1,10 @@
 <div class="ui container">
+<% @question.objectives.each do |obj|  %>
+    <div class="ui blue label"><%= obj.name rescue nil %></div>
+  <% end %>
 <% MainQuestion.all.each do |mq| %>
 <div class="ui segment">
+
   <% mq.questions.each do |q| %>
   <div class="ui">
   <%= q.html.html_safe %>

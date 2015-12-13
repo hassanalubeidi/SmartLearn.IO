@@ -20,6 +20,26 @@ class Question < ActiveRecord::Base
 		end
 		return quess.uniq
 	end
+	def sim_ques(user)
+		matches = []
+		objectives = self.objectives
+		all_main_questions = MainQuestion.all
+		all_main_questions.each do |mq|
+			questions_objs = mq.objectives
+			if questions_objs == objectives and mq.id != self.main_question.id and mq.questions.first.answer(user) == nil then
+				matches.push [mq, objectives.uniq.count]
+			end
+		end
+		if matches.count == 0 then
+			all_main_questions.each do |mq|
+				if objectives.to_set.intersect?(mq.objectives.to_set) == true and mq.id != self.main_question.id and mq.questions.first.answer(user) == nil then
+					matches.push [mq, objectives.to_set.intersection(mq.objectives.to_set).count]
+				end
+			end
+		end
+		return matches.sort_by!{ |m| m[1] }.reverse
+
+	end
 	def source
 		mq = self.main_question
 		exampro_id = mq.exampro_id

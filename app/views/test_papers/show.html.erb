@@ -63,6 +63,10 @@
 													<label>What went wrong?</label>
 													<%= f.text_area :text %>
 												</div>
+												<div class="ui field">
+												Struggling for words? <a href="#">Upload or take a picture</a> of what went wrong! <div class="ui green label">New!</div>
+												</div>
+												
 												<%= f.hidden_field :prev_url, :value => @prev_url %>
 												 <div class="actions">
 												    <%= f.submit class: "ui red answer-button button", :id=> "submit-#{question.id}", 'data-id' => question.id %>
@@ -72,6 +76,7 @@
 										</div>
 										<% end %>
 										<% if question.answer(current_user) %>
+
 											<% if question.answer(current_user).interventions.count < 1 then %>
 												<div class="answer-meta" style="margin:auto; max-width:705px;">
 													<% if question.get_marks_percentage(current_user) != 1 then %>
@@ -97,6 +102,9 @@
 												</div>
 												
 											<% end %>
+											<div class="ui field" style="margin:auto; margin-bottom: 10px; max-width:705px;">
+											Want a similar question? <a href="<%= question_path(question) %>">See our recommended question</a> for this question now! <div class="ui green label">New!</div>
+											</div>
 											<div style="text-align:right; max-width:705px; margin: auto;">
 												
 													<div class="ui labeled inverted button">

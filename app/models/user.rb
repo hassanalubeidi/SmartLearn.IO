@@ -28,6 +28,15 @@ class User < ActiveRecord::Base
       false 
     end
   end
+  def all_interventions
+    interventions = []
+    self.answers.each do |answer|
+      if answer.interventions.count > 0 then
+        interventions.push answer.interventions.last
+      end
+    end
+    return interventions.uniq
+  end
 
   def answered_objectives
     questions = Question.all.select{ |question| question.answer(self) != nil }

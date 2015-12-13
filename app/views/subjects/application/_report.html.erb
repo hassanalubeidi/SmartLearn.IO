@@ -64,3 +64,10 @@
   <% end %>
 <% end %>
 </div>
+<div class="ui segment">
+<% current_user.all_interventions.each do |intervention| %>
+<p>
+<%= intervention.inspect %>
+</p>
+<% end %>
+</div>
