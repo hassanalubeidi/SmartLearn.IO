@@ -6,7 +6,7 @@
 
 <% mq = @question.sim_ques(current_user).uniq.first  %>
 <div class="ui blue message">
-We have recommended <%= mq[0].source %> because it shares <%= mq[1] %>/<%= @question.objectives.uniq.count %> objectives with the question you have referenced</div>
+We have recommended <%= mq[0].source %> because it shares <%= mq[1] %>/<%= @question.objectives.uniq.count %> objectives with the question you have referenced
 </div>
 <div class="ui basic segment">
 	<div class="ui segments">
