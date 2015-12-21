@@ -43,6 +43,14 @@ Rails.application.routes.draw do
     resources :module_pack
   end
 
+  scope 'parse' do 
+    get '/subject_details', to: "parse#subject_details"
+    post '/subject_details', to: "parse#create_subject_details"
+  end
+  
+  namespace :parse do
+    resources :articles, :comments
+  end
   
   resources :improvements
   resources :reviews

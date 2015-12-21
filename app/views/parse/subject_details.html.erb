@@ -1,0 +1,31 @@
+<div class="ui container">
+	<div class="ui header">
+	Input JSON Topics and their objectives.
+	</div>
+	<div class="ui message">
+		<strong>
+		Expects:
+		</strong>
+		An array with the folowing stucture:
+		<ul>
+			<li>
+				JSON with topics objects
+			</li>
+		</ul>
+	</div>
+
+	<div class="ui form">
+		
+		<%= form_tag("#{subject_details_path}", method: "post", html: { :class => "ui form" }) do %>
+	      <div class="ui field">
+		 	<%= select_tag "subject_id", options_from_collection_for_select(Subject.all, "id", "name") %>
+		  </div>
+		  <div class="ui field">
+			  <lable>JSON:</lable>
+			  <%= text_area_tag(:JSON_data) %>
+		  </div>
+		  <%= submit_tag("Search", class: "ui red button") %>
+		<% end %>
+	</div>
+	
+</div>
