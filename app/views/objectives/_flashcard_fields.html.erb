@@ -10,7 +10,6 @@
   </div>
   Keypoints:
   <div id='tasks' class="ui raised segment">
-    <%=  Line.all.inspect %>
     <% Line.all.each.with_index do |line,ab| %>
       <%= f.fields_for :keypoints do |keypoint| %>
       

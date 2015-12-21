@@ -31,12 +31,12 @@
 	    </div>
 	    <!-- <%# render partial: "peer_assess" %> !-->
 	    </div>
-	    <% if @objective.flashcards.count == 0 then %>
+
 	    	<div class="ui basic segment">
-	    		<h3 class="ui centered header">This objective has no flashcards. <%= link_to "Add some?", edit_objective_path(@objective) %> </h3>
+	    		<h3 class="ui centered header"><%= link_to "Add flashcards", edit_objective_path(@objective) %> </h3>
 	    	</div>
 
-	    <% end %>
+
 </div>
 
 <script>
