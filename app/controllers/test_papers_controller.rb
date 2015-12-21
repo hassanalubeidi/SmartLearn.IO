@@ -1314,86 +1314,90 @@ EOXML
     params =  CGI::parse(url)
     questions =  params["doclist"].join.split("|").compact
     questions.each_with_index do |question, index|
-      if question_meta_data.root.q.at_css("[qid='#{question}']") != nil then
-        template_url = url.scan(/.*?(?=doclist)doclist/).join
-        q_url = url.gsub(/doclist\s*(((?!doclist|&).)+)/, "doclist=#{urlify(question)}")
-        question_html = Nokogiri::HTML(open(q_url))
-        m_url = q_url.gsub(/type.?\=[A-Z]/, "type=M")
-        mark_scheme_html = Nokogiri::HTML(open(m_url))
+      if MainQuestion.where(exampro_id: question).count == 0 then #if not in database, parse paper and put into database
+        if question_meta_data.root.q.at_css("[qid='#{question}']") != nil then
+          template_url = url.scan(/.*?(?=doclist)doclist/).join
+          q_url = url.gsub(/doclist\s*(((?!doclist|&).)+)/, "doclist=#{urlify(question)}")
+          question_html = Nokogiri::HTML(open(q_url))
+          m_url = q_url.gsub(/type.?\=[A-Z]/, "type=M")
+          mark_scheme_html = Nokogiri::HTML(open(m_url))
 
-        mainquestion = MainQuestion.create(
-            exampro_id: question,
-            test_paper_id: testpaper.id,
-            answer_html: mark_scheme_html.to_html,
-            html: question_html.to_html
-            )
-        testpaper.main_questions << mainquestion
-        testpaper.save
-        marks = question_html.content.scan(/\([1-9]*\)/)
-    
-        if question_html.css("table")
-        question_html.css("table").each_with_index do |table, index|
-          ques_id = table.content.scan(/\([a-h]\)|\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).join()
-          if ques_id.scan(/\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).size > 1 then # validation
-            #catches questions where exampro formating messes up
-            fix_marks = table.content.scan(/\(\d\)/)
-            actual_marks = 0
-            fix_marks.each do |m|
-              mm = m.scan(/\d/).join.to_i
-              actual_marks += mm
-            end
-            ques = Question.new(
-                  main_question_id: mainquestion.id,
-                  total_marks: actual_marks,
-                  html: "#{table.to_html} <strong>Warning, the above question contains formatting errors</strong>",
-                  position: "#{ques_id}"
-                  )
-                ques.save
-          else
-            begin
-              if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...
-                $last_good = ques_id.scan(/\([a-h]\)/).join
-                ques = Question.new(
-                  main_question_id: mainquestion.id,
-                  total_marks: marks[index].scan(/[0-50]/).join.to_i,
-                  html: table.to_html,
-                  position: ques_id,
-                  )
-                ques.save
 
-              else
-                Question.create(
-                  main_question_id: mainquestion.id,
-                  total_marks: marks[index].scan(/[0-50]/).join.to_i,
-                  html: table.to_html,
-                  position: "#{$last_good}#{ques_id}"
-                  )
-              end
-            rescue NoMethodError
-
-            end
-            end
-          end
-
-        end
-        question_objectives_ids = question_meta_data.root.q.at_css("[qid='#{question}']").attribute("index7").to_s.split("| ") # find objective ids
-        question_objectives_ids.each do |o_id| 
-          unless objectives.root.level1.css("[id='#{o_id.sub(/[a-z]/, "")}']") == nil then
-            topic = Topic.find_or_create_by( name: objectives.root.level1.at_css("[id='#{o_id.strip.sub(/[a-z]/, "")}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""), subject: testpaper.subject )
-          end
-          objective = Objective.find_or_create_by(
-                name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""),
-                topic: topic,
-                )
-          
-          mainquestion.objectives << objective
-          mainquestion.save
-          objective.main_questions << mainquestion
-          objective.save
-
-        end
-      end
+          mainquestion = MainQuestion.create(
+              exampro_id: question,
+              test_paper_id: testpaper.id,
+              answer_html: mark_scheme_html.to_html,
+              html: question_html.to_html
+              )
+          testpaper.main_questions << mainquestion
+          testpaper.save
+          marks = question_html.content.scan(/\([1-9]*\)/)
       
+          if question_html.css("table")
+          question_html.css("table").each_with_index do |table, index|
+            ques_id = table.content.scan(/\([a-h]\)|\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).join()
+            if ques_id.scan(/\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\)/).size > 1 then # validation
+              #catches questions where exampro formating messes up
+              fix_marks = table.content.scan(/\(\d\)/)
+              actual_marks = 0
+              fix_marks.each do |m|
+                mm = m.scan(/\d/).join.to_i
+                actual_marks += mm
+              end
+              ques = Question.new(
+                    main_question_id: mainquestion.id,
+                    total_marks: actual_marks,
+                    html: "#{table.to_html} <strong>Warning, the above question contains formatting errors</strong>",
+                    position: "#{ques_id}"
+                    )
+                  ques.save
+            else
+              begin
+                if ques_id.strip.scan(/^(\(i\)|\(ii\)|\(iii\)|\(iv\)|\(v\))/).size < 1 then #checks if q_id != just (i)|(ii)...
+                  $last_good = ques_id.scan(/\([a-h]\)/).join
+                  ques = Question.new(
+                    main_question_id: mainquestion.id,
+                    total_marks: marks[index].scan(/[0-50]/).join.to_i,
+                    html: table.to_html,
+                    position: ques_id,
+                    )
+                  ques.save
+
+                else
+                  Question.create(
+                    main_question_id: mainquestion.id,
+                    total_marks: marks[index].scan(/[0-50]/).join.to_i,
+                    html: table.to_html,
+                    position: "#{$last_good}#{ques_id}"
+                    )
+                end
+              rescue NoMethodError
+
+              end
+              end
+            end
+
+          end
+          question_objectives_ids = question_meta_data.root.q.at_css("[qid='#{question}']").attribute("index7").to_s.split("| ") # find objective ids
+          question_objectives_ids.each do |o_id| 
+            unless objectives.root.level1.css("[id='#{o_id.sub(/[a-z]/, "")}']") == nil then
+              topic = Topic.find_or_create_by( name: objectives.root.level1.at_css("[id='#{o_id.strip.sub(/[a-z]/, "")}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""), subject: testpaper.subject )
+            end
+            objective = Objective.find_or_create_by(
+                  name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""),
+                  topic: topic,
+                  )
+            
+            mainquestion.objectives << objective
+            mainquestion.save
+            objective.main_questions << mainquestion
+            objective.save
+
+          end
+        end
+      else #else reuse the question in the database
+        testpaper.main_questions << MainQuestion.find_by(exampro_id: question)
+      end
     end
     redirect_to test_paper_path(testpaper)
   end

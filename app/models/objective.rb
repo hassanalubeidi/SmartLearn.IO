@@ -19,16 +19,19 @@ class Objective < ActiveRecord::Base
   def answered_by?(user)
 		user.answered_objectives.include? self
 	end
-  def progress(user) #usually user = current_user
-		marks = 0
-		total_marks = 0
-		self.questions.each do |question|
-			unless question.answers.where(:user => user).count == 0 then 
-				marks += question.answer(user).marks_integer.to_i * time_degredation(question, user)
-				total_marks += question.total_marks
+  	def progress(user, attempted_questions) #usually user = current_user
+  		
+			marks = 0
+			total_marks = 0
+			attempted_questions.each_with_index do |attempted_question, index|
+				unless attempted_question.answer.blank?
+					marks += attempted_question.answer.marks_integer.to_i * time_degredation(attempted_question.question, user)
+					total_marks += attempted_question.question.total_marks
+				end
 			end
-		end
-		return (marks.to_f / total_marks.to_f) * 100 #might give an error if an objective has no question?
+			return (marks.to_f / total_marks.to_f) * 100
+		
+		
 	end
 	def difficulty(user)
 		if user.grade == "A*" or user.grade == "A" then
@@ -124,5 +127,17 @@ class Objective < ActiveRecord::Base
 	end
 	def half_life_growth(steps,max)
 		return max ** (1 / steps.to_f )
+	end
+
+	def calculate_score(user)
+		marks = 0
+		total_marks = 0
+		self.questions.each do |question|
+			unless question.answers.where(:user => user).count == 0 then 
+				marks += question.answer(user).marks_integer.to_i * time_degredation(question, user)
+				total_marks += question.total_marks
+			end
+		end
+		return (marks.to_f / total_marks.to_f) * 100 #might give an error if an objective has no question?
 	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206141750) do
+ActiveRecord::Schema.define(version: 20151221141409) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.string   "marks_integer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
@@ -40,6 +44,12 @@ ActiveRecord::Schema.define(version: 20151206141750) do
   create_table "attempted_questions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.integer  "question_id"
+    t.integer  "objective_id"
+    t.integer  "topic_id"
+    t.integer  "subject_id"
   end
 
   create_table "attempts", force: :cascade do |t|
@@ -62,6 +72,10 @@ ActiveRecord::Schema.define(version: 20151206141750) do
     t.text     "text"
     t.text     "top"
     t.text     "bottom"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "improvements", force: :cascade do |t|
@@ -129,6 +143,14 @@ ActiveRecord::Schema.define(version: 20151206141750) do
 
   add_index "main_questions_objectives", ["objective_id"], name: "index_main_questions_objectives_on_objective_id"
   add_index "main_questions_objectives", ["question_id"], name: "index_main_questions_objectives_on_question_id"
+
+  create_table "main_questions_test_papers", id: false, force: :cascade do |t|
+    t.integer "main_question_id"
+    t.integer "test_paper_id"
+  end
+
+  add_index "main_questions_test_papers", ["main_question_id"], name: "index_main_questions_test_papers_on_main_question_id"
+  add_index "main_questions_test_papers", ["test_paper_id"], name: "index_main_questions_test_papers_on_test_paper_id"
 
   create_table "objective_states", force: :cascade do |t|
     t.string   "status"

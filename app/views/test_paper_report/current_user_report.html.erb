@@ -56,7 +56,7 @@
 								<div class="ui secondary segment" >
 									<% User.all.each do |temp_user| %>
 										<% if question.answer(temp_user) %>
-											<% if question.answer(temp_user).interventions.count < 1 then %>
+											<% if question.answer(temp_user).interventions.count < 1  then %>
 												<div class="answer-meta" style="margin:auto; max-width:705px;">
 													<% if question.get_marks_percentage(temp_user) != 1 then %>
 														<div class="ui red message">

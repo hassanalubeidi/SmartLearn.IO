@@ -2,6 +2,9 @@ class Flashcard < ActiveRecord::Base
 	belongs_to :objective
 	has_many :keypoints
 	accepts_nested_attributes_for :keypoints, :reject_if => :all_blank, :allow_destroy => true
+
+	has_attached_file :picture
+  	validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
 	def get_top
 		if self.top == nil then
 			return self.text 

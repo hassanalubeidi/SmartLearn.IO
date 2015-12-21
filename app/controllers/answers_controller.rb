@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
   def new
     @question = Question.find(params[:question_id])
     @answer = Answer.new(:question=>@question)
+    @answer.pictures.build
     session[:prev_url] = request.referer
   end
 
@@ -25,7 +26,10 @@ class AnswersController < ApplicationController
     @answer.question = @question
     @answer.user = current_user
     @answer.save
-    if @answer.save then redirect_to session[:prev_url] end
+    if @answer.save then
+      attempted_question = AttemptedQuestion.create(answer_id: @answer.id, user_id: @answer.user.id, question_id: @question.id, objective_id: @question.main_question.objectives.last.id, topic_id: @question.main_question.objectives.last.topic.id , subject_id: @question.main_question.objectives.last.topic.subject.id)
+      redirect_to(:back)
+    end
   end
 
   def update
@@ -42,6 +46,6 @@ class AnswersController < ApplicationController
     end
 
     def answer_params
-      params.require(:answer).permit(:question_id, :user_id, :text, :marks_integer)
+      params.require(:answer).permit(:question_id, :user_id, :text, :marks_integer, :picture)
     end
 end

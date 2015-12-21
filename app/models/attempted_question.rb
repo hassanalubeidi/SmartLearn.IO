@@ -1,5 +1,8 @@
 class AttemptedQuestion < ActiveRecord::Base
+	belongs_to :subject
+	belongs_to :topic
 	belongs_to :objective
 	belongs_to :user
-	has_one :question
+	belongs_to :question
+	belongs_to :answer
 end

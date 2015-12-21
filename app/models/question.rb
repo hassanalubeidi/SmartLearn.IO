@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :topic
   belongs_to :main_question
   has_many :answers, :dependent => :destroy
+  has_many :attempted_questions, :dependent => :destroy
   belongs_to :test_paper
   has_attached_file :attachment, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :attachment, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
@@ -11,14 +12,8 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :lines
   has_many :objectives, through: :lines
 
-  def similar_questions
-	    quess = []
-		self.objectives.each do |obj|
-			obj.main_questions.each do |mq|
-				quess.push(*mq.questions.all)
-			end
-		end
-		return quess.uniq
+  	def similar_questions
+	    []
 	end
 	def sim_ques(user)
 		matches = []
@@ -66,7 +61,9 @@ class Question < ActiveRecord::Base
 	end
 	def answer(user)
 		unless self.answers.count == 0 then
-			return self.answers.where(user: user).last
+			return @answer if defined? @answer
+    		@answer = self.answers.where(user: user).last
+    		return @answer
 		else return nil
 		end
 	end
@@ -80,9 +77,19 @@ class Question < ActiveRecord::Base
 		return diffs / count #mean of the diffuculties
 	end
 	def get_marks_percentage(user)
-		self.answers.where(:user => user).last.marks_integer.to_f / self.total_marks.to_f
+		if self.answers.where(:user => user).last != nil then
+			self.answers.where(:user => user).last.marks_integer.to_f / self.total_marks.to_f
+		else return 1
+		end
 	end
 	def objectives
-	    self.main_question.objectives
+	    return @objectives if defined? @objectives
+    	@objectives = self.main_question.objectives
+	end
+
+
+	private 
+	def get_objectives
+		self.main_question.objectives
 	end
 end

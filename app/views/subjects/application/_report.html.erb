@@ -39,7 +39,7 @@
     
     <% @subject.topics.each do |topic| %>
     
-      <% progress = topic.progress(current_user) %>
+      <% progress = topic.progress(current_user, @attempted_questions.where(topic_id: topic.id, user_id: current_user.id)) %>
       <% objective_count = topic.objectives.count %>
       <% unless progress.to_f.nan? %>
       <div class="ui <%= colour(progress) %> segment" id="topic<%= topic.id %>">

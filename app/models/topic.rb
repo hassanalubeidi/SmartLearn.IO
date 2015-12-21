@@ -9,14 +9,14 @@ class Topic < ActiveRecord::Base
 
   validates :name, presence: true
 
-    def progress(user) #this approach gets all questions from this topic, rather than averaging objective scores. talk with jennings to see best approach
+    def progress(user, attempted_questions) #this approach gets all questions from this topic, rather than averaging objective scores. talk with jennings to see best approach
 		unless self.unique_questions.count == 0 then #fix for topics that dont have questions returning nil rather than 0.00
 			marks = 0
 			total_marks = 0
-			self.unique_questions.each do |question|
-				unless question.answer(user).blank?
-					marks += question.answer(user).marks_integer.to_i * time_degredation(question, user)
-					total_marks += question.total_marks
+			attempted_questions.each_with_index do |attempted_question, index|
+				unless attempted_question.answer.blank?
+					marks += attempted_question.answer.marks_integer.to_i * time_degredation(attempted_question.question, user)
+					total_marks += attempted_question.question.total_marks
 				end
 			end
 			return (marks.to_f / total_marks.to_f) * 100
@@ -40,7 +40,13 @@ class Topic < ActiveRecord::Base
 		questionss.uniq
 	end
 	def time_degredation(question, user)
-		a = (Time.now -  question.answers.where(:user => user).last.created_at).to_i / 86400
+		if question.answers.where(:user => user).last != nil then
+			time_since ||= Time.now -  question.answers.where(:user => user).last.created_at
+			a = time_since.to_i / 86400
+		else
+			a = 0
+		end
+		
 		return half_life(user, question) ** -(a) # exponentail graph
 	end
 	def half_life(user, question) # a much more dynamic half life. NOT FINISHED NEEDS TO GET QUESTION.OBJECTIVES.QUESTIONS.COUNT
@@ -57,4 +63,6 @@ class Topic < ActiveRecord::Base
 	def half_life_growth(steps,max)
 		return max ** (1 / steps.to_f )
 	end
+	private
+	
 end

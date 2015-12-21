@@ -1,12 +1,11 @@
-<% progress = @topic.progress(current_user) %>
-<% objective_count = @topic.objectives.count %>
+
 
 <div class="ui toptitle segment" style="margin-bottom:0; z-index:1">
   <div class="ui container">
     <div class="introduction">
 
       <h1 class="ui top header">
-        <%= @topic.name %> <div class="ui blue right aligned label"><%= number_with_precision(progress, precision: 1) %>%</div>
+        <%= @topic.name %> <div class="ui blue right aligned label"></div>
         
         <div class="sub header">
         <%= @topic.subject.name %>
@@ -27,7 +26,8 @@
 
 <div class="ui container">
 	<% @topic.objectives.each do |obj| %>
-		<% score = obj.progress(current_user) %>
+		<% score = obj.progress(current_user, AttemptedQuestion.where(user_id: current_user.id, objective_id: obj.id)) %>
+    
 		<% unless score.nan? %>
 		<div class="ui <%= colour(score) %> segment" id="obj<%= obj.id %>">
           <div class="ui top basic attached label"><span style="font-size: 1.1em"><%= obj.name %></span> <div class="ui right float circular <%= colour(score) %> label"><%= number_with_precision(score, precision: 0) %>%</div></div>
