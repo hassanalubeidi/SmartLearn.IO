@@ -1,10 +1,27 @@
 
  
 <div class="ui container">
-  <div class="ui cards">
-  <% @improvements.each do |improvement| %>
-  <%= render "improvement", improvement: improvement %>
-  <% end %>
-  </div>
+  
 <%= link_to "new improvement", new_improvement_path, class: "ui primary button" %>
+</div>
+
+<div class="ui container">
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th class="two wide">Date</th>
+      <th class="two wide">Topic</th>
+      <th class="eight wide">Area to improve</th>
+      <th>Reviewed</th>
+      <th>Checked</th>
+      <th "one wide">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @improvements.each do |improvement| %>
+    	<%= render "improvement", improvement: improvement %>
+    <% end %>
+    
+  </tbody>
+</table>
 </div>

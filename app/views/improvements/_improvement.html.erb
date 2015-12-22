@@ -1,26 +1,25 @@
 
-<div class="fluid card">
-    <div class="content">
-      <i class="right floated <%= if improvement.checked == true then 'active' end %> star icon"></i>
-      <%= link_to "<i class='right floated trash link icon'></i>".html_safe, improvement_path(improvement), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <div class="header"><%= improvement.topic.name %></div>
-      <div class="meta">
-        <%= link_to time_ago_in_words(improvement.created_at), improvement_path(improvement), class: "group" %> ago
-      </div>
-      <div class="description">
-        <%= improvement.area_to_improve %>
-      </div>
-    </div>
-    <% if improvement.reviews.count < 1 then %>
-    <a href=" <%=  add_review_path(improvement) %> " class="ui bottom attached button review">
+
+<tr>
+  <td>17/09/2015</td>
+  <td><%= improvement.topic.name %></td>
+  <td class=""><%= improvement.area_to_improve %></td>
+  <td>
+    <% if improvement.reviews.count > 0 then %>
+      
+      <a href=" <%=  add_review_path(improvement) %> " class="">
+        <i class="ui checkmark green icon"></i>
+        <%= time_ago_in_words(improvement.reviews.last.created_at) %> ago
+      </a>
+    <% else %>
+    <a href=" <%=  add_review_path(improvement) %> " class="">
       <i class="add icon"></i>
       Review this
     </a>
-    <% else %>
-    <a href=" <%=  add_review_path(improvement) %> " class="ui green bottom attached button disabled">
-      <i class="add icon"></i>
-      Reviewed
-    </a>
     <% end %>
-  </div>
-<!-- Modal -->
+  </td>
+
+  <td class="negative">No</td>
+  <td><%= link_to "<i class='ui red delete large icon'></i>".html_safe, improvement_path(improvement), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+  <%= link_to "<i class='ui blue pencil large icon'></i>".html_safe, edit_improvement_path(improvement) %></td>
+</tr>
