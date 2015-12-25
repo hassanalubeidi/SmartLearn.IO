@@ -1,4 +1,5 @@
 module ApplicationHelper
+	
 	def show_if_teacher(user)
 		# if user.power == "teacher" or user.power "admin" then
 		# 	return yield
@@ -25,4 +26,7 @@ module ApplicationHelper
 			return "red"
 		end
 	end
+	def current_url(new_params)
+ url_for params.merge(new_params)
+end
 end

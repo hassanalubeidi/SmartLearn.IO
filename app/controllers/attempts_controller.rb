@@ -1,4 +1,5 @@
 class AttemptsController < ApplicationController
+	skip_before_action :verify_authenticity_token
 	def new
 		@attempt = Attempt.new
 		respond_to do |format|
@@ -15,6 +16,7 @@ class AttemptsController < ApplicationController
 	      format.html { redirect_to @attempt, notice: 'attempt was successfully created.' }
 	      format.json { render json: @attempt, status: :created, location: @attempt }
 	      format.js
+	     
 	    else
 	      format.html { render action: "new" }
 	      format.json { render json: @attempt.errors, status: :unprocessable_entity }

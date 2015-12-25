@@ -62,11 +62,9 @@ class ImprovementsController < ApplicationController
     respond_to do |format|
       if @improvement.save
         format.html { 
-          unless @improvement.topic.subject.blank?
-            redirect_to @improvement, :flash => { :success => "Improvement was successfully created." }
-          else 
-            redirect_to edit_topic_path(@improvement.topic, {:go_back => @improvement.id }), :flash => { :warning => "This topic needs to assigned to a subject" }
-          end
+
+            redirect_to improvements_path, :flash => { :success => "Improvement was successfully created." }
+
         }
         format.json { render :show, status: :created, location: @improvement }
       else

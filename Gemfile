@@ -71,3 +71,4 @@ gem 'ParsePapers', '~> 2.1.2', :git => 'git://github.com/hassanalubeidi/ParsePap
 gem "nokogiri"
 gem 'rest-client'
 gem 'json'
+gem 'rack-cors', :require => 'rack/cors'
