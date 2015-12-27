@@ -106,6 +106,6 @@ class ImprovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def improvement_params
-      params.require(:improvement).permit(:topic_id, :area_to_improve, :checked, :user_id, :subject, :subject_id, :topic_name)
+      params.require(:improvement).permit(:topic_id, :area_to_improve, :checked, :user_id, :subject, :subject_id, :topic_name, :flashcard_id)
     end
 end

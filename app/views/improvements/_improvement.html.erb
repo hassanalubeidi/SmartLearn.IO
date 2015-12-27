@@ -3,7 +3,13 @@
 <tr>
   <td>17/09/2015</td>
   <td><%= improvement.topic.name %></td>
-  <td class=""><%= improvement.area_to_improve %></td>
+  <td class="">
+    <%= improvement.area_to_improve %>
+    <% if improvement.flashcard then %>
+      <%= improvement.flashcard.keypoints.all %>
+    <% end %>
+
+  </td>
   <td>
     <% if improvement.reviews.count > 0 then %>
       

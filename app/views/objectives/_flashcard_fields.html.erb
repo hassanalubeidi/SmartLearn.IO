@@ -10,12 +10,12 @@
   </div>
   Keypoints:
   <div id='tasks' class="ui raised segment">
-    <% Line.all.each.with_index do |line,ab| %>
+    
       <%= f.fields_for :keypoints do |keypoint| %>
       
         <%= render 'keypoint_fields', :f => keypoint %>
       <% end %>
-    <% end %>
+    
 
       <div class='links'>
         <%= link_to_add_association 'Add a keypoint', f, :keypoints, class: "ui button" %>

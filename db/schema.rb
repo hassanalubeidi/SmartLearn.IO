@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221141409) do
+ActiveRecord::Schema.define(version: 20151226144928) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20151221141409) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "improvement_id"
   end
 
   create_table "improvements", force: :cascade do |t|
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151221141409) do
     t.datetime "updated_at"
     t.integer  "subject_id"
     t.integer  "topic_id"
+    t.integer  "flashcard_id"
   end
 
   add_index "improvements", ["user_id"], name: "index_improvements_on_user_id"
