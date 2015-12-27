@@ -5,7 +5,6 @@ class Improvement < ActiveRecord::Base
   has_many :reviews
   belongs_to :flashcard
 
-  validates :topic, presence: true
   validates :area_to_improve, presence: true
 
 

@@ -1,9 +1,9 @@
 class ImprovementsController < ApplicationController
 
   #->Prelang (scaffolding:rails/scope_to_user)
-  before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy, :index]
 
   before_action :set_improvement, only: [:show, :edit, :update, :destroy, :add_review]
+  skip_before_filter :verify_authenticity_token  
 
   # GET /improvements
   # GET /improvements.json
@@ -57,7 +57,7 @@ class ImprovementsController < ApplicationController
   # POST /improvements.json
   def create
     @improvement = Improvement.new(improvement_params)
-    @improvement.user = current_user
+    @improvement.user = current_user unless current_user == nil
 
     respond_to do |format|
       if @improvement.save
