@@ -1359,7 +1359,7 @@ EOXML
                     main_question_id: mainquestion.id,
                     total_marks: marks[index].scan(/[0-50]/).join.to_i,
                     html: table.to_html,
-                    position: ques_id,
+                    position: ques_id
                     )
                   ques.save
 
@@ -1385,7 +1385,7 @@ EOXML
             end
             objective = Objective.find_or_create_by(
                   name: objectives.root.css("[id='#{o_id.strip}']").attribute("data").to_html.scan(/".*?"/).join.gsub(/\"/, ""),
-                  topic: topic,
+                  topic: topic
                   )
             
             mainquestion.objectives << objective
