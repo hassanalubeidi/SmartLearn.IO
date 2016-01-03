@@ -72,4 +72,4 @@ gem "nokogiri"
 gem 'rest-client'
 gem 'json'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
