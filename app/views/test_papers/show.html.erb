@@ -18,7 +18,8 @@
 				<% @test_paper.main_questions.each_with_index do |mainquestion, mq_index| %>
 					<div class="ui basic segment">
 						<div class="ui segments">
-							<% mainquestion.questions.each_with_index do |question, q_index| %>
+							<% questions = mainquestion.questions.to_a.sort_by!{ |m| m.position.downcase } %>
+							<% questions.each_with_index do |question, q_index| %>
 								<div class="ui segment">
 								<% if q_index == 0 then %>
 								<div class="ui top attached blue label" style="text-align:center;">Question <%= mq_index + 1 %></div>
