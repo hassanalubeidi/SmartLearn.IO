@@ -7,7 +7,7 @@
 	<h3 class="ui header">I made sure to mention: </h3>
 	<% flashcard.keypoints.each do |keypoint| %>
 	
-		<label><%= keypoint.text %></label>
+		<label><%= keypoint.text.html_safe %></label>
 		<%= form_for(Attempt.new,
 					 remote: true,
 				     :html => {:class => "keypoint_form#{flashcard.id}"}) do |f| %>

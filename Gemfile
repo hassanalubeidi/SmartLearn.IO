@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 
 # Use unicorn as the app server
 # gem 'unicorn'
+gem 'tinymce-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -73,3 +74,7 @@ gem 'rest-client'
 gem 'json'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'aws-sdk', '< 2.0'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem "rmagick"
+
+

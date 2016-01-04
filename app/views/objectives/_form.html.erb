@@ -1,5 +1,21 @@
+<script>function init_textarea() {
+  setTimeout(function() {
+    tinymce.init({
+      selector: 'textarea',
+      toolbar: 'undo redo | styleselect | bold italic | uploadimage',
+      plugins: "uploadimage"
 
+    });
+  }, 1)
+  
+}</script>
+<script>
+window.setInterval(function(){
+  init_textarea()
+}, 500);
+</script>
 <div class="ui container">
+
   <h2 class="ui centered header">Objective edit/new </h2>
   <%= form_for(@objective, html: { :class => "ui form  " }) do |f| %>
     <div class="ui field">
@@ -11,11 +27,16 @@
       <%= render 'flashcard_fields', :f => flashcard %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'Add Flashcard', f, :flashcards, :class => "ui button" %>
+      <%= link_to_add_association 'Add Flashcard', f, :flashcards, :class => "ui button add-flashcard" %>
     </div>
   </div>
   <div class="actions">
     <%= f.submit :class => "ui green right float button" %>
   </div>
   <% end %>
+  <div class="ui segment" style="margin:auto; width:60%; margin-top:50px;">
+  <img class="ui image" src="http://i.imgur.com/h9inYwK.png">
+  </div>
 </div>
+<script src="http://cdn.tinymce.com/4/tinymce.min.js"></script>
+  

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :interventions
+  post '/tinymce_assets' => 'tinymce_assets#create'
 
   resources :attempts
   resources :lessons

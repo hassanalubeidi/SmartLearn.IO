@@ -1,7 +1,7 @@
 <div class="ui ten wide column">
 	<div class="ui basic question segment">
 		<div class="ui inverted dimmer"></div>
-		<h2 class="ui header"><%= flashcard.get_top %></h2>
+		<h2 class="ui header"><%= flashcard.get_top.html_safe %></h2>
 		<div class="ui fluid button circular answer-button">Answer</div>
 		<p class="hidden answer"> <%= flashcard.bottom %> <img class="ui fluid image" src="<%= flashcard.picture.url %>"></p>
 

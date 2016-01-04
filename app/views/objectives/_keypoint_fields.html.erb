@@ -4,8 +4,10 @@
     <br/>
     <div class="ui grid">
           <div class="ui fifteen wide column">
-            <%= f.text_field :text %>
+            <%= f.text_area :text %>
+            <p>Upload a picture to go with this</p> <%= f.file_field :picture %>
           </div>
+
           <div class="ui one wide column">
           <%= link_to_remove_association "<i class='ui remove icon'></i>".html_safe, f, class: "ui red icon button" %>
           </div>
