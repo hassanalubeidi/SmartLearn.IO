@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>advanced.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../Gemfile_lock~.html">Gemfile.lock~</a>
+  
+    <li><a href="../../../README_rdoc.html">README</a>
+  
+    <li><a href="../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../app/assets/javascripts/Chart_js.html">Chart.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/advanced_js.html">advanced.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/answers_js_coffee.html">answers.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/attempts_js_coffee.html">attempts.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/editor_css.html">editor.css</a>
+  
+    <li><a href="../../../app/assets/javascripts/improvements_js.html">improvements.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/interventions_js_coffee.html">interventions.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/jquery_cookie_js.html">jquery.cookie.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/lessons_js_coffee.html">lessons.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/module_pack_js_coffee.html">module_pack.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/module_packs_js_coffee.html">module_packs.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/nouislider_js.html">nouislider.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/objective_states_js_coffee.html">objective_states.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/objectives_js.html">objectives.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/parse_js_coffee.html">parse.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/questions_js_coffee.html">questions.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/semantic_js.html">semantic.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/set_groups_js_coffee.html">set_groups.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/subjects_js_coffee.html">subjects.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/test_paper_report_js_coffee.html">test_paper_report.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/test_papers_js_coffee.html">test_papers.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/tinymce_assets_js_coffee.html">tinymce_assets.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/topics_js_coffee.html">topics.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/units_js_coffee.html">units.js.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/wysihtml5-0_3_0_js.html">wysihtml5-0.3.0.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/answers_css_scss.html">answers.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_scss.html">application.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/arcticles_css_scss.html">arcticles.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/attempts_css_scss.html">attempts.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/dashboard_css_scss.html">dashboard.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/datatables_css.html">datatables.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/feed_css.html">feed.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/font-awesome_min_css.html">font-awesome.min.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/interventions_css_scss.html">interventions.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/jquery_gritter_css.html">jquery.gritter.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/lessons_css_scss.html">lessons.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/module_pack_css_scss.html">module_pack.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/module_packs_css_scss.html">module_packs.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/nanoscroller_css.html">nanoscroller.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/nouislider_css.html">nouislider.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/objective_states_css_scss.html">objective_states.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/objectives_css_scss.html">objectives.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/parse_scss.html">parse.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/questions_css_scss.html">questions.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/scaffolds_css_scss.html">scaffolds.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/semantic_css.html">semantic.css</a>
+  
+    <li><a href="../../../app/assets/stylesheets/set_groups_css_scss.html">set_groups.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/subjects_css_scss.html">subjects.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/test_paper_report_css_scss.html">test_paper_report.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/test_papers_css_scss.html">test_papers.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/tinymce_assets_scss.html">tinymce_assets.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/topics_css_scss.html">topics.css.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/units_css_scss.html">units.css.scss</a>
+  
+    <li><a href="../../../app/views/answers/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/answers/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/arcticles/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/arcticles/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/improvements/index_json.html">index.json</a>
+  
+    <li><a href="../../../app/views/improvements/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/interventions/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/interventions/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/lessons/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/lessons/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/module_packs/index_json.html">index.json</a>
+  
+    <li><a href="../../../app/views/module_packs/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/objectives/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/objectives/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/questions/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/questions/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/reviews/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/reviews/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/set_groups/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/set_groups/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/subjects/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/subjects/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/subjects/untitled_txt.html">untitled</a>
+  
+    <li><a href="../../../app/views/test_papers/_edit_form.html">_edit_form</a>
+  
+    <li><a href="../../../app/views/test_papers/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/test_papers/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/topics/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/topics/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/units/index_json_jbuilder.html">index.json.jbuilder</a>
+  
+    <li><a href="../../../app/views/units/show_json_jbuilder.html">show.json.jbuilder</a>
+  
+    <li><a href="../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../doc/controllers_brief_svg.html">controllers_brief.svg</a>
+  
+    <li><a href="../../../doc/controllers_complete_svg.html">controllers_complete.svg</a>
+  
+    <li><a href="../../../doc/models_brief_svg.html">models_brief.svg</a>
+  
+    <li><a href="../../../doc/models_complete_svg.html">models_complete.svg</a>
+  
+    <li><a href="../../../log/development_log.html">development.log</a>
+  
+    <li><a href="../../../npm-debug_log.html">npm-debug.log</a>
+  
+    <li><a href="../../../prelang-init.html">prelang-init</a>
+  
+    <li><a href="../../../public/404_html.html">404.html</a>
+  
+    <li><a href="../../../public/422_html.html">422.html</a>
+  
+    <li><a href="../../../public/500_html.html">500.html</a>
+  
+    <li><a href="../../../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../../../public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../tmp/pids/server_pid.html">server.pid</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/assets/javascripts/advanced.js">
+
+<pre>Full HTML5 compatibility rule set
+These rules define which tags and css classes are supported and which tags should be specially treated.
+
+Examples based on this rule set:
+
+   &lt;a href=&quot;http://foobar.com&quot;&gt;foo&lt;/a&gt;
+   ... becomes ...
+   &lt;a href=&quot;http://foobar.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;foo&lt;/a&gt;
+
+   &lt;img align=&quot;left&quot; src=&quot;http://foobar.com/image.png&quot;&gt;
+   ... becomes ...
+   &lt;img class=&quot;wysiwyg-float-left&quot; src=&quot;http://foobar.com/image.png&quot; alt=&quot;&quot;&gt;
+
+   &lt;div&gt;foo&lt;script&gt;alert(document.cookie)&lt;/script&gt;&lt;/div&gt;
+   ... becomes ...
+   &lt;div&gt;foo&lt;/div&gt;
+
+   &lt;marquee&gt;foo&lt;/marquee&gt;
+   ... becomes ...
+   &lt;span&gt;foo&lt;/marquee&gt;
+
+   foo &lt;br clear=&quot;both&quot;&gt; bar
+   ... becomes ...
+   foo &lt;br class=&quot;wysiwyg-clear-both&quot;&gt; bar
+
+   &lt;div&gt;hello &lt;iframe src=&quot;http://google.com&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+   ... becomes ...
+   &lt;div&gt;hello &lt;/div&gt;
+
+   &lt;center&gt;hello&lt;/center&gt;
+   ... becomes ...
+   &lt;div class=&quot;wysiwyg-text-align-center&quot;&gt;hello&lt;/div&gt;</pre>
+
+<p>var wysihtml5ParserRules = {</p>
+
+<pre>/**
+   CSS Class white-list
+   Following css classes won&#39;t be removed when parsed by the wysihtml5 html parser
+  /
+&quot;classes&quot;: {
+    &quot;wysiwyg-clear-both&quot;: 1,
+    &quot;wysiwyg-clear-left&quot;: 1,
+    &quot;wysiwyg-clear-right&quot;: 1,
+    &quot;wysiwyg-color-aqua&quot;: 1,
+    &quot;wysiwyg-color-black&quot;: 1,
+    &quot;wysiwyg-color-blue&quot;: 1,
+    &quot;wysiwyg-color-fuchsia&quot;: 1,
+    &quot;wysiwyg-color-gray&quot;: 1,
+    &quot;wysiwyg-color-green&quot;: 1,
+    &quot;wysiwyg-color-lime&quot;: 1,
+    &quot;wysiwyg-color-maroon&quot;: 1,
+    &quot;wysiwyg-color-navy&quot;: 1,
+    &quot;wysiwyg-color-olive&quot;: 1,
+    &quot;wysiwyg-color-purple&quot;: 1,
+    &quot;wysiwyg-color-red&quot;: 1,
+    &quot;wysiwyg-color-silver&quot;: 1,
+    &quot;wysiwyg-color-teal&quot;: 1,
+    &quot;wysiwyg-color-white&quot;: 1,
+    &quot;wysiwyg-color-yellow&quot;: 1,
+    &quot;wysiwyg-float-left&quot;: 1,
+    &quot;wysiwyg-float-right&quot;: 1,
+    &quot;wysiwyg-font-size-large&quot;: 1,
+    &quot;wysiwyg-font-size-larger&quot;: 1,
+    &quot;wysiwyg-font-size-medium&quot;: 1,
+    &quot;wysiwyg-font-size-small&quot;: 1,
+    &quot;wysiwyg-font-size-smaller&quot;: 1,
+    &quot;wysiwyg-font-size-x-large&quot;: 1,
+    &quot;wysiwyg-font-size-x-small&quot;: 1,
+    &quot;wysiwyg-font-size-xx-large&quot;: 1,
+    &quot;wysiwyg-font-size-xx-small&quot;: 1,
+    &quot;wysiwyg-text-align-center&quot;: 1,
+    &quot;wysiwyg-text-align-justify&quot;: 1,
+    &quot;wysiwyg-text-align-left&quot;: 1,
+    &quot;wysiwyg-text-align-right&quot;: 1
+},
+/**
+   Tag list
+
+   Following options are available:
+
+      - add_class:        converts and deletes the given HTML4 attribute (align, clear, ...) via the given method to a css class
+                          The following methods are implemented in wysihtml5.dom.parse:
+                            - align_text:  converts align attribute values (right/left/center/justify) to their corresponding css class &quot;wysiwyg-text-align-*&quot;)
+                              &lt;p align=&quot;center&quot;&gt;foo&lt;/p&gt; ... becomes ... &lt;p&gt; class=&quot;wysiwyg-text-align-center&quot;&gt;foo&lt;/p&gt;
+                            - clear_br:    converts clear attribute values left/right/all/both to their corresponding css class &quot;wysiwyg-clear-*&quot;
+                              &lt;br clear=&quot;all&quot;&gt; ... becomes ... &lt;br class=&quot;wysiwyg-clear-both&quot;&gt;
+                            - align_img:    converts align attribute values (right/left) on &lt;img&gt; to their corresponding css class &quot;wysiwyg-float-*&quot;
+
+      - remove:             removes the element and it&#39;s content
+
+      - rename_tag:         renames the element to the given tag
+
+      - set_class:          adds the given class to the element (note: make sure that the class is in the &quot;classes&quot; white list above)
+
+      - set_attributes:     sets/overrides the given attributes
+
+      - check_attributes:   checks the given HTML attribute via the given method
+                              - url:      checks whether the given string is an url, deletes the attribute if not
+                              - alt:      strips unwanted characters. if the attribute is not set, then it gets set (to ensure valid and compatible HTML)
+                              - numbers:  ensures that the attribute only contains numeric characters
+  /
+&quot;tags&quot;: {
+    &quot;tr&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;strike&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;form&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;rt&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;code&quot;: {},
+    &quot;acronym&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;br&quot;: {
+        &quot;add_class&quot;: {
+            &quot;clear&quot;: &quot;clear_br&quot;
+        }
+    },
+    &quot;details&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;h4&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;em&quot;: {},
+    &quot;title&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;multicol&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;figure&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;xmp&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;small&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;,
+        &quot;set_class&quot;: &quot;wysiwyg-font-size-smaller&quot;
+    },
+    &quot;area&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;time&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;dir&quot;: {
+        &quot;rename_tag&quot;: &quot;ul&quot;
+    },
+    &quot;bdi&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;command&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;ul&quot;: {},
+    &quot;progress&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;dfn&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;iframe&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;figcaption&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;a&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;href&quot;: &quot;url&quot;
+        },
+        &quot;set_attributes&quot;: {
+            &quot;rel&quot;: &quot;nofollow&quot;,
+            &quot;target&quot;: &quot;_blank&quot;
+        }
+    },
+    &quot;img&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;width&quot;: &quot;numbers&quot;,
+            &quot;alt&quot;: &quot;alt&quot;,
+            &quot;src&quot;: &quot;url&quot;,
+            &quot;height&quot;: &quot;numbers&quot;
+        },
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_img&quot;
+        }
+    },
+    &quot;rb&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;footer&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;noframes&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;abbr&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;u&quot;: {},
+    &quot;bgsound&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;sup&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;address&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;basefont&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;nav&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;h1&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;head&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;tbody&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;dd&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;s&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;li&quot;: {},
+    &quot;td&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;rowspan&quot;: &quot;numbers&quot;,
+            &quot;colspan&quot;: &quot;numbers&quot;
+        },
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;object&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;div&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;option&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;select&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;i&quot;: {},
+    &quot;track&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;wbr&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;fieldset&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;big&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;,
+        &quot;set_class&quot;: &quot;wysiwyg-font-size-larger&quot;
+    },
+    &quot;button&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;noscript&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;svg&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;input&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;table&quot;: {},
+    &quot;keygen&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;h5&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;meta&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;map&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;isindex&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;mark&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;caption&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;tfoot&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;base&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;video&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;strong&quot;: {},
+    &quot;canvas&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;output&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;marquee&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;b&quot;: {},
+    &quot;q&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;cite&quot;: &quot;url&quot;
+        }
+    },
+    &quot;applet&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;span&quot;: {},
+    &quot;rp&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;spacer&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;source&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;aside&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;frame&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;section&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;body&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;ol&quot;: {},
+    &quot;nobr&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;html&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;summary&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;var&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;del&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;blockquote&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;cite&quot;: &quot;url&quot;
+        }
+    },
+    &quot;style&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;device&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;meter&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;h3&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;textarea&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;embed&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;hgroup&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;font&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;,
+        &quot;add_class&quot;: {
+            &quot;size&quot;: &quot;size_font&quot;
+        }
+    },
+    &quot;tt&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;noembed&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;thead&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;blink&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;plaintext&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;xml&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;h6&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;param&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;th&quot;: {
+        &quot;check_attributes&quot;: {
+            &quot;rowspan&quot;: &quot;numbers&quot;,
+            &quot;colspan&quot;: &quot;numbers&quot;
+        },
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;legend&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;hr&quot;: {},
+    &quot;label&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;dl&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;kbd&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;listing&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;dt&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;nextid&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;pre&quot;: {},
+    &quot;center&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;,
+        &quot;set_class&quot;: &quot;wysiwyg-text-align-center&quot;
+    },
+    &quot;audio&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;datalist&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;samp&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;col&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;article&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    },
+    &quot;cite&quot;: {},
+    &quot;link&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;script&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;bdo&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;menu&quot;: {
+        &quot;rename_tag&quot;: &quot;ul&quot;
+    },
+    &quot;colgroup&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;ruby&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;h2&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;ins&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;p&quot;: {
+        &quot;add_class&quot;: {
+            &quot;align&quot;: &quot;align_text&quot;
+        }
+    },
+    &quot;sub&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;comment&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;frameset&quot;: {
+        &quot;remove&quot;: 1
+    },
+    &quot;optgroup&quot;: {
+        &quot;rename_tag&quot;: &quot;span&quot;
+    },
+    &quot;header&quot;: {
+        &quot;rename_tag&quot;: &quot;div&quot;
+    }
+}</pre>
+
+<p>};</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

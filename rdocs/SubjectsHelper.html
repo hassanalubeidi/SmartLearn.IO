@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module SubjectsHelper - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-dom_input_name">#dom_input_name</a>
+    
+    <li ><a href="#method-i-get_NaN_objectives">#get_NaN_objectives</a>
+    
+    <li ><a href="#method-i-get_bad_objectives">#get_bad_objectives</a>
+    
+    <li ><a href="#method-i-get_good_objectives">#get_good_objectives</a>
+    
+    <li ><a href="#method-i-get_objective_state">#get_objective_state</a>
+    
+    <li ><a href="#method-i-get_ok_objectives">#get_ok_objectives</a>
+    
+    <li ><a href="#method-i-get_questions_of_topic">#get_questions_of_topic</a>
+    
+    <li ><a href="#method-i-marks">#marks</a>
+    
+    <li ><a href="#method-i-objective_traffic_light">#objective_traffic_light</a>
+    
+    <li ><a href="#method-i-progress_in_objective">#progress_in_objective</a>
+    
+    <li ><a href="#method-i-progress_in_topic">#progress_in_topic</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-SubjectsHelper">
+  <h1 id="module-SubjectsHelper" class="module">
+    module SubjectsHelper
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-dom_input_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dom_input_name</span><span
+            class="method-args">(form, field_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dom_input_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dom_input_name</span>(<span class="ruby-identifier">form</span>, <span class="ruby-identifier">field_name</span>)
+  <span class="ruby-node">&quot;#{form.object_name}[#{field_name.to_s.sub(/\?$/,&quot;&quot;)}]&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_NaN_objectives" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_NaN_objectives</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_NaN_objectives-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_NaN_objectives</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">questions</span> = <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">nan</span> = <span class="ruby-value">0.0</span> <span class="ruby-operator">/</span> <span class="ruby-value">0.0</span>
+        <span class="ruby-identifier">nan_objectives</span> = []
+        <span class="ruby-identifier">topic</span>.<span class="ruby-identifier">objectives</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">objective</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-value">101</span> <span class="ruby-keyword">then</span> 
+                        
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">nan_objectives</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">objective</span>)
+
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">nan_objectives</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_bad_objectives" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_bad_objectives</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_bad_objectives-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_bad_objectives</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">questions</span> = <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">bad_objectives</span> = []
+        <span class="ruby-identifier">topic</span>.<span class="ruby-identifier">objectives</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">objective</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-value">45</span> <span class="ruby-keyword">then</span> 
+                        <span class="ruby-identifier">bad_objectives</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">objective</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">bad_objectives</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_good_objectives" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_good_objectives</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_good_objectives-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_good_objectives</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">questions</span> = <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">good_objectives</span> = []
+        <span class="ruby-identifier">topic</span>.<span class="ruby-identifier">objectives</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">objective</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">70</span> <span class="ruby-keyword">then</span> 
+                        <span class="ruby-identifier">good_objectives</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">objective</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">good_objectives</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_objective_state" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_objective_state</span><span
+            class="method-args">(objective)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_objective_state-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_objective_state</span>(<span class="ruby-identifier">objective</span>)
+        <span class="ruby-identifier">objective_status</span> = <span class="ruby-identifier">objective</span>.<span class="ruby-identifier">objective_states</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">status</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">objective</span>.<span class="ruby-identifier">objective_states</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">objective_status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;full&quot;</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;i class=&#39;ui large green checkmark link icon popup-add open-objective#{objective.id} inlineblock&#39; data-content=&#39;This objective is fully in memory&#39; data-variation=&#39;inverted&#39; data-position=&#39;right center&#39;&gt;&lt;/i&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">objective_status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;not fluent&quot;</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;strong class=&#39;letter link icon popup-add open-objective#{objective.id} inlineblock&#39; data-content=&#39;Main points of objective in memory, but not fluent&#39; data-variation=&#39;inverted&#39; data-position=&#39;right center&#39;&gt;F&lt;/strong&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">objective_status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;partial&quot;</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;strong class=&#39;letter link icon popup-add open-objective#{objective.id} inlineblock&#39; data-content=&#39;Some parts are weakly learnt, some not learnt at all&#39; data-variation=&#39;inverted&#39; data-position=&#39;right center&#39;&gt;P&lt;/strong&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">objective_status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;none&quot;</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;i class=&#39;ui large red link remove icon popup-add open-objective#{objective.id} inlineblock&#39; data-content=&#39;Welp, get to work I guess..&#39; data-variation=&#39;inverted&#39; data-position=&#39;right center&#39;&gt;&lt;/i&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+        <span class="ruby-keyword">else</span> 
+                <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;i class=&#39;ui large help link icon popup-add open-objective#{objective.id} inlineblock&#39; data-content=&#39;Get off your ass and add a status&#39; data-variation=&#39;inverted&#39; data-position=&#39;right center&#39;&gt;&lt;/i&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_ok_objectives" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_ok_objectives</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_ok_objectives-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_ok_objectives</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">questions</span> = <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">ok_objectives</span> = []
+        <span class="ruby-identifier">topic</span>.<span class="ruby-identifier">objectives</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">objective</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">45</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-value">70</span> <span class="ruby-keyword">then</span> 
+                        <span class="ruby-identifier">ok_objectives</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">objective</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">ok_objectives</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_questions_of_topic" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_questions_of_topic</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_questions_of_topic-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-identifier">questionss</span> = []
+
+        
+        <span class="ruby-identifier">topic</span>.<span class="ruby-identifier">objectives</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">objective</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">objective</span>.<span class="ruby-identifier">questions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">question</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">questionss</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">question</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">questionss</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marks</span><span
+            class="method-args">(question)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="marks-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">marks</span>(<span class="ruby-identifier">question</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{question.answers.where(:user =&gt; current_user).last.marks_integer}/#{question.total_marks}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-objective_traffic_light" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">objective_traffic_light</span><span
+            class="method-args">(objective)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="objective_traffic_light-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">objective_traffic_light</span>(<span class="ruby-identifier">objective</span>)
+        <span class="ruby-identifier">score</span> = <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>)
+        <span class="ruby-identifier">nan</span> = <span class="ruby-value">0.0</span><span class="ruby-operator">/</span><span class="ruby-value">0</span> <span class="ruby-comment"># OR nan = Float::NAN</span>
+        <span class="ruby-identifier">nan</span>.<span class="ruby-identifier">class</span>
+        <span class="ruby-identifier">nan</span>.<span class="ruby-identifier">nan?</span>
+        <span class="ruby-identifier">nan</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Float</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">nan</span>.<span class="ruby-identifier">nan?</span>
+        (<span class="ruby-identifier">score</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Float</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">score</span>.<span class="ruby-identifier">nan?</span>) <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">score</span>
+        
+        
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">score</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;red&quot;</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">score</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">69</span>
+         <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;yellow&quot;</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">score</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">70</span> 
+                <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;green&quot;</span>
+        <span class="ruby-keyword">else</span> <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-progress_in_objective" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">progress_in_objective</span><span
+            class="method-args">(objective)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="progress_in_objective-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">progress_in_objective</span>(<span class="ruby-identifier">objective</span>)
+        <span class="ruby-identifier">marks</span> = <span class="ruby-value">0</span>
+        <span class="ruby-identifier">total_marks</span> = <span class="ruby-value">0</span>
+        <span class="ruby-identifier">objective</span>.<span class="ruby-identifier">questions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">question</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> 
+                        <span class="ruby-identifier">marks</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">marks_integer</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">time_degredation</span>(<span class="ruby-identifier">question</span>)
+                        <span class="ruby-identifier">total_marks</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">total_marks</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> (<span class="ruby-identifier">marks</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">total_marks</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-progress_in_topic" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">progress_in_topic</span><span
+            class="method-args">(topic)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="progress_in_topic-source">
+            <pre><span class="ruby-comment"># File app/helpers/subjects_helper.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">progress_in_topic</span>(<span class="ruby-identifier">topic</span>)
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-comment">#fix for topics that dont have questions returning nil rather than 0.00</span>
+                <span class="ruby-identifier">marks</span> = <span class="ruby-value">0</span>
+                <span class="ruby-identifier">total_marks</span> = <span class="ruby-value">0</span>
+                <span class="ruby-identifier">get_questions_of_topic</span>(<span class="ruby-identifier">topic</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">question</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">blank?</span>
+                                <span class="ruby-identifier">marks</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">marks_integer</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">time_degredation</span>(<span class="ruby-identifier">question</span>)
+                                <span class="ruby-identifier">total_marks</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">question</span>.<span class="ruby-identifier">total_marks</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">return</span> (<span class="ruby-identifier">marks</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">total_marks</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

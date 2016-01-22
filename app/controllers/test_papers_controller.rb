@@ -1,5 +1,5 @@
 class TestPapersController < ApplicationController
-  before_filter :require_user_signed_in, only: [:new, :edit,:show ,  :create, :update, :destroy, :index]
+  # before_filter :require_user_signed_in, only: [:new, :edit,:show ,  :create, :update, :destroy, :index]
   require 'ParsePapers'
   require 'nokogiri'
   before_action :set_test_paper, only: [:show, :edit, :update, :destroy]
@@ -1348,7 +1348,7 @@ EOXML
                     main_question_id: mainquestion.id,
                     total_marks: actual_marks,
                     html: "#{table.to_html} <strong>Warning, the above question contains formatting errors</strong>",
-                    position: "#{ques_id}"
+                    position: ""
                     )
                   ques.save
             else

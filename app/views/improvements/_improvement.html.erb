@@ -6,7 +6,7 @@
   <td class="">
     <%= improvement.area_to_improve %>
     <% if improvement.flashcard then %>
-      <%= improvement.flashcard.keypoints.all %>
+      <div class="ui label"><%= improvement.flashcard.top.gsub(/&nbsp;/, "").html_safe %></div>
     <% end %>
 
   </td>
