@@ -53,7 +53,8 @@
 														<% end %>
 														</div>
 													<% end %>
-										<%= form_for([question, Answer.new], multipart: true, html: {multipart: true}, remote: true, authenticity_token: true) do |f| %>
+										<%= form_for([question, Answer.new], multipart: true, html: {multipart: true, target: "hidden-iframe"}, remote: true, authenticity_token: true) do |f| %>
+											<iframe name="hidden-iframe" style="display: none;"></iframe>
 											<div class="ui answer-form form" style="margin:auto; max-width:705px" data-id="<%= question.id %>" style="display:none;">
 												<div class="ui accordion">
 												  <div class="ui button title">
