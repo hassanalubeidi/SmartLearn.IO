@@ -25,7 +25,9 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer.question = @question
     @answer.user = current_user
-    @answer.picture = decode_base64 unless decode_base64 == nil
+    unless params[:answer][:picture_64] == nil then
+        @answer.picture = decode_base64
+    end
     @answer.save
     if @answer.save then
       attempted_question = AttemptedQuestion.create(answer_id: @answer.id, user_id: @answer.user.id, question_id: @question.id, objective_id: @question.main_question.objectives.last.id, topic_id: @question.main_question.objectives.last.topic.id , subject_id: @question.main_question.objectives.last.topic.subject.id)
