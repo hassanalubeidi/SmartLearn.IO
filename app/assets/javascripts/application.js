@@ -17,7 +17,8 @@
 //= require_tree .
 //= require cocoon
 //= require tinymce
-//= require turbolinks
+
+
 
 
 $(document)

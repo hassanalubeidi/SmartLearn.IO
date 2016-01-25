@@ -1,31 +1,200 @@
-<h1>Listing test_papers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Questions</th>
-      <th>Date</th>
-      <th>Calc allowed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-resource.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-sanitize.js"></script>
+<link href="http://content.doublestruck.eu/style/ds.css" rel="stylesheet" type="text/css">
 
-  <tbody>
-    <% @test_papers.each do |test_paper| %>
-      <tr>
-        <td><%= test_paper.subject %></td>
-        <td><%= test_paper.questions %></td>
-        <td><%= test_paper.date %></td>
-        <td><%= test_paper.calc_allowed %></td>
-        <td><%= link_to 'Show', test_paper %></td>
-        <td><%= link_to 'Edit', edit_test_paper_path(test_paper) %></td>
-        <td><%= link_to 'Destroy', test_paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script>
+    var myApp = angular.module('app', ['ngResource', 'ngSanitize'], function($rootScopeProvider) { 
+    $rootScopeProvider.digestTtl(10); 
+    });
+    myApp.factory("Testpaper", function($resource, $http) {
+      return $resource('http://127.0.0.1:3000/test_papers/9.json',{},{
+            get:{
+                method:"GET",
+                isArray:false,
+                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'} 
+            },
+        });
+    })
 
-<br>
 
-<%= link_to 'New Test paper', new_test_paper_path %>
+
+    myApp.controller('testpaper-controller', ['$scope','Testpaper', function($scope, Testpaper) {
+        $scope.testpaper = Testpaper.get()
+        $scope.selectedMainQuestionIndex = 0
+
+        $scope.setSelectedMainQuestionIndex = function(index) {
+          $scope.selectedMainQuestionIndex = index
+        }
+
+        $scope.incrementSelectedMainQuestionIndex = function() {
+          if ($scope.testpaper.mainquestions.length > $scope.selectedMainQuestionIndex + 1) {
+            $scope.selectedMainQuestionIndex += 1
+            $scope.setSelectedMainQuestionIndex($scope.selectedMainQuestionIndex)
+          }
+        }
+
+        $scope.decrementSelectedMainQuestionIndex = function() {
+          if ($scope.selectedMainQuestionIndex  > 0) {
+            $scope.selectedMainQuestionIndex -= 1
+            $scope.setSelectedMainQuestionIndex($scope.selectedMainQuestionIndex)
+          }
+        }
+        $scope.valid_marks = function(marks, total_marks) {
+          if (marks < (total_marks+ 1)) {
+            return true
+          } else {
+            return false
+          }  
+        }
+        $scope.full_marks = function(question) {
+          if (question.total_marks == question.answer.marks) {
+            return true
+          }
+        }
+        $scope.finished_questions = 0
+        $scope.addAnswer = function(question, marks, what_went_wrong) {}
+
+    }])
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.css">
+
+<body ng-app="app" style="background-color:#F7F7F7;">
+    <div class="ui stackable grid" ng-controller="testpaper-controller">
+
+      <div class="ui sixteen wide verticaly attached column" style="padding-bottom: 0; padding-top:0">
+        
+        <div class="ui horizontal middle attached segment" style="padding-bottom:0">
+          <h1 class="ui top header container">
+              {{testpaper.name}}
+              <div class="sub header">
+              {{testpaper.subject}}
+              </div>
+            </h1>
+            <div class="ui button" ng-click="reversed=!reversed">Reverse</div>
+            <div style=" padding-bottom:20px"></div>
+          </div>
+      </div>
+      <div class="ui sixteen wide column">
+        <div class="ui container">
+          <div class="mainquestion">
+            <div class="ui three top attached green inverted item blue large menu">
+                <a class="item" style="width: 15%" ng-class="{disabled: selectedMainQuestionIndex == 0}"
+                ng-click="decrementSelectedMainQuestionIndex()"><i class="ui left arrow  icon"></i>
+                </a>
+                <a class="ui dropdown item" style="width:70%">
+                Question {{selectedMainQuestionIndex + 1}} <i class="ui dropdown icon"></i>
+                  <div class="menu">
+                      <div class="item" ng-repeat="mainquestion in testpaper.mainquestions" ng-click="setSelectedMainQuestionIndex($index)" ng-class="{selected: slectedMainQuestionIndex == $index}">Question {{$index + 1}}</div>
+                  </div>
+                </a>
+                <a class="item" style="width: 15%" ng-class="{disabled: selectedMainQuestionIndex == testpaper.mainquestions.length - 1}"
+                ng-click="incrementSelectedMainQuestionIndex()"><i class="ui right arrow  icon"></i>
+                </a>
+            </div>
+
+            <div class="ui attached segment" ng-repeat="mainquestion in testpaper.mainquestions | orderBy: 'id': reversed" ng-show="$index == selectedMainQuestionIndex">
+              <div class="questions segments" ng-repeat="question in mainquestion.questions | orderBy: 'position'">
+                <div class="ui basic segment">
+                  <div class="ui text container">
+                    <h4 class="ui centered header">{{selectedMainQuestionIndex + 1}}){{question.position}}</h4>
+                    <div class="ui accordion">
+                      <div class="title">
+                        <i class="dropdown icon"></i>
+                      </div>
+                      <div class="content">
+                        <div ng-bind-html="question.html"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div 
+                  class="ui basic secondary padded form segment"
+                  ng-class="{
+                    red: 
+                      valid_marks(question.answer.marks, question.total_marks) && question.answer.marks != null && question.answer.marks < question.total_marks,
+
+                      green: question.answer.marks == question.total_marks
+                    }"
+                  
+                >
+
+                  <div class="ui text container">       
+                    <div class="ui red message" 
+                       ng-show="full_marks(question) != true && question.answer.marks != null && question.answered == true"
+                    >
+                      <strong>Your mistake:</strong> {{question.answer.what_went_wrong}}
+                    </div>      
+                    <div class="ui accordion">
+                      <div class="title">
+                       <div class="ui basic button">Mark Scheme <i class="dropdown icon"></i></div>
+                      </div>
+                      <div class="content">
+                        <div ng-bind-html="mainquestion.answer_html"></div>
+                      </div>
+                    </div>    
+
+                    
+                    <div class="ui inline field" ng-show="question.answered != true">
+                      <div class="ui inline field" ng-class="{ error: question.answer.marks > question.total_marks }">
+                        <input
+                          type="number" 
+                          ng-model="question.answer.marks"
+                          min="0"
+                        >/ {{question.total_marks}}
+                      </div>
+                    <div ng-show="question.answer.marks < question.total_marks && question.answer.marks != null" style="padding: 10px 0px">
+                      <label>What went wrong?</label>
+                        <textarea ng-model="question.answer.what_went_wrong"></textarea>
+                      </div>
+                      
+                      <div class="marks" 
+                        ng-show="valid_marks(question.answer.marks, question.total_marks) && question.answer.marks != null " 
+                        style="text-align: right">
+                        <span class="ui red button" ng-click="question.answered = true">Submit</span>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  <div class="ui text container">
+                    <div class="marks" 
+                      ng-show="question.answered == true" 
+                      style="text-align: right">
+                      <a class="ui big link label" ng-click="question.answered = false">
+                        {{question.answer.marks}}/{{question.total_marks}}
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="ui divider"></div>
+              </div>
+            </div> 
+            <div class="ui bottom attached blue button" ng-click="incrementSelectedMainQuestionIndex()"><i class="ui right arrow icon"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+$(window).on("load", function() {
+  $(".accordion").accordion()
+  $(".dropdown").dropdown()
+  for (var i = 0; i < 5; i++) {
+    setTimeout(function() {
+      $(".accordion").accordion()
+      $(".dropdown").dropdown()
+    }, 100)
+  };
+  setTimeout(function() {
+    $(".accordion").accordion()
+  }, 1000)
+    
+})
+</script>
+</body>
