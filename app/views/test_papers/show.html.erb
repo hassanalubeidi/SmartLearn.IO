@@ -379,7 +379,7 @@
 			        text: question.answer.what_went_wrong,
 			        marks_integer: question.answer.marks,
                     picture_64: question.answer.picture,
-			        user_id: 1
+			        user_id: <%= current_user.id %>
 			      }
 			    })
 	        }
@@ -523,6 +523,7 @@
         </div>
       </div>
     </div>
+    <%= link_to "Add through Exampro", test_papers_upload_path(:test_paper_id => @test_paper.id)  %>
     <script>
 $(window).on("load", function() {
   $(".accordion").accordion()
