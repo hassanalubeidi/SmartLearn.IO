@@ -7,16 +7,16 @@ json.mainquestions @test_paper.main_questions.each do |mainquestion|
 		json.total_marks question.total_marks
 		json.id question.id
 		json.answer do |answer|
-			if question.answers.last != nil then
-				json.marks question.answers.last.marks_integer
-				json.what_went_wrong question.answers.last.text
-                json.what_went_wrong_image_url question.answers.last.picture.url unless question.answers.last.picture.url.blank?
+			if question.answer(current_user) != nil then
+				json.marks question.answer(current_user).marks_integer
+				json.what_went_wrong question.answer(current_user).text
+                json.what_went_wrong_image_url question.answer(current_user).picture.url unless question.answer(current_user).picture.url.blank?
 			else
 				json.no_answer true
 			end
 		end
 		if !question.answers.blank?
-			json.answered !question.answers.blank?
+			json.answered !question.answer(current_user).blank?
 		end
 	end
 	json.id mainquestion.id
