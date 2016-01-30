@@ -1405,6 +1405,7 @@ EOXML
     @questions = Question.last(params[:questions_number])
   end
   def show
+    @user = params[:answer_user_id]
     @main_questions = @test_paper.main_questions
     @main_questions.each do |mainquestion|
       if mainquestion.questions.count == 0 then
@@ -1448,7 +1449,7 @@ EOXML
     end
 
     def test_paper_params
-      params.require(:test_paper).permit(:subject_id,:name, :testpaper_id , :test_paper_url, :html, :mark_scheme_html, :source, :exam_notes_html, :description,  :questions, :date, :calc_allowed, :url, questions_attributes: [:text, :attachment, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
+      params.require(:test_paper).permit(:subject_id, :answer_user_id,:name, :testpaper_id , :test_paper_url, :html, :mark_scheme_html, :source, :exam_notes_html, :description,  :questions, :date, :calc_allowed, :url, questions_attributes: [:text, :attachment, :total_marks, lines_attributes: [ :id, :question_id, :objective_id, :_destroy ]])
     end
 
     def number_of_questions(url)

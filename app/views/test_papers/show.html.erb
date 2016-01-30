@@ -308,7 +308,7 @@
     $rootScopeProvider.digestTtl(10); 
     });
     myApp.factory("Testpaper", function($resource, $http) { // CRUD Testpaper
-      return $resource('http://smartlearn.herokuapp.com/test_papers/<%= @test_paper.id %>.json',{},{
+      return $resource('http://127.0.0.1:3000/test_papers/<%= @test_paper.id %>.json',{},{
             get:{
                 method:"GET",
                 isArray:false,
@@ -322,7 +322,7 @@
 	  	create: function(question) {
 	  		console.log(question)
 	  		question_id = question.id
-	  		return $resource('http://smartlearn.herokuapp.com/questions/' + question_id + '/answers')
+	  		return $resource('http://127.0.0.1:3000/questions/' + question_id + '/answers')
 	  	}
 	  	
 	  }
