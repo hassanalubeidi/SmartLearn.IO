@@ -1405,7 +1405,6 @@ EOXML
     @questions = Question.last(params[:questions_number])
   end
   def show
-    @user = params[:answer_user_id]
     @main_questions = @test_paper.main_questions
     @main_questions.each do |mainquestion|
       if mainquestion.questions.count == 0 then
