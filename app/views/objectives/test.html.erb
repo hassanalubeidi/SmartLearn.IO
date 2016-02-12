@@ -209,9 +209,9 @@ myApp.controller('flashcard-controller', ['$scope','$timeout','$http', 'flashcar
 	      </div>
 	      <div class="ui basic segment"
 	      style="margin: 0" ng-show="FlashcardState == 'marking'">
-	          <h2 class="ui header">Your answer:</h2>
+	          <h2 class="ui header" style="margin-left:40px">Your answer:</h2>
 	          <p>{{flashcard[selectedFlashcardIndex].answer}}</p>
-	          <h2 class="ui header">Did you mention the following?</h2>
+	          <h2 class="ui header" style="margin-left:40px">Did you mention the following?</h2>
 	          <div class="ui selection list">
 	              <div ng-repeat="keypoint in flashcards[selectedFlashcardIndex].keypoints"
 	              class="keypoint item" ng-click="keypoint.correct = !keypoint.correct"
