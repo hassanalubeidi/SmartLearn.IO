@@ -198,7 +198,7 @@ myApp.controller('flashcard-controller', ['$scope','$timeout','$http', 'flashcar
 	      <div class="ui basic segment "
 	      style="margin: 0" ng-show="FlashcardState == 'question'">
 	          
-	          <h2 class="ui header" ng-bind-html="flashcards[selectedFlashcardIndex].top">{{flashcards[selectedFlashcardIndex].top}} </h2>
+	          <h2 class="ui header" style="margin-left:40px" ng-bind-html="flashcards[selectedFlashcardIndex].top">{{flashcards[selectedFlashcardIndex].top}} </h2>
 	          <p>Write down what your answer</p>
 	          <div class="ui form">
 	          <textarea ng-model="flashcard[selectedFlashcardIndex].answer" required></textarea>
