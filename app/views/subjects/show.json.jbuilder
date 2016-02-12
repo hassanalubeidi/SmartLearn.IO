@@ -1,1 +1,7 @@
-json.extract! @subject, :id, :created_at, :updated_at
+json.subject @subject
+json.array! @subject.topics.each do |topic|
+	json.topic topic
+	json.array! topic.objectives.each do |objective|
+		json.objective objective
+	end
+end

@@ -1,46 +1,314 @@
-<div class="ui container">
-	
-	<div class="ui raised segments">
-	  <div class="ui segment">
-	  	<div class="ui basic segment">
-	  	<span class="ui small breadcrumb" style="float: right; margin-top: -10px">
-	      	<a href="<%= subject_path @objective.topic.subject %>" class="section"><%= @objective.topic.subject.name %></a>
-			  <div class="divider"> / </div>
-			  <%= link_to @objective.topic.name, subject_topic_path(@objective.topic.subject, @objective.topic) %>
-			  <div class="divider"> / </div>
-			  <div class="active section">Obj</div>
-	    </span>
-		<h2 class="ui header" style="margin-top:5px;"><%= @objective.name %> <i class="green small checkmark icon"></i>
-		</h2>
-		<p class="ui sub ">
-		<div class="ui blue secondary message">Make sure that the keypoints are fluent, don't accept anything that's not almost exactly what we're looking for!</div>
-			<div class="ui top active blue attached fluid test-type button" data-tab="self" >
-			  Self assess
-			</div>
-			<button class="ui bottom blue attached fluid test-type button" data-tab="peer">
-			  Peer assess
-			</button>
-		</p>
-
-			
-
-	    
-	    </div>
-	    <div class="peer-assessed ui active tab" data-tab="self">
-	    <%= render partial: "self_assess" %>
-	    </div>
-	    <!-- <%# render partial: "peer_assess" %> !-->
-	    </div>
-
-	    	<div class="ui basic segment">
-	    		<h3 class="ui centered header"><%= link_to "Add flashcards", edit_objective_path(@objective) %> </h3>
-	    	</div>
-
-
-</div>
-
+<%= angular %>
 <script>
-$('.test-type')
-  .tab()
-;
+var myApp = angular.module('app', ['ngResource', 'ngSanitize'], function($rootScopeProvider) { 
+  $rootScopeProvider.digestTtl(10); 
+});
+myApp.factory("flashcardsService", function($resource, $http) {
+  return {
+    flashcards: $resource("http://smartlearn.herokuapp.com/objectives/<%= @objective.id %>.json"),
+    attempt: $resource("http://smartlearn.herokuapp.com/attempts/.json")
+  }
+})
+myApp.factory("Improvement", function($resource, $http) {
+  return $resource('http://smartlearn.herokuapp.com/improvements/:id')
+})
+myApp.controller('flashcard-controller', ['$scope','$timeout','$http', 'flashcardsService','Improvement', function($scope, $timeout, $http, flashcardsService, Improvement) {
+  //get data from local rails app
+  flashcardsService.flashcards.query(function(data) { 
+    console.log(data)
+    $scope.flashcards = data;
+    $(".dropdown").dropdown() // really crappy front end hack
+  });
+  $scope.createImprovement = function(improvementText) {
+    Improvement.save({
+      improvement: {
+        area_to_improve: improvementText,
+        topic_id: $scope.flashcards[$scope.selectedFlashcardIndex].topic_id,
+        user_id: <%= current_user.id %>, 
+        flashcard_id: $scope.flashcards[$scope.selectedFlashcardIndex].id
+      }
+    })
+  }
+  // save keypoint state
+  $scope.createAttempts = function() {
+    var keypoints = $scope.flashcards[$scope.selectedFlashcardIndex].keypoints
+    for (keypointIndex = 0; keypointIndex < keypoints.length; keypointIndex++) { 
+        var payLoad = {
+          attempt:
+            {
+            keypoint_id: keypoints[keypointIndex].id,
+            correct :  keypoints[keypointIndex].correct,
+            user_id : <%= current_user.id %>
+            }
+          }
+        flashcardsService.attempt.save(payLoad)
+    }
+  }
+
+
+  $scope.FlashcardState = 'question'
+  String.prototype.replaceAt=function(index, character) {
+      return this.substr(0, index) + character + this.substr(index+character.length);
+  }
+  $scope.hint = function(flashcard) {
+    var keypoints = []
+    angular.forEach(flashcard.keypoints, function(keypoint) {
+      keypoints.push($(keypoint.text).text())
+    })
+    keypoint_text = keypoints[0]
+    var keypoint_length = keypoint_text.length
+    var words = keypoint_text.split(' ')
+    var temp_words = words
+    // angular.forEach(half_array_randomly(words), function(word, index) {
+    //   words[index] = word
+    // })
+    console.log(words)
+    console.log("----")
+    angular.forEach(words, function(word, index) {
+      var position = Math.floor((Math.random() * 10) + 1)
+      if (position > 3) {
+         test = scrambleWord(word, 2)
+         scrambleWord(word, 2)
+         temp_words[index] = "test"
+      }
+    })
+    console.log(words)
+    console.log("----")
+      
+    return temp_words.join(" ")
+  }
+
+  var scrambleWord = function(word, rate) { //private method for $scope.hint
+    char_array = word.split("")
+    angular.forEach(char_array, function(char, index) {
+      var position = Math.floor((Math.random() * 10) + 1)
+      if (position > 3) {
+         char_array[index] = "-"
+      }
+    })
+    word = char_array.join("")
+    console.log(word)
+    return word
+  }
+
+
+
+
+
+
+  $scope.setFlashcardState = function myfunc(state) {
+      var loading;
+      // use this to determine whether b was passed or not
+      if (arguments.length == 1) {
+          $scope.FlashcardState = state
+      } else {
+          loading = arguments[1]; // take second argument
+          $scope.FlashcardState = "loading"
+          $timeout(function(){
+           $scope.FlashcardState = state
+          }, loading)
+      }
+  }
+  $scope.showLoading = function(miliseconds) {
+      prev_state = $scope.FlashcardState
+      $scope.FlashcardState = "loading"
+      $timeout(function(){
+        $scope.FlashcardState = prev_state
+      }, miliseconds)
+  }
+
+  $scope.selectedFlashcardIndex = 0 // initial
+
+  $scope.setSelectedFlashcardIndex = function(index) {
+    $scope.selectedFlashcardIndex = index
+    $scope.FlashcardState = 'question'
+    $scope.improvementForm = undefined
+  }
+
+  $scope.incrementSelectedFlashcardIndex = function() {
+    if ($scope.flashcards.length > $scope.selectedFlashcardIndex + 1) {
+      $scope.selectedFlashcardIndex += 1
+      $scope.setSelectedFlashcardIndex($scope.selectedFlashcardIndex)
+    }
+  }
+
+  $scope.decrementSelectedFlashcardIndex = function() {
+    if ($scope.selectedFlashcardIndex   > 0) {
+      $scope.selectedFlashcardIndex -= 1
+      $scope.setSelectedFlashcardIndex($scope.selectedFlashcardIndex)
+    }
+  }
+
+  $scope.correctKeypointsCount = function() {
+    var count = 0
+
+    angular.forEach($scope.flashcards[$scope.selectedFlashcardIndex].keypoints, function(keypoint, index) {
+      if (keypoint.correct == true) {
+        count += 1
+      }
+    })
+    return count
+  }
+
+  $scope.keypointsCount = function() {
+    return $scope.flashcards[$scope.selectedFlashcardIndex].keypoints.length
+  }
+  $scope.correctKeypointsPercentage = function() {
+    perc = $scope.correctKeypointsCount() / $scope.keypointsCount() 
+
+    return perc * 100
+  }
+
+  $scope.toggleCheckmark = function() {
+    console.log(this)
+    id = $(this).data("id")
+    $(".ui .checkbox[data-id='" + id + "']").checkbox('toggle')
+  }
+
+  $scope.todaysDate = function() {
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    return + day + "/" + month + "/" + year
+  }
+
+}])
 </script>
+<div class="ui container" ng-app="app">
+	<div ng-controller="flashcard-controller">
+	    <div class="ui three top attached green inverted item blue large menu">
+	        <a class="item" style="width: 15%" ng-class="{disabled: selectedFlashcardIndex == 0}"
+	        ng-click="decrementSelectedFlashcardIndex()"><i class="ui left arrow  icon"></i>
+	        </a>
+	        <a class="ui dropdown item" style="width:70%">
+	        <div ng-bind-html="flashcards[selectedFlashcardIndex].top"></div> <i class="ui dropdown icon"></i>
+	          <div class="menu">
+
+	              <div class="item" ng-repeat="flashcard in flashcards" ng-click="setSelectedFlashcardIndex($index)"><div ng-bind-html="flashcard.top"></div></div>
+
+	          </div>
+	        </a>
+	        <a class="item" style="width: 15%" ng-class="{disabled: selectedFlashcardIndex == flashcards.length - 1}"
+	        ng-click="incrementSelectedFlashcardIndex()"><i class="ui right arrow  icon"></i>
+	        </a>
+	    </div>
+	    <div class="ui bottom attached segment" >
+	      
+	      <div class="ui basic segment "
+	      style="margin: 0" ng-show="FlashcardState == 'question'">
+	          
+	          <h2 class="ui header" ng-bind-html="flashcards[selectedFlashcardIndex].top">{{flashcards[selectedFlashcardIndex].top}} </h2>
+	          <p>Write down what your answer</p>
+	          <div class="ui form">
+	          <textarea ng-model="flashcard[selectedFlashcardIndex].answer" required></textarea>
+	          </div>
+
+	          <div class="ui circular button" ng-click="setFlashcardState('marking')">Check your answer</div>
+
+	      </div>
+	      <div class="ui basic segment"
+	      style="margin: 0" ng-show="FlashcardState == 'marking'">
+	          <h2 class="ui header">Your answer:</h2>
+	          <p>{{flashcard[selectedFlashcardIndex].answer}}</p>
+	          <h2 class="ui header">Did you mention the following?</h2>
+	          <div class="ui selection list">
+	              <div ng-repeat="keypoint in flashcards[selectedFlashcardIndex].keypoints"
+	              class="keypoint item" ng-click="keypoint.correct = !keypoint.correct"
+	              ng-class="{active: keypoint.correct}"
+	              data-id="{{keypoint.id}}">
+	                  <div ng-bind-html="keypoint.text"></div>
+	                  
+	                  <!--<div class="ui label" ng-show="keypoint.attempts.slice(-1)[0].time_ago != null">attempted {{keypoint.attempts.slice(-1)[0].time_ago}}</div>!-->
+	                  <i class="ui large green checkmark icon"
+	                  style="float: right"
+	                  ng-show="keypoint.correct"></i>
+	                  <i class="ui large red delete icon" style="float: right"
+	                  ng-show="!keypoint.correct"></i>
+	              </div>
+
+	          </div>
+	          <div class="ui red circular button" ng-click="setFlashcardState('done', 250);
+	                                                        createAttempts()">
+	              Submit
+	            </div>
+	      </div>
+	      <div class="ui basic segment"
+	      style="margin: 0" ng-show="FlashcardState == 'done'"
+	      >
+	          <h2 class="ui header">Nice one!</h2>
+	          <p>You mentioned {{correctKeypointsCount()}}/{{keypointsCount()}}
+	              points. Your next step is
+	              to make sure that this knowledge
+	              remains fluent.</p>
+	          <p>We reccomend that you retest this in <strong>2 weeks</strong> time</p>
+
+	          <div class="ui circular button" ng-click="incrementSelectedFlashcardIndex()"
+	          ng-show="flashcards.length > selectedFlashcardIndex + 1">Next flashcard</div>
+	          <div class="ui circular button" ng-click="improvementForm = 'editing'" ng-class="{disabled: improvementForm == 'editing' || improvementForm == 'done'}">
+	          Create improvement for this flashcard
+	          </div>
+
+	          <div class="ui form" ng-show="improvementForm == 'editing'">
+	              <div class="ui field">
+	                  <label>Area for improvement</label>
+	                  <textarea placeholder="Phrase this as a question for most efficent learning"
+	                            ng-model="flashcards[selectedFlashcardIndex].improvement"
+	                            ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+	                  </textarea>
+	                  
+	              </div>
+	              <div class="ui field">
+	                  <div class="ui red circular button" ng-click="improvementForm = 'done'; createImprovement(flashcards[selectedFlashcardIndex].improvement)">Create improvement</div>
+	                  <div class="ui circular button" ng-click="improvementForm = undefined;">Cancel</div>
+	              </div>
+	          </div>
+	          <div class="ui segment" ng-show="improvementForm == 'done'">
+	              <h3 class="ui header">Added to feedback for improvement sheet!</h3>
+	              <table class="ui celled table">
+	                <thead>
+	                  <tr>
+	                    <th class="two wide">Date</th>
+	                    <th class="two wide">Topic</th>
+	                    <th class="eight wide">Area to improve</th>
+	                    <th>Reviewed</th>
+	                    <th>Checked</th>
+	                    <th class="one wide">Delete</th>
+	                  </tr>
+	                  
+	                </thead>
+	                <thead class="full-width">
+	                  <tr>
+
+	                    <th colspan="8" style="text-align: center; background-color:white">
+	                      <a href="http://smartlearn.herokuapp.com/improvements">...</a>
+	                      
+	                    </th>
+	                  </tr>
+	                </tfoot>
+	                <tbody>
+	                  <tr>
+	                    <td>{{todaysDate()}}</td>
+	                    <td>4.2 module 2: polymers and synthesis</td>
+	                    <td class="">{{flashcards[selectedFlashcardIndex].improvement}}</td>
+	                    <td>
+	                      <a href=" /improvements/4/add_review " class="">
+	                        <i class="add icon"></i>
+	                        Review this
+	                      </a>
+	                    </td>
+
+	                    <td class="negative">No</td>
+	                    <td><a data-confirm="Are you certain you want to delete this?" rel="nofollow" data-method="delete" href="/improvements/4"><i class="ui red delete large icon"></i></a>
+	                    <a href="/improvements/4/edit"><i class="ui blue pencil large icon"></i></a></td>
+	                  </tr>
+	                </tbody>
+	              </table>
+	          </div>
+	      </div>
+	      <div class="ui inverted dimmer" ng-class="{active: FlashcardState == 'loading'}">
+	          <div class="ui text loader">Loading</div>
+	      </div>
+	    </div>
+	</div>
+</div>
