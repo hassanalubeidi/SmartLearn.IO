@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :module_packs
+  resources :parse_paper
 
   resources :units
 

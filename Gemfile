@@ -70,7 +70,7 @@ gem "cocoon"
 gem 'simple_form'
 gem "paperclip", "~> 4.2"
 gem 'best_in_place', '~> 3.0.1'
-gem 'ParsePapers', '~> 2.1.2', :git => 'git://github.com/hassanalubeidi/ParsePapers.git'
+gem 'parse_paper', :git => 'https://github.com/hassanalubeidi/ParsePaper.git'
 gem "nokogiri"
 gem 'rest-client'
 gem 'json'
@@ -78,5 +78,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'aws-sdk', '< 2.0'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem "rmagick"
+gem 'pdf-reader'
+gem 'monkeylearn'
 
 

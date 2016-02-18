@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  require 'ParsePapers'
+  require 'parse_paper'
   before_action :set_objective, only: [:show, :edit, :update, :destroy, :test]
 
   def index

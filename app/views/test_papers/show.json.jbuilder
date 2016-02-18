@@ -2,8 +2,10 @@ json.name @test_paper.name
 json.subject @test_paper.subject.name
 json.mainquestions @test_paper.main_questions.each do |mainquestion|
 	json.questions mainquestion.questions.each do |question|
-		json.position question.position
-		json.html question.html.gsub(/width/, "max-width").gsub(/Q1\./, "")
+		json.position question.position.gsub(/1/, "")
+		unless question.html == nil
+			json.html question.html.gsub(/width/, "max-width").gsub(/Q1\./, "")
+		end
 		json.total_marks question.total_marks
 		json.id question.id
 		json.answer do |answer|
@@ -20,5 +22,7 @@ json.mainquestions @test_paper.main_questions.each do |mainquestion|
 		end
 	end
 	json.id mainquestion.id
-	json.answer_html mainquestion.answer_html.gsub(/\/\/W3C\/\/DTD HTML 4.01 Transitional\/\/EN\"\"\>/m, "")
+	unless mainquestion.answer_html == nil then
+		json.answer_html mainquestion.answer_html.gsub(/\/\/W3C\/\/DTD HTML 4.01 Transitional\/\/EN\"\"\>/m, "")
+	end
 end

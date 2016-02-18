@@ -1,0 +1,5 @@
+<%= form_tag(controller: "parse_paper", action: "create", method: "post") do %>
+	<%= label_tag(:url, "URL of testpaper:") %>
+  	<%= text_field_tag(:url) %>
+  	<%= submit_tag("Search") %>
+<% end %>
