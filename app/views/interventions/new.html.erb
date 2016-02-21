@@ -1,5 +1,51 @@
-<h1>New intervention</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', interventions_path %>
+<div class="ui large secondary blue inverted attached menu">
+  <div class="ui dropdown icon item">
+    <i class="sidebar icon"></i>
+  </div>
+  <div class="right menu">
+    <div class="ui right aligned category search  inverted item">
+      <div class="ui transparent icon input">
+        <input class="prompt" type="text" placeholder="Search SmartLearnIO...">
+        <i class="search link icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+  </div>
+</div>
+<div class="ui text container" style="margin-top: 20px;"> 
+    
+    <a href="<%= interventions_path %>" class="ui tiny icon circular button"><i class="ui left arrow icon"></i></a>
+    <div class="ui blue inverted secondary segment">
+        <div class="ui  header">
+            What are the initial values in an ice table?
+        </div>
+        <div class="ui label">Chemistry</div><div class="ui label">Unit 5</div><div class="ui label">Rates, Equilibrium and pH</div><div class="ui label">Equilibrium</div>
+    </div>
+    <!-- <div class="ui segment">
+        <div>
+            <div>
+                <strong>Recommended action:</strong>
+            </div>
+            <div class="ui message">
+                Watch <a>this</a> video <i class="ui red youtube icon"></i>
+            </div>
+            <div class="ui message">
+                <div>Question: <a>F325, Jan 2010, Q1)a)i)</a></div>
+            </div>
+            <div class="ui message">
+                <div>Flashcard: <a>Describe a generalised equilibrium equation</a></div>
+            </div>
+        </div>
+    </div> -->
+    <div class="ui fluid button">Check this problem with a teacher</div>
+    <div class="ui segment">
+        <strong>Ask your teacher to scan this QR code to mark this problem as checked</strong>
+        <img class="ui small image" src="http://www.qrstuff.com/images/sample.png">
+        <div class="ui right float red circular icon button"><i class="ui delete icon"></i></div>
+    </div>
+</div>
+<style>
+.ui .label {
+    margin-top:5px;
+}
+</style>

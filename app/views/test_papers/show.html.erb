@@ -1,4 +1,7 @@
 <%= angular %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+<script src="http://cdn.rawgit.com/EvanHahn/HumanizeDuration.js/master/humanize-duration.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-timer/1.3.3/angular-timer.js"></script>
 <script>
     /*! angular-base64-upload - v0.1.16
 * https://github.com/adonespitogo/angular-base64-upload
@@ -303,7 +306,7 @@
 })(window);
 </script>
 <script>
-    var myApp = angular.module('app', ['ngResource', 'ngSanitize', 'naif.base64'], function($rootScopeProvider) { 
+    var myApp = angular.module('app', ['ngResource', 'ngSanitize', 'naif.base64', 'timer'], function($rootScopeProvider) { 
     //init app
     $rootScopeProvider.digestTtl(10); 
     });
@@ -406,20 +409,25 @@
     <div class="ui stackable grid" ng-controller="testpaper-controller">
       <div class="ui sixteen wide verticaly attached column" style="padding-bottom: 0; padding-top:0">    
         <div class="ui horizontal middle attached segment" style="padding-bottom:0">
-          <h1 class="ui top header container">
+          <div class="ui container">
+            <h1 class="ui top header">
               {{testpaper.name}}
               <div class="sub header">
               {{testpaper.subject}}
               </div>
             </h1>
+
             <div class="ui button" ng-click="reversed=!reversed">Reverse</div>
+            <div class="ui float right label"><timer countdown="3600" language="en" interval="1000" finish-callback="callbackTimer.finished()">{{minutes}}:{{seconds}}</timer></div>
             <div style=" padding-bottom:20px"></div>
           </div>
+        </div>
       </div>
       <div class="ui sixteen wide column">
         <div class="ui container">
           <div class="mainquestion">
             <div class="ui three top attached green inverted item blue large menu">
+                <a id="top-of-questions"></a>
                 <a class="item" style="width: 15%" ng-class="{disabled: selectedMainQuestionIndex == 0}"
                 ng-click="decrementSelectedMainQuestionIndex()"><i class="ui left arrow  icon"></i>
                 </a>
@@ -518,7 +526,7 @@
                 <div class="ui divider"></div>
               </div>
             </div> 
-            <div class="ui bottom attached blue button" ng-click="incrementSelectedMainQuestionIndex()"><i class="ui right arrow icon"></i></div>
+            <a href="#top-of-questions" class="ui bottom attached blue button" ng-click="incrementSelectedMainQuestionIndex()"><i class="ui right arrow icon"></i></a>
           </div>
         </div>
       </div>
